@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<style type="text/css">
+		#ocean {
+			background-image: url("ocean.jpg");
+			width: 900px;
+			height: 700px;
+		}
+		.players {
+			position: absolute;
+			background-image: url("player.png");
+			width: 70px;
+			height: 75px;
+		}
+		.enemies {
+			position: absolute;
+			background-image: url("enemy.png");
+			width: 70px;
+			height: 75px;
+		}
+	</style>
+
+	<div id="ocean">
+		<div id="enemies">
+			<div class="enemy"></div>
+		</div>
+		<div id="players">
+			<div class="player"></div>
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+		var player = {
+			left: 450,
+			top: 620
+		}
+
+		var enemies = [
+			{left: 350, top: 700},	
+			{left: 450, top: 700}
+		]
+
+		function drawPlayer()
+		{
+			var content = "<div class='player' style='left:"+player.left+"px; top:"+player.top+"px'></div>";
+			document.getElementById("players").innerHTML = content;
+		}
+
+		function drawEnemies()
+		{
+			var content = "";
+			for (var i = 0; i < enemies.length; i++)
+			{
+				content += "<div class='enemy' style='left:"+enemies[i].left+"px; top:"+enemies[i].top+"px'></div>";
+			}
+			document.getElementById("enemies").innerHTML = content;
+		}
+
+		//drawPlayer();
+		//drawEnemies();
+
+	</script>
+</body>
+</html>

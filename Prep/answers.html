@@ -1,0 +1,599 @@
+
+<script>
+	// CHAPTER 0
+	// Setting & swapping
+	var myNumber = 42;
+	var myName = 'Kristin';
+
+	var temp = myName;
+	myName = myNumber;
+	myNumber = temp;
+	console.log("Setting & swapping: myNumber: "+myNumber+" myName: ", myName)
+
+	// Print -52 to 1066
+	console.log("-52 to 1066");
+	for (var i = -52; i < 1067; i++)
+	{
+		console.log(i);
+	}
+
+	// Don't worry be happy
+	function beCheerful() {
+		for (var i = 0; i < 98; i++)
+		{
+			console.log("good morning!")
+		}
+	}
+	beCheerful();
+
+	// Multiples of three, but not all
+	console.log("Multiples of 3 between -300 to 0, not -3 or -6");
+	for (var i = -300; i < 1; i++)
+	{
+		if (i%3 === 0)
+		{
+			if (i !== -3 && i !== -6)
+			{
+				console.log(i);
+			}
+		}
+	}
+
+	// Printing integers with while
+	console.log("2000 to 5280");
+	var i = 2000;
+	while (i < 5281)
+	{
+		console.log(i);
+		i++;
+	}
+
+	// You say it's your birthday
+	console.log("Is this my birthday?");
+	function happyBirthdayToMe(num1, num2) {
+		if ((num1 === 11 && num2 === 1) || (num2 === 11 && num1 === 1))
+		{
+			console.log("How did you know?");
+		}
+		else {
+			console.log("Just another day...");
+		}
+	}
+	console.log("11-01");
+	happyBirthdayToMe(11,1);
+	console.log("1-11");
+	happyBirthdayToMe(1,11);
+	console.log("10-01");
+	happyBirthdayToMe(10,1);
+	console.log("2-1");
+	happyBirthdayToMe(2,1);
+	console.log("1-1");
+	happyBirthdayToMe(1,1);
+
+	// Leap year
+	function isLeapYear(year) {
+		if (year%4 === 0)
+		{
+			if (year%100 === 0 && year%400 !== 0)
+			{
+				return false;
+			}
+			return true;
+		}
+		return false;
+	}
+	console.log("Leap year? 2020", isLeapYear(2020));
+	console.log("Leap year? 2000", isLeapYear(2000));
+	console.log("Leap year? 1999", isLeapYear(1999));
+	console.log("Leap year? 1990", isLeapYear(1990));
+	console.log("Leap year? 1980", isLeapYear(1980));
+
+	// Print & count
+	var fiveMultipleCount = 0;
+	for (var i = 512; i < 4097; i++)
+	{
+		if (i%5 === 0)
+		{
+			console.log(i);
+			fiveMultipleCount++;
+		}
+	}
+	console.log("Multiples of 5 512-4096: ", fiveMultipleCount);
+
+	// Multiples of Six
+	console.log("Multiples of six 0-60000");
+	var sixMultiples = 0;
+	while (sixMultiples < 60001)
+	{
+		if (sixMultiples%6 === 0)
+		{
+			console.log(sixMultiples);
+		}
+		sixMultiples++;	
+	}
+
+	// Counting the Dojo way
+	console.log("Counting dojo");
+	for (var i = 1; i < 101; i++)
+	{
+		var message = "Coding";
+		if (i%5 === 0)
+		{
+			if (i%10 === 0)
+			{
+				message += " Dojo";
+			}
+			console.log(message);
+		} else {
+			console.log(i);
+		}
+	}
+
+	// What do you know?
+	console.log("What do you know?");
+	function whatDoYouKnow(incoming)
+	{
+		console.log(incoming);
+	}
+	whatDoYouKnow("Unicorns Rule!");
+	whatDoYouKnow(10000000000000);
+
+	// Whoa that sucker's huge
+	// Negative odd numbers cancel out positive odd numbers, so no need to 
+	// do this loop.
+	var hugeSum = 0;
+	for (var i = -299999; i < 300001; i+=2)
+	{
+		if (i%2 !== 0)
+		{
+			hugeSum += i;
+		}
+	}
+	console.log("Huge sum is (with loop): ", hugeSum);
+	console.log("Huge sum is still 0 (without loop)");
+
+	// Countdown by fours
+	console.log("Countdown by 4s");
+	var fourCounter = 2016;
+	while (fourCounter >= 4)
+	{
+		console.log(fourCounter);
+		fourCounter -= 4;
+	}
+
+	// Flexible countdown
+	console.log("Flexible countdown");
+	function countdown(lowNum, highNum, mult)
+	{
+		for (var i = highNum; i >= lowNum; i--)
+		{
+			if (i%mult === 0)
+			{
+				console.log(i);
+			}
+		}
+	}
+	console.log("Countdown (2,9,3)");
+	countdown(2,9,3);
+	console.log("Countdown (-10,0,5)");
+	countdown(-10,0,5);
+
+	// Final countdown
+	console.log("Final countdown");
+	function finalCountdown(param1,param2,param3,param4)
+	{
+		var counter = param2;
+		while (counter <= param3)
+		{
+			if (counter%param1 === 0 && counter!=param4)
+			{
+				console.log(counter);
+			}
+			counter++;
+		}
+	}
+	console.log("Final countdown (3,5,17,9)");
+	finalCountdown(3,5,17,9);
+
+	// CHAPTER 1
+
+	// Countdown
+	function arrayCountdown(maxNumber)
+	{
+		var arr = [];
+		if (maxNumber < 0)
+		{
+			return arr;
+		}
+		for (var i = maxNumber; i >= 0; i--)
+		{
+			arr.push(i);
+		}
+		return arr;
+	}
+	console.log("Countdown 5", arrayCountdown(5));
+	console.log("Countdown -10", arrayCountdown(-10));
+
+	// Print and return
+	function printFirstReturnSecond(arr)
+	{
+		console.log(arr[0]);
+		return(arr[1]);
+	}
+	console.log("Print and return, [-5,1,3,5]");
+	console.log("Returned: ", printFirstReturnSecond([-5,1,3,5]));
+
+	// First plus length
+	function firstPlusLength(arr)
+	{
+		return arr[0] + arr.length;
+	}
+	console.log("First plus length ([5,2,3,4]: ", firstPlusLength([5,2,3,4]));
+	console.log("First plus length (['unicorn',2,3,4]: ", firstPlusLength(['unicorn',2,3,4]));
+	console.log("First plus length ([false,2,3,4]: ", firstPlusLength([false,2,3,4]));
+	console.log("First plus length ([true,2,3,4]: ", firstPlusLength([true,2,3,4]));
+
+	// Values greater than second
+	var valuesArray = [1,3,5,7,9,13];
+	var greaterThanCount = 0;
+	console.log("Values greater than 2nd value in: ", valuesArray);
+	for (var i = 0; i < valuesArray.length; i++)
+	{
+		if (valuesArray[i] > valuesArray[1])
+		{
+			console.log(valuesArray[i]);
+			greaterThanCount++;
+		}
+	}
+
+	// Greater than second, generalized
+	function greaterThanSecond(arr)
+	{
+		var greaterThanCount = 0;
+		console.log("Values greater than 2nd value in: ", arr);
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (arr[i] > arr[1])
+			{
+				console.log(arr[i]);
+				greaterThanCount++;
+			}
+		}
+		return greaterThanCount;
+	}
+	greaterThanSecond(valuesArray);
+	greaterThanSecond([0]);
+
+	// This length, that value
+	function lengthAndValue(num1, num2)
+	{
+		var arr = [];
+		for (var i = 0; i < num1; i++)
+		{
+			arr.push(num2);
+		}
+		if (num1 === num2)
+		{
+			console.log("Jinx!");
+		}
+		return arr;
+	}
+	console.log("Length 3, number 1", lengthAndValue(3,1));
+	console.log("Length 3, number 3", lengthAndValue(3,3));
+	console.log("Length 0, number 1", lengthAndValue(0,1));
+
+	// Fit first value
+	function fitFirstValue(arr)
+	{
+		if (arr[0] > arr.length)
+		{
+			console.log("Too big!");
+			return;
+
+		}
+		if (arr[0] < arr.length)
+		{
+			console.log("Too small!");
+			return;
+		}
+		console.log("Just right!");
+	}
+	console.log("fitFirstValue: [0,1,2] - ");
+	fitFirstValue([0,1,2]);
+	console.log("fitFirstValue: [0] - ");
+	fitFirstValue([0]);
+	console.log("fitFirstValue: [3,2,1] - ");
+	fitFirstValue([3,2,1]);
+	console.log("fitFirstValue: [100,2,1] - ");
+	fitFirstValue([100,2,1]);
+
+	// Fahrenheit to Celsius
+	function fahrenheitToCelsius(fDegrees)
+	{
+		return ((fDegrees - 32) * (5.0/9.0));
+	}
+	console.log("70 degrees in Celsius is: ", fahrenheitToCelsius(70));
+
+	function celsiusToFahrenheit(celsius)
+	{
+		return (celsius * (9/5)) + 32;
+	}
+	console.log("21.11 Celsius in Fahrenheit is: ", celsiusToFahrenheit(21.11));
+
+	// CHAPTER 1 - page 22
+
+	// Biggie size
+	function biggieArray (arr)
+	{
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (arr[i] > 0)
+			{
+				arr[i] = 'big';
+			}
+		}
+		return arr;
+	}
+	console.log("bigify [1,2,3]: ", biggieArray([1,2,3]));
+	console.log("bigify [-1,2,3]: ", biggieArray([-1,2,3]));
+	console.log("bigify [0,0,0]: ", biggieArray([0,0,0]));
+	console.log("bigify []: ", biggieArray([]));
+	
+	// Print low, return high
+	function printLowReturnHigh (arr)
+	{
+		var min = arr[0];
+		var max = arr[0];
+		for (var i = 1; i < arr.length; i++)
+		{
+			if (arr[i] > max)
+			{
+				max = arr[i];
+			}
+			if (arr[i] < min)
+			{
+				min = arr[i];
+			}
+		}
+		console.log(min);
+		return max;
+	}
+	console.log("Print low, return high [1,2,3,4]: ", printLowReturnHigh([1,2,3,4]));
+	console.log("Print low, return high [3,1,3]: ", printLowReturnHigh([3,1,3]));
+	console.log("Print low, return high [3,2,1]: ", printLowReturnHigh([3,2,1]));
+	console.log("Print low, return high [0]: ", printLowReturnHigh([0]));
+	
+	// Print One, Return Another
+	function printOneReturnAnother (arr)
+	{
+		console.log(arr[arr.length-2]);
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (i%2 !== 0)
+			{
+				return arr[i];
+			}
+		}
+	}
+	console.log("Print 2nd-to-last, return first odd [1,2,3]: ", printOneReturnAnother([1,2,3]));
+	console.log("Print 2nd-to-last, return first odd [2,2,2,5]: ", printOneReturnAnother([2,2,2,5]));
+	console.log("Print 2nd-to-last, return first odd [0,0,0]: ", printOneReturnAnother([0,0,0]));
+	console.log("Print 2nd-to-last, return first odd [7,-2,0]: ", printOneReturnAnother([7,-2,0]));
+	
+	// Double vision
+	function doubleArrayValues (arr)
+	{
+		var doubledArray = [];
+		for (var i = 0; i < arr.length; i++)
+		{
+			doubledArray.push(arr[i]*2);
+		}
+		return doubledArray;
+	}
+	console.log("Doubled arry of [1,2,3]: ", doubleArrayValues([1,2,3]));
+	console.log("Doubled arry of [-10,0,500]: ", doubleArrayValues([-10,0,500]));
+	console.log("Doubled arry of [2]: ", doubleArrayValues([2]));
+	
+	// Count positives
+	function countPositives (arr)
+	{
+		positiveCount = 0;
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (arr[i] > 0)
+			{
+				positiveCount++;
+			}
+		}
+		arr[arr.length-1] = positiveCount;
+		return arr;
+	}
+	console.log("Positive count array [1,2,9]: ", countPositives([1,2,9]));
+	console.log("Positive count array [1,-2,12]: ", countPositives([1,-2,12]));
+	console.log("Positive count array [-1,-2,-3]: ", countPositives([-1,-2,-3]));
+
+	// Evens and Odds
+	function evensAndOdds(arr)
+	{
+		oddCount = 0;
+		evenCount = 0;
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (arr[i]%2 === 0)
+			{
+				evenCount++;
+				if (evenCount >= 3)
+				{
+					console.log("Even more so!");
+				}
+				oddCount = 0;
+			} else {
+				oddCount++;
+				if (oddCount >= 3)
+				{
+					console.log("That's odd!");
+				}
+				evenCount = 0;
+			}
+
+		}
+	}
+	console.log("evensAndOdds [1,3,5,7,9,11]: ");
+	evensAndOdds([1,3,5,7,9,11]);
+	console.log("evensAndOdds [2,4,6,8,10,12]: ");
+	evensAndOdds([2,4,6,8,10,12]);
+	console.log("evensAndOdds [1,3,4,5,7,9,8,11]: ");
+	evensAndOdds([1,3,4,5,7,9,8,11]);
+	console.log("evensAndOdds [2,4,5,6,7,8,10,12]: ");
+	evensAndOdds([2,4,5,6,7,8,10,12]);
+
+	// Increment seconds
+	function incrementSeconds (arr)
+	{
+		for (var i = 0; i < arr.length; i++)
+		{
+			console.log(arr[i]);
+			if (arr[i] %2 !== 0)
+			{
+				arr[i] += 1;
+			}
+		}
+		return arr;
+	}
+	console.log("Increment seconds [1,3,4,6]: ", incrementSeconds([1,3,4,6]));
+	console.log("Increment seconds [1,3,5,7]: ", incrementSeconds([1,3,5,7]));
+
+	// Previous lengths
+	function previousLengths(arr)
+	{
+		var previousLength = 0;
+		for (var i = 0; i < arr.length; i++)
+		{
+			var tempLength = arr[i].length;
+			arr[i] = previousLength;
+			previousLength = tempLength;
+		}
+		return arr;
+	}
+	console.log("previousLengths ['dog','pony','unicorn','mattress']: ", previousLengths(['dog','pony','unicorn','mattress']))
+
+	// Add 7 to most
+	function addSevenToMost(arr)
+	{
+		var newArr = [];
+		for (var i = 1; i < arr.length; i++)
+		{
+			newArr.push(arr[i]+7);
+		}
+		return newArr;
+	}
+	console.log("Add seven to most [1,3,5,7]: ",addSevenToMost([1,3,5,7]));
+	console.log("Add seven to most [0]: ",addSevenToMost([0]));
+	console.log("Add seven to most [1,3,-10,7]: ",addSevenToMost([1,3,-10,7]));
+	
+	// Reverse array
+	function reverseInPlace(arr)
+	{
+		var lastSwapped = arr.length-1;
+		for (var i = 0; i < arr.length; i++)
+		{
+			var temp = arr[i];
+			arr[i] = arr[lastSwapped];
+			arr[lastSwapped] = temp;
+			if (i === lastSwapped-1 || i === lastSwapped)
+			{
+				return arr;
+			}
+			lastSwapped--;
+		}
+		return arr;
+	}
+
+	console.log("reverseInPlace: [10,20,30,40]: ",reverseInPlace([10,20,30,40]));
+	console.log("reverseInPlace: [10,20,30,40,50]: ",reverseInPlace([10,20,30,40,50]));
+	console.log("reverseInPlace: [10,20]: ",reverseInPlace([10,20]));
+	console.log("reverseInPlace: [10]: ",reverseInPlace([10]));
+
+	// Outlook Negative
+	function makeValuesNegative(arr)
+	{
+		var negativeArr = [];
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (arr[i] > 0)
+			{
+				negativeArr.push(arr[i]*-1);
+			} else {
+				negativeArr.push(arr[i]);
+			}
+		}
+		return negativeArr
+	}
+	console.log("Negative array [1,3,5]: ", makeValuesNegative([1,3,5]));
+	console.log("Negative array [-1,3,5,0]: ", makeValuesNegative([-1,3,5,0]));
+	console.log("Negative array [-1,-3,-5]: ", makeValuesNegative([-1,-3,-5]));
+
+	// Always hungry
+	function reportArrayFood (arr)
+	{
+		var fed = false;
+		for (var i = 0; i < arr.length; i++)
+		{
+			if (arr[i] === "food")
+			{
+				console.log("yummy");
+				fed = true;
+			}
+		}
+		if (!fed)
+		{
+			console.log("I'm hungry");
+		}
+	}
+	console.log("Am I fed? ['food','food','food',100]: ");
+	reportArrayFood(['food','food','food',100]);
+	console.log("Am I fed? ['cilantro','cilantro','cilantro',100]: ");
+	reportArrayFood(['cilantro','cilantro','cilantro',100]);
+	console.log("Am I fed? []: ");
+	reportArrayFood([]);
+	console.log("Am I fed? [100]: ");
+	reportArrayFood([100]);
+
+	// Swap towards center
+	function swapTowardsCenter (arr)
+	{
+
+		var lastSwapped = arr.length-1;
+		for (var i = 0; i < arr.length; i+=2)
+		{
+			var temp = arr[i];
+			arr[i] = arr[lastSwapped];
+			arr[lastSwapped] = temp;
+			if (i === lastSwapped-1 || i === lastSwapped)
+			{
+				return arr;
+			}
+			lastSwapped -= 2;
+		}
+		return arr;
+	}
+
+	console.log("Swap center [true,42,'Ada',2,'pizza']: ", swapTowardsCenter([true,42,"Ada",2,"pizza"]));
+	console.log("Swap center  [1,2,3,4,5,6] : ", swapTowardsCenter([1,2,3,4,5,6]));
+	console.log("Swap center [true,42]: ", swapTowardsCenter([true,42]));
+
+
+	// Scale Array
+	function scaleArray (arr, num)
+	{
+		for (var i = 0; i < arr.length; i++)
+		{
+			arr[i] *= num;
+		}
+		return arr;
+	}
+	console.log("scaleArray [1,3,5]: ", scaleArray([1,3,5],3));
+
+</script>
+
+

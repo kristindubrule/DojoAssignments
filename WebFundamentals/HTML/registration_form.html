@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Registration Form</title>
+	<meta name="description" content="A toy registration form">
+</head>
+<body>
+	<form action="register.php" method="post">
+	    <h2>My Registration Form</h2>
+
+	    <table cellpadding=5>
+	    	<tr>
+	    		<td>
+				    <label for="first_name">First Name</label>
+			    </td>
+			    <td>
+				    <input type="text" id="first_name" name="first_name">
+			   </td>
+		   </tr>
+		   <tr>
+			   	<td>
+				    <label for="last_name">Last Name</label>
+			    </td>
+			    <td>
+				    <input type="text" id="last_name" name="last_name">
+			    </td>
+		    </tr>
+		    <tr>
+				<td>
+					<label for="email">Email</label>
+			    </td>
+			    <td>	   	 			
+			    	<input type="text" id="email" name="email">
+	   			</td>
+   			</tr>
+   			<tr>
+   				<td>			
+					<label for="password">Password</label>
+			    </td>
+			    <td>				    
+			    	<input type="password" id="password" name="password">
+			    </td>
+		    </tr>
+			<tr>
+				<td>
+		   			<label for="pw_confirm">PW Confirm</label>
+	   			</td>
+   				<td>
+		   			<input type="password" id="pw_confirm" name="password_confirmation">
+		   		</td>
+   			</tr>
+   			<tr>
+   				<td>
+	   				<label for="birthday">Birthday</label>
+	   			</td>
+   				<td>   				
+	   				<input type="date" id="birthday" name="birthday">
+	   			</td>
+   			</tr>
+   			<tr>
+   				<td colspan=2>
+				    <input type="radio" id="male" name="gender" value="male">
+	    			<label for="male">Male</label>
+	    			<input type="radio" id="female" name="gender" value="female">
+	   				<label for="female">Female</label>
+	    			<input type="radio" id="other" name="gender" value="other">
+	    			<label for="other">Other</label>
+	   			</td>
+   			</tr>
+   			<tr>
+   				<td colspan=2>       
+	    			<label for="description">A short description about yourself:</label><br/>
+	    			<textarea id="description" name="description" cols=40 rows=10></textarea>
+	   			</td>
+   			</tr>
+   			<tr>
+   				<td colspan=2>
+	    			<label for="language">Favorite Language</label>
+	    			<select id="language" name="language">
+				    	<option value="javascript">JavaScript</option>
+				    	<option value="php">PHP</option>
+				    	<option value="ruby">Ruby</option>
+				    	<option value="csharp">C#</option>
+					</select>
+	   			</td>
+   			</tr>
+		</table>
+		<br/>			
+		<input type="submit" value="Submit">
+	</form>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+Kristins-MacBook:~ kristinf$ cd ~/Desktop/
+Kristins-MacBook:Desktop kristinf$ mkdir test
+Kristins-MacBook:Desktop kristinf$ cd test
+Kristins-MacBook:test kristinf$ touch index.html styles.css commands.txt
+Kristins-MacBook:test kristinf$ ls
+commands.txt	index.html	styles.css
+Kristins-MacBook:test kristinf$ cp index.html index2.html
+Kristins-MacBook:test kristinf$ rm styles.css 
+Kristins-MacBook:test kristinf$ cd ..
+Kristins-MacBook:Desktop kristinf$ mkdir destination
+Kristins-MacBook:Desktop kristinf$ mv test/index2.html destination/
+Kristins-MacBook:Desktop kristinf$ ls test
+commands.txt	index.html
+Kristins-MacBook:Desktop kristinf$ ls destination/
+index2.html
+Kristins-MacBook:Desktop kristinf$ rm -rf destination/
