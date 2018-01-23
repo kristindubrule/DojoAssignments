@@ -1,0 +1,18 @@
+  570  cd WebFundamentals/Git/
+  571  mkdir gittest
+  572  cd gittest/
+  573  touch index.html styles.css aboutMe.txt
+  574  git add .
+  575  git status
+  576  git commit -m "updated aboutMe"
+  577  git status
+  578  emacs aboutMe.txt 
+  579  git commit aboutMe.txt
+  581  emacs aboutMe.txt
+  582  git commit aboutMe.txt -m "added favorite movie to aboutMe"
+  583  git log
+  584  git revert HEAD
+  585  git log
+  586  less aboutMe.txt
+  587  emacs aboutMe.txt
+  588  git commit aboutMe.txt -m "Added favorite book"
