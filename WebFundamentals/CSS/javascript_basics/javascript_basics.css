@@ -1,6 +1,10 @@
 {
- margin: 0px;
- padding: 0px;
+ 	margin: 0px;
+ 	padding: 0px;
+}
+h1, h2 {
+ 	-webkit-margin-before:0em;
+	-webkit-margin-after:0em;	
 }
 a {
 	color: #5EE8E3;
@@ -12,18 +16,6 @@ ul{
   margin-left:0px;
   padding-left:18px;
 }
-
-/* Second Level */
-ul ul{
-  margin-left:0px;
-  padding-left:18px;
-}
-
-/* Third Level */
-ul ul ul{
-  margin-left:0px;
-  padding-left:0px;
-}
 #wrapper {
 	background-color: #25265D;
 	height: 700px;
@@ -32,12 +24,11 @@ ul ul ul{
 }
 #header {
 	background-color: #B61F34;
-	height: 75px;
+	height: 61px;
 	width: 1150px;
 	border-radius: 15px;
-	padding: 1px 5px 5px 25px;
+	padding: 15px 5px 5px 25px;
 	text-decoration-style: bold;
-	font-size: 100%;
 }
 #main {
 	margin-top: 20px;
@@ -55,11 +46,11 @@ ul ul ul{
 }
 #content {
 	background-color: black;
-	height: 520px;
+	height: 510px;
 	width: 905px;
 	border-radius: 15px;
 	display: inline-block;
-	padding: 10px 20px 0px 20px;
+	padding: 20px 20px 0px 20px;
 }
 #footer {
 	background-color: gray;
