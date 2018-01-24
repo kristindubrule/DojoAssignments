@@ -5,49 +5,46 @@
 }
 #wrapper {
 	background-color: #f6f6f6;
-	width: 1005px;
 	height: 950px;
+	width: 1030px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 #header {
-	background-color: #f6f6f6;
 	height: 50px;
-	width: 1030px;
+	width: 100%;
 }
 #header h1 {
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	margin-left: 10px;
 	display: inline;
+	margin-left: 10px;
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	line-height: 50px;
 }
 #header h2 {
-	font-family: Arial, Helvetica, sans-serif;
-	margin-left: 375px;
 	display: inline;
+	margin-left: 375px;
 	line-height: 50px;
 }
 #main {
-	background-color: #1e0d10;
-	background: linear-gradient(to bottom right, #1e0d10, #6f5864);
-	height: 940px;
+	height: 930px;
 	width: 980px;
-	padding: 20px 25px 0px 25px;
-	font-family: Arial, Helvetica, sans-serif;
+	padding: 20px 25px;
+	background: linear-gradient(to bottom right, #1e0d10, #6f5864);
 }
 #footer {
-	background-color: #f8f8f8;
+	height: 65px;
 	width: 1030px;
+	padding-top: 10px;
+	background-color: #f8f8f8;
 	color: #394ea7;
 	text-align: center;	
 	font-family: Arial, Helvetica, sans-serif;
-	height: 65px;
-	padding-top: 10px;
 }
 .header_bar {
-	width: 100%;
 	height: 40px;
+	width: 100%;
 	background-color: #878493;
-	display: inline-block;
 	color: #ffffff;
+	display: inline-block;
 }
 .header_bar h2, h3, h4 {
 	line-height: 40px;
@@ -65,8 +62,8 @@
 	border-style: solid;
 }
 #about {
-	width: 530px;
 	height: 273.156px;
+	width: 530px;
 	background-color: #ece5ec;
 	display:inline-block;
 	margin-left: 30px;
@@ -79,11 +76,11 @@
 	color: #1a243f;
 }
 .application {
+	height: 620px;
 	width: 300px;
-	height: 610px;
-	background: linear-gradient(to bottom right, #fefefe, #dbcddb);
 	display: inline-block;
 	margin-top: 25px;
+	background: linear-gradient(to bottom right, #fefefe, #dbcddb);
 	vertical-align: top;
 }
 .notfirst, application {
@@ -117,7 +114,27 @@
 }
 .app_link {
 	display: block;
-	padding-left: 100px;
+	margin: auto;
+	/*margin-top: 10px;*/
+}
+.app_button, app_link {
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #407c61;
+  color: #fcfefd;
+  padding: 10px 7px 10px 7px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 10px;
+  border-style: solid;
+  box-shadow: 2px 2px gray;
+  display: block;
+  margin:auto;
+}
+#contactinfo {
+	color: #585858;
 }
 #handles {
 	margin-top: 10px;
@@ -130,17 +147,7 @@
 	height: 20px;
 	vertical-align: bottom;
 }
-.app_button, app_link {
-  font: bold 13px Arial;
-  text-decoration: none;
-  background-color: #407c61;
-  color: #fcfefd;
-  padding: 3px 7px 3px 7px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
-  border-radius: 5px;
-  border-style: solid;
-  box-shadow: 2px 2px gray;
+.socialmedia a {
+	color: #585858;
 }
+
