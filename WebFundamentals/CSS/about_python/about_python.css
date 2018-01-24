@@ -95,7 +95,7 @@
   	color: #e6c43b;
 }
 #menu li:before {
-  content: "\2022   "
+  content: "\00BB   "
 }
 #content_right {
 	width: 825px;
@@ -150,7 +150,7 @@
 	color: #98bee0;
 }
 .section ul {
-	margin: 0px 50px 0px 50px;
+	margin: 0px 25px;
 	font-size: 12px;
 }
 .section ul li {
