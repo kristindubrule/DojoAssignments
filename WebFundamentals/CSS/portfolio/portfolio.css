@@ -1,0 +1,146 @@
+
+* {
+ 	margin: 0px;
+ 	padding: 0px;
+}
+#wrapper {
+	background-color: #f6f6f6;
+	width: 1005px;
+	height: 950px;
+}
+#header {
+	background-color: #f6f6f6;
+	height: 50px;
+	width: 1030px;
+}
+#header h1 {
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	margin-left: 10px;
+	display: inline;
+	line-height: 50px;
+}
+#header h2 {
+	font-family: Arial, Helvetica, sans-serif;
+	margin-left: 375px;
+	display: inline;
+	line-height: 50px;
+}
+#main {
+	background-color: #1e0d10;
+	background: linear-gradient(to bottom right, #1e0d10, #6f5864);
+	height: 940px;
+	width: 980px;
+	padding: 20px 25px 0px 25px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#footer {
+	background-color: #f8f8f8;
+	width: 1030px;
+	color: #394ea7;
+	text-align: center;	
+	font-family: Arial, Helvetica, sans-serif;
+	height: 65px;
+	padding-top: 10px;
+}
+.header_bar {
+	width: 100%;
+	height: 40px;
+	background-color: #878493;
+	display: inline-block;
+	color: #ffffff;
+}
+.header_bar h2, h3, h4 {
+	line-height: 40px;
+	margin-left: 10px;
+}
+#profile {
+}
+#profile_image {
+	display: inline-block;
+}
+#profile_image img {
+	width: 400px;
+	border-color: gray;
+	border-width: 5px;
+	border-style: solid;
+}
+#about {
+	width: 530px;
+	height: 273.156px;
+	background-color: #ece5ec;
+	display:inline-block;
+	margin-left: 30px;
+	vertical-align: top;
+}
+#about_contents {
+	margin: 10px;	
+}
+#about a {
+	color: #1a243f;
+}
+.application {
+	width: 300px;
+	height: 610px;
+	background: linear-gradient(to bottom right, #fefefe, #dbcddb);
+	display: inline-block;
+	margin-top: 25px;
+	vertical-align: top;
+}
+.notfirst, application {
+	margin-left: 33px;
+}
+.app_image img {
+	width: 100%;
+	display: inline;
+}
+.app_description {
+	height: 185px;
+	width: 92%;
+	margin: 10px;
+	text-align: justify;
+}
+.app_tech_header, header_bar {
+	height: 30px;
+}
+.app_tech_header h2, h3, h4 {
+	line-height: 30px;
+}
+.app_techs {
+	height: 110px;
+	width: 100%;
+	margin: 5px;
+}
+.app_techs img {
+	width: 40px;
+	display:inline;
+	padding: 5px;
+}
+.app_link {
+	display: block;
+	padding-left: 100px;
+}
+#handles {
+	margin-top: 10px;
+}
+.socialmedia {
+	display: inline;
+	height: 30px;
+}
+.socialmedia img {
+	height: 20px;
+	vertical-align: bottom;
+}
+.app_button, app_link {
+  font: bold 13px Arial;
+  text-decoration: none;
+  background-color: #407c61;
+  color: #fcfefd;
+  padding: 3px 7px 3px 7px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 5px;
+  border-style: solid;
+  box-shadow: 2px 2px gray;
+}

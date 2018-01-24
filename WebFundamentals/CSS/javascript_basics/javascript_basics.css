@@ -2,40 +2,38 @@
  	margin: 0px;
  	padding: 0px;
 }
-h1, h2 {
- 	-webkit-margin-before:0em;
-	-webkit-margin-after:0em;	
+#menubar a { /* make more specific? */
+	color: #61d6da;
 }
-a {
-	color: #5EE8E3;
-}
-body {
-	color: lightgray;
-}
-ul{
-  margin-left:0px;
-  padding-left:18px;
+#menubar ul {
+  margin-left:17px;
 }
 #wrapper {
-	background-color: #25265D;
+	background-color: #1c335d;
 	height: 700px;
 	width: 1180px;
 	padding: 10px;
+	color: #c1d7ea;
 }
 #header {
-	background-color: #B61F34;
+	background-color: #ce3035;
 	height: 61px;
-	width: 1150px;
+	width: 100%;
 	border-radius: 15px;
-	padding: 15px 5px 5px 25px;
 	text-decoration-style: bold;
+}
+#header h1 {
+	margin-left: 25px;
+	line-height: 61px;
+	color: #c2d7ec;
+	line-height: 61px;
 }
 #main {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
 #menubar {
-	background-color: #1C9B97;
+	background-color: #2a7d8c;
 	height: 220px;
 	width: 190px;
 	border-radius: 15px;
@@ -45,7 +43,7 @@ ul{
 	padding: 20px 0px 0px 20px;
 }
 #content {
-	background-color: black;
+	background-color: #0e1822;
 	height: 510px;
 	width: 905px;
 	border-radius: 15px;
@@ -53,7 +51,7 @@ ul{
 	padding: 20px 20px 0px 20px;
 }
 #footer {
-	background-color: gray;
+	background-color: #5d6572;
 	height: 35px;
 	width: 1165px;
 	border-radius: 15px;
@@ -64,5 +62,5 @@ ul{
     margin: 0;
 }
 .blue {
-	color: #5046BA;
+	color: #696fd1;
 }
