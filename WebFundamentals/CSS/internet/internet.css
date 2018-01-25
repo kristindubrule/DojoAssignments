@@ -1,0 +1,208 @@
+* {
+ 	margin: 0px;
+ 	padding: 0px;
+ 	-webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+#container {
+	height: 800px;
+	width: 1230px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#content {
+	background: linear-gradient(to bottom, #f5f5f5, #fff);
+
+}
+#title {
+	height: 140px;
+	width: 1210px;
+}
+#title img {
+	height: 100px;
+	margin-left: 10px;
+}
+.logo {
+	position: absolute;
+}
+.logo h1 {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 20px;
+	font-size: 40px;
+	font-weight: normal;
+}
+.blue {
+	color: #22649e;
+}
+.red {
+	color: #da231c;
+}
+.teal {
+	color: #0097af;
+}
+.bold {
+	font-weight: bold;
+}
+.italic {
+	font-style: italic;
+}
+#titlebar {
+	width: 1215px;
+	background-color: #326fa3;
+	position: relative;
+	z-index:-1;
+	top: 80px;
+	color: white;
+	padding: 10px 0px 10px 15px;
+	font-weight: normal;
+}
+#left_bar {
+	height: 660px;
+	width: 240px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 20px 4px 0px 4px;
+}
+#nav_buttons {
+	padding-top: 10px;
+}
+input[type=button] {
+	color: #eff4f8;
+	padding: 10px 10px 10px 10px;
+	border-radius: 10px;
+	border-style: solid;
+	margin-left: 10px;
+	width: 100%;
+	margin: 2px;
+	box-shadow: 2px 2px gray;
+	font-size: 16px;
+}
+.blue_button {
+	background-color: #3775aa;
+	border-color: #3775aa: 
+}
+.orange_button {
+	background-color: #ee8500;
+	border-color: #ee8500;
+}
+#left_intro {
+	margin-bottom: 20px;
+}
+#left_intro h1, h2, h3, h4, h5, h6 {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	padding: 0px 0px 10px 0px;
+}
+.separator {
+	width: 100%;
+	height: 2px;
+	background-color: gray;
+}
+#main_box {
+	height: 680px;
+	width: 956px; /* 1000 without margin */
+	display: inline-block;
+}
+#main_header {
+}
+#house_image {
+	width: 20px;
+}
+#contact_logo {
+	display: inline-block;
+	vertical-align: top;
+}
+#contact_info {
+	text-align: right;
+	display: inline-block;
+	margin-left: 675px;
+	font-size: 12px;
+	color: #595959;
+}
+#phone_image {
+	width: 40px;
+	vertical-align: top;
+	position: relative;
+	top: 10px;
+	left: 0px;
+	display: inline-block;
+}
+#call_info {
+	display: inline-block;
+}
+#phone_number {
+	color: #00c0df;
+	font-size: 28px;
+	font-weight: bold;
+	height: 30px;
+}
+#main_content {
+}
+.content_section {
+	display: inline-block;
+	width: 940px;
+	padding: 10px;
+}
+.content_section h2, h3 {
+	color: #22649e;
+}
+.content_section ul {
+	padding: 0px 40px;
+}
+.content_section li {
+	padding: 3px;
+}
+.content_section ol {
+	padding: 10px 40px;
+}
+.content_border {
+	border-style: solid;
+	border-color: #0085e0;
+	border-width: 5px;
+}
+.content_border img {
+	height: 110px;
+	display: inline-block;
+	padding: 5px;
+}
+#content_border_contents {
+	display: inline-block;
+	vertical-align: top;
+	padding: 5px;
+	width: 760px;
+}
+#content_border_contents a {
+	color: #0097af;
+	text-decoration: none;
+}
+#adback {
+	width: 100%;
+	margin-top: 20px;
+}
+#ninja {
+	position: absolute;
+	width: 100px;
+	top: 510px;
+	left: 65px;
+}
+#client_server {
+	width: 30%;
+	margin: auto;
+	display: block;
+	margin-top: 10px;
+}
+#ad_button {
+	position: absolute;
+	top: 660px;
+	left: 45px;
+	color: #feffff;
+	padding: 10px 10px 10px 10px;
+	border-radius: 10px;
+	margin-left: 10px;
+	width: 150px;
+	margin: 2px;
+	font-size: 16px;
+	background-color: #00c3df;
+}
