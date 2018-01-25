@@ -12,7 +12,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 #content {
-	background: linear-gradient(to bottom, #f5f5f5, #fff);
+	background: linear-gradient(to bottom, #e5e5e5, #fff);
 
 }
 #title {
@@ -178,8 +178,9 @@ input[type=button] {
 	text-decoration: none;
 }
 #adback {
-	width: 100%;
+	width: 240px;
 	margin-top: 20px;
+	position: absolute;
 }
 #ninja {
 	position: absolute;
@@ -197,7 +198,7 @@ input[type=button] {
 	position: absolute;
 	top: 660px;
 	left: 45px;
-	color: #feffff;
+	color: ;
 	padding: 10px 10px 10px 10px;
 	border-radius: 10px;
 	margin-left: 10px;
@@ -205,4 +206,13 @@ input[type=button] {
 	margin: 2px;
 	font-size: 16px;
 	background-color: #00c3df;
+}
+#reinvent {
+	position: relative;
+	top: 40px;
+	color: #fbfbfc;
+	padding: 10px 5px;
+	text-align: center;
+	font-weight: normal;
+	font-size: 26px;
 }
