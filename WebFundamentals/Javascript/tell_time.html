@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tell Time</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+function tellMeTime (hour, minutes, period)
+{
+	var displayHour = hour;
+	var direction;
+	var displayString = "It's ";
+
+	if (minutes == 0) {
+		direction = "";
+	} else if (minutes >= 45) {
+		displayHour = hour + 1;
+		direction = "almost";
+	} else if (minutes <= 15) {
+		displayHour = hour;
+		direction = "just after";
+	} else {
+		direction = "around half past";
+	}
+
+	displayString += direction + " " + displayHour;
+	if (period === 'AM') {
+		displayString += " in the morning";
+	} else {
+		if (hour >= 5) {
+			displayString += " in the evening";			
+		} else {
+			displayString += " in the afternoon";			
+		}
+	}
+	console.log(displayString);
+}
+
+tellMeTime(8,50,'AM');
+tellMeTime(7,15,'PM');
+tellMeTime(2,0,'PM');
+tellMeTime(5,30,'PM');
+tellMeTime(1,5,'AM');
+
+</script>
+</html>
