@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A billion?</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+function powerOf (base, exponent) {
+	if (exponent == 0) {
+		return 1;
+	} else {
+		var newExponent = Math.floor(exponent/2);
+		if (exponent%2 == 0) {
+			return(powerOf(base,newExponent)*powerOf(base,newExponent));
+		} else {
+			return(powerOf(base,newExponent)*powerOf(base,newExponent)*base);
+		}
+	}
+}
+
+function rewardCounter (numberDays) {
+
+	var reward = 0;
+
+	for (var i = 1; i <= numberDays; i++) {
+		reward += powerOf(2,i-1) * 0.01;
+	}
+	console.log("After " + numberDays + " days, the reward is " + reward.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+}
+
+function rewardPrediction (amount) {
+
+	var reward = 0;
+	var numDays = 0;
+	while (reward < amount) {
+		numDays++;
+		reward += powerOf(2,numDays-1) * 0.01;
+	}
+	console.log("It took " + numDays + " days to reach " + amount + " dollars.");
+}
+
+rewardCounter(10);
+rewardCounter(365);
+
+rewardPrediction(10000);
+rewardPrediction(1000000000);
+rewardPrediction(Infinity);
+// rewardCounter(365*10);
+</script>
+</html>
