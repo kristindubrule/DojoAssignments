@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fancy Array</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+function fancyArrayPrint (arr, symbol="->", reversed=false) {
+	if (reversed) {
+		for (var i = arr.length-1; i >= 0; i--) {
+			console.log(i + " " + symbol + " " + arr[i]);
+		}
+	} else {
+		for (var i = 0; i < arr.length; i++) {
+			console.log(i + " " + symbol + " " + arr[i]);
+		}
+	}
+}
+
+fancyArrayPrint(["James","Jill","Jane","Jack"]);
+fancyArrayPrint(["James","Jill","Jane","Jack"],"is");
+fancyArrayPrint(["James","Jill","Jane","Jack"],"is",true);
+
+</script>
+</html>
