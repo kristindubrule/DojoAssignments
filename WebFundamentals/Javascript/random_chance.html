@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Chance</title>
+
+	<script type="text/javascript">
+		function slotMachine (numQuarters, toWin=0)
+		{
+			console.log("Game starting with " + numQuarters + " quarters.");
+			while (numQuarters > 0)
+			{
+				var random = Math.ceil(Math.random()*100);
+				if (random == 100) {
+					var quartersWon = Math.ceil(Math.random()*50+51);
+					numQuarters += quartersWon;
+					console.log("You won " + quartersWon + " quarters; total " + numQuarters + " quarters.");
+					// If user did not set a minimum and they won, quit
+					if (toWin == 0) {
+						return;
+					} // If the user set a minimum and we've reached that minimum, quit
+					else if (numQuarters >= toWin) {
+						return;
+					} 
+				}
+				numQuarters--;
+			}
+			console.log("You lost. :-(");
+		}
+
+		slotMachine(10);
+		slotMachine(300);
+		slotMachine(300,100);
+		slotMachine(300,50);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
