@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninja Cat</title>
+	<link rel="stylesheet" type="text/css" href="ninja_cat.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			for (var i = 0; i < 5; i++) {
+				$('#wrapper').append("<img src='img/"+ "ninja"+i+".png' alt='ninja"+i+"'' alt-image='cat' class='ninja' slice='"+i+"'>");
+			}
+			$('img').click(function() {
+				var slice = $(this).attr("slice");
+				var new_image = $(this).attr("alt-image");
+				var current = $(this).attr("class");
+				$(this).attr("src","img/"+new_image+slice+".png");
+				$(this).attr("alt", new_image+slice);
+				$(this).attr("alt-image", current);
+				$(this).attr("class", new_image);
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+	</div>
+</body>
+</html>
