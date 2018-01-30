@@ -39,5 +39,14 @@ button {
 }
 #fade_in_out img {
 	width: 40%;
-	display: none;
+}
+#toggle_slide img {
+	width: 50%;
+}
+.border {
+	border-style: solid;
+	border-color: chartreuse;
+}
+#data p {
+	display: inline;
 }
