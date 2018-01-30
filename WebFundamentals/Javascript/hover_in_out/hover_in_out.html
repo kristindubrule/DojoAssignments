@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hover In Out</title>
+
+
+	<link rel="stylesheet" type="text/css" href="hover_in_out.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var image_array = [
+				"louvre_beach",
+				"lemons_desk",
+				"mountains_highway",
+				"beach_mountains"
+			];
+			$('#wrapper').append("<table>");
+			for (var i = 0; i < image_array.length; i++) {
+				$('#wrapper').append("<td><img src='images/"+image_array[i]+"0.jpg' alt='"+image_array[i]+"' id='0'></td>");
+			}
+			$('#wrapper').append("</tr></table>");
+
+
+			$('img').hover(
+				function(){
+					var which_image = ($(this).attr("id")) == 0 ? 1 : 0;
+					$(this).attr("src","images/"+$(this).attr("alt")+which_image+".jpg");
+					$(this).attr("id",which_image);						
+				});
+		});
+
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+	</div>
+</body>
+</html>
