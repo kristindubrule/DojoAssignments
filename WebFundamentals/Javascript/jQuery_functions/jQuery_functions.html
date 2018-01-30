@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Functions</title>
+	<link rel="stylesheet" type="text/css" href="jQuery_functions.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#hide').click(function() {
+				$('#show_hide p').hide();
+				$('#hide').hide();
+				$('#show').show();
+			});
+
+			$('#show').click(function() {
+				$('#show_hide p').show();
+				$('#show').hide();
+				$('#hide').show();
+			});
+
+			$('h3').hover(function() {
+				$('h2').text('Go see the Space Needle!');
+			}, function() { alert('now invoking the second function')
+				});
+
+			$('#click button').click(function() {
+				$('p').addClass('red');
+				alert("Adding red, maybe");
+			});
+
+			$('#toggle h4').click(function() {
+				$('#toggle img').toggle();
+			});
+
+			$('#slide_up_down img').click(function() {
+				$('#slide_up_down img').slideUp();
+			});
+
+			$('#slide_up_down h4').click(function() {
+				$('#slide_up_down img').slideDown();
+			});
+
+			$('#slide_toggle h4').click(function() {
+				$('#slide_toggle table').slideToggle();
+			});
+
+			$('#fade_in_out h4').click(function() {
+				$('#fade_in_out img').fadeIn();
+			});
+
+			$('#fade_in_out img').click(function() {
+				$('#fade_in_out img').fadeOut();
+			});
+
+			$('button.intro').click(function() {
+				$('p.main').before("<p>This is some additional introductory text.</p>");
+			});
+
+			$('button.footer').click(function() {
+				$('p.main').after("<p>These are some additional ending notes.</p>");
+			});
+
+			$('#append p').click(function() {
+				$('#append p').append(" A hint!");
+			})
+
+			$('#html p').click(function() {
+				$('p.changeme').html("This is different text!");
+			});
+
+			$('#attr img').click(function() {
+				$('#attr img').attr("width","20%");
+			});
+
+			$('#val h4').click(function() {
+				$('#val input').val(Math.ceil(Math.random()*100));
+			});
+
+			$('#data h4').click(function() {
+				var value = 0;
+				if ($('#data h4').data("clickCount") != undefined) {
+					value = $('#data h4').data("clickCount");
+				}
+				$('#data h4').data("clickCount",++value);
+				$('#data span').text($('#data h4').data("clickCount"));
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="click" class="action_box">
+			<h2>AddClass</h2>
+			<button>AddClass</button>
+			<p>Click the button to add class 'red' to this paragraph</p>
+		</div>
+		<div id="show_hide" class="action_box">
+			<h2>Hide/Show</h2>
+			<button id="hide">Hide</button>
+			<button id="show">Show</button>
+			<h4>Click to Hide/Show this description.</h4>
+			<p>The hide() method hides the selected elements.</p>
+			<p>Tip: This is similar to the CSS property display:none.</p>
+			<p>Note: Hidden elements will not be displayed at all (no longer affects the layout of the page).</p>
+			<p>Tip: To show hidden elements, look at the show() method.</p>
+		</div>
+		<div id="toggle" class="action_box">
+			<h2>Toggle</h2>
+			<h4>Click to toggle cat</h4>
+			<img src="53549928361__1B12303C-B994-47B0-B5A0-747D0A25FDFD.jpeg">
+		</div>
+		<div id="slide_up_down" class="action_box">
+			<h2>Slide Up/Down</h2>
+			<h4>Click to slide image down (show); click the image to slide up (hide)</h4>
+			<img src="denys-nevozhai-154974.jpg">
+		</div>
+		<div id="slide_toggle" class="action_box">
+			<h2>Slide Toggle</h2>
+			<h4>Click to toggle the table</h4>
+			<table>
+				<tr>
+					<td>Technology</td>
+					<td>Stack</td>
+				</tr>
+				<tr>
+					<td>MySQL</td>
+					<td>Java</td>
+				</tr>
+				<tr>
+					<td>SpringMVC</td>
+					<td>Java</td>
+				</tr>
+				<tr>
+					<td>Java 8</td>
+					<td>Java</td>
+				</tr>
+			</table>
+		</div>
+		<div id="fade_in_out" class="action_box">
+			<h2>Fade In/Out</h2>
+			<h4>Click to fade in Netflix architecture image</h4>
+			<img src="netflix-architecture.png">
+		</div>
+		<div id="before_after" class="action_box">
+			<h2>Before/After</h2>
+			<p class="main">This is the main text.</p>
+			<button class="intro">Show intro notes</button> <button class="footer">Show footer notes</button>
+		</div>
+		<div id="append" class="action_box">
+			<h2>Append</h2>
+			<p>Show me a hint!</p>
+		</div>
+		<div id="html" class="action_box">
+			<h2>HTML</h2>
+			<p>I shouldn't change!</p>
+			<p class="changeme">This will say something different</p>
+			<p>I shouldn't change either</p>
+			<p class="changeme">But I should</p>
+		</div>
+		<div id="attr" class="action_box">
+			<h2>Attr</h2>
+			<h4>Click to shrink the size of the image</h4>
+			<img src="sam-beasley-500154.jpg">
+		</div>
+		<div id="val" class="action_box">
+			<h2>Val</h2>
+			<h4>Click to prepopulate with a random value</h4>
+			<input type="text">
+		</div>
+		<div id="data" class="action_box">
+			<h2>Data &amp; Text</h2>
+			<h4>How many times have I been clicked?</h4>
+			<p>I've been clicked <span></span> times</p>
+		</div>
+	</div>
+</body>
+</html>

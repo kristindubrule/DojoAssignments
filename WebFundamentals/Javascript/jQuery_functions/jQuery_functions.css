@@ -1,0 +1,43 @@
+* {
+ 	margin: 0px;
+ 	padding: 0px;
+}
+p {
+	display: inline-block;
+	padding: 5px;
+}
+h1, h2, h3, h4, h5, h6 {
+	padding: 5px;
+}
+.red {
+	color: red;
+}
+button {
+	margin-top: 10px;
+	margin-right: 10px;
+}
+.action_box {
+	border-bottom-style: solid;
+	border-width: 2px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+}
+#wrapper {
+	width: 70%;
+	margin: 5px;
+}
+#toggle img {
+	width: 30%;
+	display: block;
+}
+#slide_up_down img {
+	width: 40%;
+	display: none;
+}
+#slide_toggle table {
+	display: none;
+}
+#fade_in_out img {
+	width: 40%;
+	display: none;
+}
