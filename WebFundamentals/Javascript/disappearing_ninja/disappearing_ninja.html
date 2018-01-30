@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disappearing Images</title>
+
+	<link rel="stylesheet" type="text/css" href="disappearing_ninja.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			for (var i = 0; i < 2; i++) {
+				$('table').append("<tr>");
+				for (var j = 0; j < 4; j++) {
+					$('table').append("<td>&nbsp;<img src='niilo-isotalo-388850.jpg'></td>")
+				}
+				$('table').append("</tr>");				
+			}
+
+			$('img').click(function() {
+				$(this).hide();
+			});
+
+			$('#restore').click(function() {
+				$('img').show();
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<table></table>
+		<button id="restore">Restore</button>
+	</div>
+</body>
+</html>

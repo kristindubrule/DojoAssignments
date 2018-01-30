@@ -1,0 +1,16 @@
+* {
+ 	margin: 0px;
+ 	padding: 0px;
+}
+img {
+	width: 200px;
+}
+td {
+	width: 200px;
+}
+button {
+	background-color: darkgreen;
+	padding: 5px;
+	color: white;
+	margin: 5px;
+}
