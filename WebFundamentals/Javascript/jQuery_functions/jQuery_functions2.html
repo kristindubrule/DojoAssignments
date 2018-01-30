@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JQuery functions</title>
+	<link rel="stylesheet" type="text/css" href="jQuery_functions.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#hide').click(function(){
+				$('#hide_show p').hide();
+			});
+
+			$('#show').click(function() {
+				$('#hide_show p').show();
+			});
+
+			$('#toggle').click(function() {
+				$('#toggle_slide img').toggle();
+			});
+
+			$('#slideup').click(function() {
+				$('#toggle_slide img').slideUp(function() {
+					$('#toggle_slide').append("<p>I hid the image!</p>");
+				});
+			});
+
+			$('#slidedown').click(function() {
+				$('#toggle_slide img').slideDown("slow",function() {
+					$('#toggle_slide p').remove();
+				});
+			});
+
+			$('#slidetoggle').click(function() {
+				$('#toggle_slide img').slideToggle();
+			});
+
+			$('#changesize').click(function() {
+				$('#toggle_slide img').css("width","30%");
+			});
+
+			$('#fadeout').click(function() {
+				$('#fade_in_out img').fadeOut();
+				$('#textbox').html("<p>Image faded out!</p>");
+				$('#textbox p').addClass("border");
+			});
+			$('#fadein').click(function() {
+				$('#fade_in_out img').fadeIn("fast",function() {
+					$('#textbox p').remove();
+				});
+			});
+
+			$('#multiple').change(function() {
+				var multipleValues = $('#multiple').val();
+				$('#val p').text(multipleValues);
+			});
+
+			$('#data').change(function() {
+				$('input:checked').each(function(index) {
+					$('p#answers').data($(this).attr("name"),$(this).attr("value"));
+				})
+				$('p#answers').html("");
+				for (var answer in $('p#answers').data()) {
+					$('p#answers').append("<p>" + answer + ": " + $('p#answers').data(answer) + "</p><br/>");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="action_box" id="hide_show">
+		<button id="hide">Hide Me</button>
+		<button id="show">Show Me</button>
+		<p>Click the buttons to hide or show the text</p>
+	</div>
+	<div class="action_box" id="toggle_slide">
+		<button id="toggle">Toggle</button>
+		<button id="slideup">Slide Up</button>
+		<button id="slidedown">Slide Down</button>
+		<button id="slidetoggle">Slide Toggle</button>
+		<button id="changesize">Change Image Size</button>
+		<img src="denys-nevozhai-154974.jpg">
+	</div>
+	<div class="action_box" id="fade_in_out">
+		<button id="fadein">Fade In</button>
+		<button id="fadeout">Fade Out</button>
+		<div id="textbox"></div>
+		<img src="sam-beasley-500154.jpg">
+	</div>
+	<div class="action_box" id="val">
+		<select id="multiple" multiple="multiple">
+			<option>Red</option>
+			<option>Green</option>
+			<option>Blue</option>
+		</select>
+		<button id="printValues">Print Values</button>
+		<p>Show values here</p>
+	</div>
+	<div class="action_box" id="data">
+		<div class="column">
+			<p id="colorq">Favorite color?</p>
+			<input type="radio" name="color" id="blue" value="blue">
+			<label for="blue">Blue</label>
+			<input type="radio" name="color" id="red" value="red">
+			<label for="red">Red</label>
+			<br/><br/>
+			<p id="giraffeq">Do you like giraffes?</p>
+			<input type="radio" name="giraffes" id="1" value="1">
+			<label for="1">1</label>
+			<input type="radio" name="giraffes" id="2" value="2">
+			<label for="2">2</label>
+			<input type="radio" name="giraffes" id="3" value="3">
+			<label for="3">3</label>
+		</div>
+		<div class="column">
+			<p id="answers"></p>
+		</div>
+<!-- 		<div class="column">
+			<p id="color">Favorite color?</p>
+			<p id="giraffes">Do you like giraffes?</p>
+			<p id="answers"></p>
+		</div> -->
+	</div>
+</body>
+</html>
