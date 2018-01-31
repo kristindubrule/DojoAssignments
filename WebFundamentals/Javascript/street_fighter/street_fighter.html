@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>Street Fighter</title>
+	<link rel="stylesheet" type="text/css" href="street_fighter.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript">
+		var bgimages = {
+			"beach": "beach.jpg",
+			"dojo": "dojo.jpg",
+			"earth": "earth.jpg",
+			"forest": "forest.jpg",
+			"matrix": "matrix.jpg",
+			"snow": "snow.jpg"
+		};
+
+		var player_images = {
+			"Donatello": "donny.png",
+			"Michaelangelo": "mikey.png",
+			"Leonardo": "leo.png",
+			"Raphael": "raphael.png"
+		};
+
+		var players = [
+			{ "left": 150, "top": 365, "health": 100},
+			{ "left": 940, "top": 365, "health": 100}			
+		];
+
+		function movePlayer(player=0) {
+			switch(event.keyCode) {
+				case 37:
+					players[player]["left"] -= 5;
+					break;
+				case 38:
+					players[player]["top"] -= 5;
+					break;
+				case 39:
+					players[player]["left"] += 5;
+					break;
+				case 40:
+					players[player]["top"] += 5;
+					break;
+			}
+		}
+
+		$(document).ready(function() {
+			// Set up options screen
+			var html = "<div id='options'><h2>Select Options</h2>"
+				+"<div id='buttons'>";
+			for (image in bgimages) {
+				html += "<input type = 'button' class='option' name='"+image+"' value='"+image+"'>";
+			}
+			html += "</div></div>";
+			$('#main_screen').html(html);
+
+			$('.option').hover(function() {
+				$('#main_screen').css("background-image","url('images/"+bgimages[$(this).attr("name")]);
+			});
+
+			$('.option').click(function() {
+				$('#main_screen').css("background-image","url('images/"+bgimages[$(this).attr("name")]);
+				$('#options h2').text("Select Players");
+				$('#buttons').hide();
+				for (var i = 0; i < 2; i++) {
+					var dropdown_str = "<select class='player' id='player"+i+"'>";
+					for (image in player_images) {
+						dropdown_str += "<option>"+image+"</option>";
+					}
+					dropdown_str += "</select>";
+					$('#options').append(dropdown_str);
+					$('#main_screen').append("<img src='images/"
+						+player_images[Object.keys(player_images)[0]]
+						+"' id='player"+i+"_image' class='player_image'>");
+				}
+
+				$('#options').append("<input type='button' id='play' value='play'>");
+				$('.player').change(function() {
+					var player_id = $(this).attr("id")+"_image";
+					console.log(player_id);
+					$("#"+player_id).remove();
+					// Construct image string?
+					$('#main_screen').append("<img src='images/"
+						+player_images[$(this).val()]
+						+"' id='"+player_id+"' class='player_image'>");
+				});
+
+				$('#play').click(function() {
+					$('#options').hide();
+					$('body').on('keydown','', function(event) {
+						movePlayer(0);
+					  	$('#player0_image').css("top",players[0]["top"]);
+					  	$('#player0_image').css("left",players[0]["left"]);					  
+					});
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+
+		<div id="main_screen">
+		</div>
+
+	</div>
+</body>
+</html>
