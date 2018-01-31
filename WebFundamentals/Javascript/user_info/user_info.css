@@ -1,0 +1,37 @@
+* {
+ 	margin: 0px;
+ 	padding: 0px;
+}
+#users tr {
+	border: 1px solid black;
+}
+#users {
+	width: 60%;
+	border-collapse: collapse;
+}
+#users th, #users td {
+	padding: 5px 5px 5px 5px;
+	text-align: left;
+	border: 1px solid black;
+}
+button {
+	background: linear-gradient(#f2f2f2,#d3d3d3);
+	padding: 5px;
+	border: 1px solid black;
+	margin: 20px 0px 0px 10px;
+}
+h2 {
+	border-bottom: 1px solid black;
+	width: 400px;
+	margin-top: 20px;
+}
+#wrapper {
+	margin: 5px;
+}
+#input {
+	margin-top: 20px;
+	margin-left: 50px;
+}
+#input th, #input td {
+	padding: 5px 5px 5px 0px;
+}
