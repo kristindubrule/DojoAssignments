@@ -1,0 +1,67 @@
+* {
+	font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+}
+p {
+	padding: 20px;
+}
+#contact_card_list p {
+	font-size: 18px;
+}
+input[type=button] {
+	padding: 10px;
+	margin: 15px;
+}
+input[type=text] {
+	width: 220px;
+	margin-left: 10px;
+	padding: 5px;
+}
+textarea {
+	display: block;
+	margin-top: 10px;
+	columns: 120;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    width: 320px;
+    height: 80px;
+}
+#input {
+	height: 100%;
+	width: 48%;
+	display: inline-block;
+	vertical-align: top;
+}
+#contact_card_list {
+	height: 100%;
+	width: 48%;
+	display: inline-block;
+}
+.contact_card {
+	border: 1px solid black;
+	height: 200px;
+	width: 405px;
+	margin: 20px;
+	text-align: center;
+}
+#contact_card_list h1 {
+	display: inline-block;
+	margin-top: 75px;
+	text-align: center;
+	width: 100%;
+}
+.front {
+	height: 200px;
+	width: 400px;
+}
+.back {
+	height: 200px;
+	width: 400px;
+	display: none;
+	text-align: left;
+}

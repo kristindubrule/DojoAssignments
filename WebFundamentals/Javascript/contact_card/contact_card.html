@@ -1,0 +1,53 @@
+<html>
+<head>
+	<title>Contact Card</title>
+	<link rel="stylesheet" type="text/css" href="contact_card.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('input[type=button]').click(function() {
+				$('#contact_card_list').append(
+					"<div class='contact_card'>"
+						+"<div class='front'>"
+							+"<h1>"+$("input[name=first_name]").val()
+							+" "+$("input[name=last_name]").val()+"</h1>"
+							+"<p>Click for description!</p>"
+						+"</div>"
+						+"<div class='back'>"
+							+"<p>"+$("textarea").val()+"</p>"
+						+"</div>"
+					+"</div>");
+
+				$('.front, .back').click(function(){
+					console.log("clicking");
+					$(this).hide();
+					$(this).siblings().show();
+				});
+			});
+		});
+
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="input">
+			<form>
+				<p>
+				<label for="first_name">First Name: </label>
+				<input type="text" name="first_name">
+				</p>
+				<p>
+				<label for="last_name">Last Name: </label>
+				<input type="text" name="last_name">
+				</p>
+				<p>Description:
+				<textarea placeholder="Enter Description"></textarea></p>
+
+				<input type="button" name="add" value="Add User">
+			</form>	
+		</div>
+		<div id="contact_card_list">
+		</div>
+	</div>
+</body>
+</html>
