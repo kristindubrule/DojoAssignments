@@ -1,0 +1,31 @@
+* {
+	margin: 0;
+	padding; 0;
+	text-align: left;
+	font-family: Verdana, Geneva, sans-serif;
+}
+#wrapper {
+	font-family: Verdana, Geneva, sans-serif;	
+}
+table {
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 5px;		
+}
+.header {
+	font-weight: bold;
+}
+td {
+	padding: 5px;
+}
+h2 {
+	padding: 5px;
+}
+input {
+	margin: 10px 5px 10px 10px;
+}
+p {
+	margin: 5px;
+}
+#weather {
+	margin: 5px;
+}
