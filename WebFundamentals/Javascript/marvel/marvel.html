@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>Marvel</title>
+	<link rel="stylesheet" type="text/css" href="marvel.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript" src="/Users/kristinf/Desktop/DojoAssignments/Libraries/md5.min.js"></script>
+	<script type="text/javascript">
+		var images = [];
+		var urlBase = "http://gateway.marvel.com/v1/public/characters?";
+		var ts = new Date().getTime();
+		var publicKey = "2e99e7d69ee86008b2a276cb265d0cd3";
+
+		function sleep(milliseconds) {
+		  var start = new Date().getTime();
+		  for (var i = 0; i < 1e7; i++) {
+		    if ((new Date().getTime() - start) > milliseconds){
+		      break;
+		    }
+		  }
+		}
+
+		$(document).ready(function() {
+
+			$('input[type=submit]').click(function() {
+				console.log("Clicked");
+				var privateKey = $('input[name=privatekey]').val();
+				ts = new Date().getTime();
+				var postURL = urlBase + "ts="+ts+"&apikey="+publicKey+"&hash="+md5(ts+privateKey+publicKey)+"&limit=100";
+				console.log(postURL);
+				$.get(postURL, function(data) {
+					var results = data["data"]["results"];
+					for (var i = 0; i < results.length; i++) {
+						var character = results[i];
+						if (!character["thumbnail"]["path"].includes("image")) {
+							console.log(character["name"], character["thumbnail"]["path"], character["thumbnail"]["extension"]);
+							images.push({	"name":character["name"],
+									 		"image": character["thumbnail"]["path"]+"."+character["thumbnail"]["extension"]});
+
+						}
+						if (images.length > 149) {
+							break;
+						}
+					}
+					console.log(images);
+					var htmlStr = "";
+					for (var i = 0; i < images.length; i++) {
+						if (i%9 == 8) {
+							htmlStr += "<td><img src='"+images[i]["image"]+"' alt='"+images[i]["name"]+"'></td></tr>";
+						} else if (i%9 == 0) {
+							htmlStr += "<tr><td><img src='"+images[i]["image"]+"' alt='"+images[i]["name"]+"'></td>";
+						} else {
+							htmlStr += "<td><img src='"+images[i]["image"]+"' alt='"+images[i]["name"]+"'></td>";
+						}
+					}
+					console.log(htmlStr);
+					$('tbody').append(htmlStr);
+				});
+				return false;
+			});
+		});
+	</script>
+
+</head>
+<body>
+<table>
+	<tbody></tbody>
+</table>
+	<form>
+		<p>
+			<label for="publickey">
+			<input type="text" name="privatekey">
+		</p>
+		<input type="submit" name="submit" value="Draw images">
+	</form>
+</body>
+</html>
