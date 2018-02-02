@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>Games of Thrones</title>
+	<link rel="stylesheet" type="text/css" href="game_of_thrones.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript">
+		var urlBase = "https://www.anapioficeandfire.com/api/houses?";
+		var ts = new Date().getTime();
+		var publicKey = "";
+		var images = {
+			"baratheon": {"image": "baratheon.png", "name":"House Baratheon of King's Landing"},
+			"lannister": {"image": "lannister.jpg","name":"House Lannister of Casterly Rock"},
+			"stark": {"image": "stark.jpg", "name":"House Stark of Winterfell"},
+			"targaryen": {"image": "targaryen.jpg", "name":"House Targaryen of King's Landing"}
+		};
+
+		function imgHTMLStr(source, alt, directory="") {
+			return "<img src='"+directory+"/"+source+"' alt='"+alt+"'>";
+		}
+
+		$(document).ready(function() {
+
+			var htmlStr = "";
+			for (var house in images) {
+				htmlStr += imgHTMLStr(images[house]["image"],house,"images");
+			}
+			$('#houses_box').html(htmlStr);
+			console.log(htmlStr);
+
+			$('img').click(function (){
+				var tableStr = "";
+				var postURL = urlBase + "name=" + images[$(this).attr("alt")]["name"];
+
+				$.get(postURL, function(data) {
+					console.log(data);
+					var house_details = data[0];
+					$('#details_box').css("display","inline-block");
+					tableStr += "<tr><th>Name</th><td>"+house_details["name"]+"</td></tr>"
+						+"<tr><th>Words</th><td>"+house_details["words"]+"</td></tr>"
+						+"<tr><th>Titles</th><td>"+house_details["titles"]+"</td></tr>";
+					console.log(tableStr);
+					$('#details_box table').html(tableStr);
+				});
+			});
+
+		});
+	</script>
+
+</head>
+<body>
+	<div id="wrapper">
+		<div id="houses_box">
+
+		</div>
+		<div id="details_box">
+			<h2>House Details</h2>
+			<table></table>
+		</div>
+	</div>
+</body>
+</html>
