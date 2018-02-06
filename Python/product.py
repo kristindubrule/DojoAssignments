@@ -32,7 +32,7 @@ class Product(object):
 		self.status = "sold"
 		return self
 	def add_tax(self, tax):
-		return self.price + self.price*tax
+		return self.price*(tax+1)
 	def return_product(self,reason):
 		if reason == "defective":
 			self.status = "defective"
