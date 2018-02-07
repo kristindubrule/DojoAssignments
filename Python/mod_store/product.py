@@ -25,6 +25,8 @@ class Product(object):
 	def display_info(self):
 		print "Name: {}\nPrice: ${}\nWeight: {}lbs\nBrand: {}\nStatus: {}".format(self.name,self.price,self.weight,self.brand,self.status)
 		return self
+	def __repr__(self):
+		return "Product: {}\nPrice: ${}\nWeight: {}lbs\nBrand: {}\nStatus: {}".format(self.name,self.price,self.weight,self.brand,self.status)
 
 if __name__ == "__main__":
 	print "Product"
@@ -37,3 +39,5 @@ if __name__ == "__main__":
 	product3 = Product(10,"Water bottle",1,"REI")
 	product3.return_product("in the box, like new").display_info()
 	print "\n"
+
+	print product1
