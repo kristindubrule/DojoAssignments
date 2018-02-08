@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dojo Survey</title>
+	<title>AJAX Ninjas</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css')}}">
 	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='js/ninjas.js')}}"></script>
-	<script type="text/javascript">
-
-	</script>
 </head>
 <body>
 
 	<div id="main_box">
-		<h3 id="selection">All the turtles!</h3>
-		<img src="{{ url_for('static',filename='img/donatello.jpg')}}" id="purple" turtle="Donatello">
-		<img src="{{ url_for('static',filename='img/leonardo.jpg')}}" id="blue" turtle="Leonardo">
-		<img src="{{ url_for('static',filename='img/michelangelo.jpg')}}" id="orange" turtle="Michelangelo">
-		<img src="{{ url_for('static',filename='img/raphael.jpg')}}" id = "red" turtle="Raphael">
-		<img src="{{ url_for('static',filename='img/notapril.jpg')}}" id="invalid" turtle="An Unknown Color">
+		<form>
+			<h3 id="selection">All the turtles!</h3>
+			<img src="{{ url_for('static',filename='img/donatello.jpg')}}" id="purple" turtle="Donatello">
+			<img src="{{ url_for('static',filename='img/leonardo.jpg')}}" id="blue" turtle="Leonardo">
+			<img src="{{ url_for('static',filename='img/michelangelo.jpg')}}" id="orange" turtle="Michelangelo">
+			<img src="{{ url_for('static',filename='img/raphael.jpg')}}" id = "red" turtle="Raphael">
+			<img src="{{ url_for('static',filename='img/notapril.jpg')}}" id="invalid" turtle="An Unknown Color">
 
-		<div id="button_box">
-			<input type="button" name="red" value = "Red">
-			<input type="button" name="blue" value = "Blue">
-			<input type="button" name="purple" value = "Purple">
-			<input type="button" name="orange" value = "Orange">
-			<input type="button" name="reset" value = "Reset">
-		</div>
-		<div id="custom_color">
-			<p>Or choose a custom color:</p>
-			<input type="text" name="customcolor">
-			<input type="submit" name="submit" value="Enter">
-		</div>
+			<div id="button_box">
+				<input type="button" class="color" name="red" value = "Red">
+				<input type="button" class="color" name="blue" value = "Blue">
+				<input type="button" class="color" name="purple" value = "Purple">
+				<input type="button" class="color" name="orange" value = "Orange">
+				<input type="button" name="reset" value = "Reset">
+			</div>
+			<div id="custom_color">
+				<p>Or choose a custom color:</p>
+				<input type="text" name="customcolor">
+				<input type="button" name="enter" value="Enter">
+			</div>
+		</form>
 	</div>
 
 
