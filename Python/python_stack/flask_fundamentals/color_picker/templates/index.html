@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color Picker</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css')}}">
+</head>
+<body style="background-color:rgb({{red}},{{green}},{{blue}})">
+	<div id="main_box">
+		<h3>Enter your color values below:</h3>
+		<div id="questions">
+			<form action="/color_change" method="POST">
+				<table>
+					<tr>
+						<td><label>Red</label></td>
+						<td><input type="text" name="red" min="1" max="255"></td>
+					</tr>
+					<tr>
+						<td><label>Green</label></td>
+						<td><input type="text" name="green" min="1" max="255"></td>
+					</tr>
+					<tr>
+						<td><label>Blue</label></td>
+						<td><input type="text" name="blue" min="1" max="255"></td>
+					</tr>
+				</table>
+				<input type="submit" name="submit" value="Show my color!">
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
