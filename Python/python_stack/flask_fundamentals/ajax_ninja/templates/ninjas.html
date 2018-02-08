@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ninja Turtles</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css')}}">
+</head>
+
+<body>
+	<div id="ninjasbox">
+		{% if color == 'purple' or color =='all': %}
+			<img src="{{ url_for('static',filename='img/donatello.jpg')}}">
+		{% endif %}
+		{% if color == 'blue' or color == 'all': %}
+			<img src="{{ url_for('static',filename='img/leonardo.jpg')}}">
+		{% endif %}
+		{% if color == 'orange' or color == 'all': %}
+			<img src="{{ url_for('static',filename='img/michelangelo.jpg')}}">
+		{% endif %}
+		{% if color == 'red' or color == 'all': %}
+			<img src="{{ url_for('static',filename='img/raphael.jpg')}}">
+		{% endif %}
+		{% if color == 'invalid': %}
+			<img src="{{ url_for('static',filename='img/notapril.jpg')}}">
+		{% endif %}
+	</div>
+
+</body>
+
+</html>
