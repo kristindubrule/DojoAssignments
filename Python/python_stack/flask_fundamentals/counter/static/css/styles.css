@@ -1,0 +1,23 @@
+* {
+	margin:0;
+	padding:0;
+}
+#mainbox {
+	height: 200px;
+	width: 250px;
+	border: 1px solid black;
+}
+h1 {
+	text-align: center;
+	padding: 10px;
+	margin-top: 50px;
+}
+p {
+	text-align: center;
+}
+form {
+	display: inline-block;
+}
+input[type=submit] {
+	margin: 10px;
+}
