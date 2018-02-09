@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- <script type="text/javascript" src="{{ url_for('static',filename='js/lib/jquery-3.3.1.min.js')}}"></script> -->
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/survey_validate.js')}}"></script>
+</head>
+<body>
+
+<div id="results">
+	<h3>Submitted Info</h3>
+	<table>
+		<tr><td><span class="label">Name</span></td><td>{{name}}</td></tr>
+		<tr><td><span class="label">Favorite Language</span></td><td> {{language}}</td></tr>
+		<tr><td><span class="label">Dojo Location</span></td><td> {{location}}</td></tr>
+		<tr><td><span class="label">Comments</span></td><td>{{comments}}</td></tr>
+	</table>
+</div>
+</body>
+</html>

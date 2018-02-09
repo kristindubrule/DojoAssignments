@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Great Number Game</title>
+ 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- <script type="text/javascript" src="{{ url_for('static',filename='js/lib/jquery-3.3.1.min.js')}}"></script> -->
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/survey_validate.js')}}"></script>
+   </head>
+<body>
+  <form action='/process' method='POST'>
+    <div id="mainbox">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="error">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <table>
+        <tr>
+          <td>
+            <label for="name">Your Name</label>
+          </td>
+          <td>
+            <input type="text" name="name">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="name">Your Email</label>
+          </td>
+          <td>
+            <input type="text" name="email">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="location">Dojo Location</label>
+          </td>
+          <td>
+            <select name="location">
+              <option value="valley">Silicon Valley</option>
+              <option value="la">Los Angeles</option>
+              <option value="seattle">Seattle</option>
+              <option value="dallas">Dallas</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="language">Favorite Language</label></td>
+          <td>
+            <select name="language">
+              <option value="python">Python</option>
+              <option value="csharp">C#</option>
+              <option value="java">Java</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p>Comment (optional)</p>
+            <p><textarea name="comments" rows="4" cols="50"></textarea></p>
+          </td>
+        </tr>
+      </table>
+      <input type="submit" name="submit" value="Submit">
+    </div> 
+  </form>
+</body>
+</html>
