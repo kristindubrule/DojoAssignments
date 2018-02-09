@@ -6,10 +6,7 @@ var answer_strings = {
 };
 
 $(document).ready(function() {
-	// Why doesn't this work with name=guess, $('form').submit, or type=submit?
-	// (assuming corresponding changes in HTML file)?
-	// type = button does work (but then can only have one button)
-	$('#guess').click(function() {
+	$('form').submit(function(e) {
 		var params = { number: $('input[name=number]').val() }
 		$.ajax( { type: "POST",
 			url: '/guess',
@@ -27,9 +24,9 @@ $(document).ready(function() {
 					$('#resetbutton').hide();
 				}
 				$('#answerbox').show();
-				return false;
 			}
 		});
+		return false;
 	});
 
 	$('#guess').keypress(function(e) {

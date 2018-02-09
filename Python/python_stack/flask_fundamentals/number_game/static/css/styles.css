@@ -37,8 +37,9 @@ input[type=text] {
 	margin-top: 30px;
 }
 #answer {
-	line-height: 200px;
+	padding-top: 75px;
 }
 #resetbutton {
+	margin-top: 30px;
 	display: none;
 }
