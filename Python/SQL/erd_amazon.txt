@@ -1,0 +1,9 @@
+products
+==> id	name	description created	updated
+
+categories
+==> id	name	description	created	updated
+
+product_categories
+==> id product_id category_id
+

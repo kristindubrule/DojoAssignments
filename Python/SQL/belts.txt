@@ -1,0 +1,9 @@
+students
+==> id first_name	last_name	created	updated
+
+student_belts
+==> id	student_id	belt_id earned_on	created	updated
+
+belts
+==> id  color	created	updated
+

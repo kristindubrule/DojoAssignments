@@ -1,0 +1,17 @@
+users
+==> id(int)	first_name(varchar(50)) last_name(varchar(50))	password(varchar(30))	image_id created	updated
+
+posts
+==> id	text	user_id	posted_at	original_post_id created	updated
+
+post_images
+==> id post_id image_id created updated
+
+images
+==> id location created updated
+
+likes
+==> id 	user_id	post_id	created	updated
+
+comments
+==> id user_id comment posted_at created updated

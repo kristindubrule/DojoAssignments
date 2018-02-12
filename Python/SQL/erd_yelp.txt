@@ -1,0 +1,17 @@
+users
+==> id	first_name last_name	password	image_id created	updated
+
+reviews
+==> id	text	user_id	restaurant_id stars posted_at	created	updated
+
+restaurants
+==> id description image_id created updated
+
+restaurant_cuisines
+==> id restaurant_id cuisine_id
+
+cuisines
+==> id cuisine description
+
+restaurant_addresses
+==> id street city state zip country
