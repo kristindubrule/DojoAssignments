@@ -1,0 +1,55 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+input {
+	padding: 5px;
+	margin-left: 5px;
+}
+label {
+	padding: 5px;
+}
+tr {
+	padding: 10px;
+}
+table {
+	margin: 10px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+td {
+	padding: 10px;
+	border: 1px solid black;
+}
+input[type=submit] {
+	margin: 10px;
+}
+input[type=text] {
+	width: 400px;
+}
+h2, h3 {
+	margin: 3px;
+	margin-top: 20px;
+}
+#mainbox {
+	margin: 50px;
+	width: 500px;
+}
+.message {
+	width: 400px;
+	height: 75px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	color: white;
+	padding: 10px;
+	vertical-align: center;
+}
+.invalid {
+	background-color: #ff0000;
+}
+.valid {
+	background-color: #009933;
+	font-size: 16px;
+}

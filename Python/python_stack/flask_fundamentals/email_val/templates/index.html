@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>Friends</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div id="mainbox">
+    {% if found == 1 %}
+      <p class="invalid message">Email is not valid!</p>
+    {% elif found == 2: %}
+      <p class="valid message">The email you entered ({{ email }}) is a VALID email address! Thank you!</p>
+    {% endif %}
+
+    <h3>Is this email address already in the customer table?</h3>
+    <form action='/validate' method='POST'>
+      <label for="email">Email Address: <input type="text" name="email" id="email"></label>
+      <input type="submit" value="Submit">
+    </form>
+    {% if customers %}
+      <h4>Email Addresses Entered</h4>
+      <table>
+      {% for customer in customers %}
+        <tr><td>{{ customer['email'] }}</td><td>{{ customer['last_update'] }}</td></tr>
+      {% endfor %}
+      </table>
+      <form action="/delete" method="POST">
+        <input type="submit" value="Delete These Customers">
+      </form>
+    {% endif %}
+  </div>
+</body>
+</html>
