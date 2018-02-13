@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Friends</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div id="mainbox">
+    <h1>Friends</h1>
+    {% if all_friends: %}
+      <table>
+      <tr><td>ID</td><td>Name</td><td>Age</td><td>Friend Since</td></tr>
+      {% for friend in all_friends: %}
+        <tr>
+          <td>{{ friend['id'] }}</td>
+          <td>{{ friend['first_name'] + " " + friend['last_name'] }}</td>
+          <td>{{ friend['age']}}</td>
+          <td>{{ friend['friend_since']}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% else: %}
+      <h2>No friends found. :-(</h2>
+    {% endif %}
+
+    {% if one_friend: %}
+      <p>You chose friend {{ one_friend['id'] }}</p>
+      <p>ID: {{ one_friend['id'] }}</p>
+      <p>First Name: {{ one_friend['first_name'] }}</p>
+      <p>Last Name: {{ one_friend['last_name'] }}</p>
+      <p>Occupation: {{ one_friend['occupation'] }}</p>
+    {% endif %}
+    <h2>Add a Friend</h2>
+    <form action='/friends' method='POST'>
+      <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+      <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+      <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+      <label for="birthdate">Birthday:<input type="date" name="birthdate" id="birthdate"></label>
+      <input type="submit" value="Add">
+    </form>
+    <h2>Remove a Friend</h2>
+    <form action='/remove_friend' method='POST'>
+      <label for="remove_id">ID to remove: <input type="text" name="remove_id" id="remove_id"></label>
+      <input type="submit" value="Remove">
+    </form>  
+  </div>
+</body>
+</html>
