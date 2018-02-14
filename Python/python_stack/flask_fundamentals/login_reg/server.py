@@ -50,9 +50,17 @@ def add_user():
 		flash("Password must be at least 8 characters and include one number and one capital letter")
 	if request.form['password'] != request.form['password_confirm']:
 		flash("Password values do not match each other")
+	# check to see if the user exists
+	query = "SELECT * from users where email_address=:email_address"
+	data = {
+		'email_address': request.form['email']
+	}
+	user = mysql.query_db(query,data)
+	if len(user) != 0:
+		flash("User already exists")
 
 	if '_flashes' in session:
-		return redirect('/')
+		return redirect('/register')
 	else:
 		# Build password
 		salt = binascii.b2a_hex(os.urandom(15))
