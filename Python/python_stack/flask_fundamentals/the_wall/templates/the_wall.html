@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>Logged In</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/the_wall.js')}}"></script>
+</head>
+<body>
+	<div id="header">
+		<p id="left">CodingDojo Wall</p>
+		<p id="right">Welcome {{ session['name'] }}</p>
+		<a href="{{url_for('logout')}}">log off</a>
+	</div>
+	<div id="mainbox">
+		<form action="/post_message" method="POST">
+	  	<h3>Post a message</h3>
+	  	<textarea rows=5 cols=130 name="posted_message" id="message_area"></textarea>
+	  	<input type="submit" name="post" value="Post Message">
+	</form>
+		{% if messages %}
+	  		<table>
+	  		{% for message in messages %}
+	  			<tr><td class="message_user">{{ message['user'] }} - {{ message['date'] }}
+	  				{% if message['user_id'] == session['id'] and message['new'] %}
+	  					<a href="/delete/{{message['id']}}">Delete</a>
+	  				{% endif %}
+	  			</td></tr>
+	  			<tr><td class="message" message_id="{{message['id']}}">{{ message['content'] }}</td></tr>
+	  			{% if message['comments'] %}
+	  				{% for comment in message['comments'] %}
+			  			<tr><td class="comment_user"><p class="comment">{{ comment['user'] }} - {{ comment['date'] }}</p></td></tr>
+			  			<tr><td><p class="comment">{{ comment['content'] }}</p></td></tr>
+					{% endfor %}
+				{% endif %}
+	  			<tr><td>
+	  				<div class="comment_box" id="{{message['id']}}">
+						<form action="/post_comment" method="POST">
+			  				<p>Post a comment</p>
+			  				<textarea rows=5 cols=100 name="comment"></textarea>
+			  				<button name="post_comment" value="{{message['id']}}">Post a comment</button>
+					  	</form>
+					</div>
+	  			</td></tr>
+	  		{% endfor %}
+	  		</table>
+		{% endif %}
+	</div>
+</body>
+</html>
