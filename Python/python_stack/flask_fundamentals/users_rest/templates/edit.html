@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Edit User</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+</head>
+<body>
+	<div id="mainbox">
+		<h2>Edit User {{ user['id'] }}</h2>
+		<form action={{url_for('update', user_id=user['id'])}} method="post">
+			<p>First name:</p>
+			<input type="text" name="first_name" value="{{ user['first_name'] }}">
+
+			<p>Last name:</p>
+			<input type="text" name="last_name" value="{{ user['last_name'] }}">
+
+			<p>Birthdate:</p>
+			<input type="date" name="birthdate" value="{{ user['birthdate'] }}">
+			<br/><br/>
+			<input type="submit" name="update" value="Update">
+		</form>
+		<a href="{{ url_for('show', user_id=user.id) }}">Go Back</a>
+		<a href="{{ url_for('index') }}">User List</a>
+
+	</div>
+</body>
+</html>

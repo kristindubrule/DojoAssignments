@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>User List</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+</head>
+<body>
+	<div id="mainbox">
+		<h2>Users</h2>
+		{% if users: %}
+			<table>
+			<tr><td>ID</td><td>Full Name</td><td>Birthdate</td><td>Created At</td><td>Actions</td></tr>
+			{% for user in users %}
+				<tr>
+					<td>{{ user['id'] }}</td>
+					<td>{{ user['first_name'] + " " + user['last_name'] }}</td>
+					<td>{{ user['birthdate'] }}
+					<td>{{ user['created_at'] }}</td>
+					<td>
+						<a href="{{ url_for('show', user_id=user.id) }}">Show</a>
+						<a href="{{ url_for('update', user_id=user.id) }}">Edit</a>
+						<a href="{{ url_for('destroy', user_id=user.id) }}">Delete</a>
+					</td>											
+				</tr>
+			{% endfor %}
+			</table>
+		{% endif %}
+		<a href="{{ url_for('new') }}">Add a new user</a>
+	</div>
+</body>
+</html>

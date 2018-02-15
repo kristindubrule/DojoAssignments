@@ -1,0 +1,25 @@
+<html>
+<head>
+  <title>Add User</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+</head>
+<body>
+	<div id="mainbox">
+		<h2>Add a new user</h2>
+		<form action={{url_for('create')}} method="post">
+			<p>First name:</p>
+			<input type="text" name="first_name"">
+
+			<p>Last name:</p>
+			<input type="text" name="last_name">
+
+			<p>Birthdate:</p>
+			<input type="date" name="birthdate">
+			<br/><br/>
+			<input type="submit" name="create" value="Create">
+		</form>
+		<a href="{{ url_for('index') }}">User List</a>
+	</div>
+</body>
+</html>
