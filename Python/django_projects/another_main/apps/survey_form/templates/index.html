@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Survey</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'survey_form/css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+<body>
+  <form action='/survey_form/process' method='POST'>
+    {% csrf_token %}
+    <div id="mainbox">
+      <table>
+        <tr>
+          <td>
+            <label for="name">Your Names</label>
+          </td>
+          <td>
+            <input type="text" name="first_name">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="location">Dojo Location</label>
+          </td>
+          <td>
+            <select name="location">
+              <option value="valley">Silicon Valley</option>
+              <option value="la">Los Angeles</option>
+              <option value="seattle">Seattle</option>
+              <option value="dallas">Dallas</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="language">Favorite Language</label></td>
+          <td>
+            <select name="language">
+              <option value="python">Python</option>
+              <option value="csharp">C#</option>
+              <option value="java">Java</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p>Comment (optional)</p>
+            <p><textarea name="comments" rows="4" cols="50"></textarea></p>
+          </td>
+        </tr>
+      </table>
+      <input type="submit" name="submit" value="Submit">
+    </div> 
+  </form>
+</body>
+</html>
