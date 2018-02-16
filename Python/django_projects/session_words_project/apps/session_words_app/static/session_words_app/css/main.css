@@ -1,0 +1,38 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#inputbox {
+	display: inline-block;
+	width: 30%;
+	margin: 10px;
+	border-right: 1px solid black;
+}
+#wordbox {
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	height: 100%;
+	margin: 10px;
+}
+#wrapper {
+	margin: 20px;
+}
+.bigword {
+	font-size: 20px;
+}
+.smallword {
+	font-size: 12px;
+}
+input[type=text] {
+	margin-bottom: 10px;
+}
+input[type=radio] {
+	margin-right: 5px;
+}
+input[type=checkbox] {
+	margin-right: 5px;
+}
+input[type=submit] {
+	margin: 5px;
+}
