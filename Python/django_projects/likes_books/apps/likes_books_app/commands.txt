@@ -1,0 +1,75 @@
+>>> User.objects.create(first_name='Kristin',email='kristin@kristin.net')
+<User: User object>
+>>> User.objects.create(first_name='Bob',email='Bob@bob.net')
+<User: User object>
+>>> User.objects.create(first_name='Susan',email='Susan@susan.net')
+<User: User object>
+>>> Books.objects.create(name='Cujo',uploader=Users.objects.first())
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Books' is not defined
+>>> Book.objects.create(name='Cujo',uploader=Users.objects.first())
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Users' is not defined
+>>> Book.objects.create(name='Cujo',uploader=User.objects.first())
+<Book: Book object>
+>>> Book.objects.create(name='Carrie',uploader=User.objects.first())
+<Book: Book object>
+>>> Book.objects.create(name='The Stand',uploader=User.objects.get(id=2))
+<Book: Book object>
+>>> Book.objects.create(name='Christine',uploader=User.objects.get(id=2))
+<Book: Book object>
+>>> Book.objects.create(name='Dark Half',uploader=User.objects.get(id=3))
+<Book: Book object>
+>>> Book.objects.create(name='Dark Tower',uploader=User.objects.get(id=3))
+<Book: Book object>
+>>> Book.objects.first().liked_users.add(User.objects.first())
+>>> Book.objects.last().liked_users.add(User.objects.first())
+>>> Book.objects.first().liked_users.add(User.objects.get(id=2)))
+  File "<console>", line 1
+    Book.objects.first().liked_users.add(User.objects.get(id=2)))
+                                                                ^
+SyntaxError: invalid syntax
+>>> Book.objects.first().liked_users.add(User.objects.get(id=2))
+>>> Book.objects.filter(pk__in=[1,3]).liked_users.add(User.objects.get(id=2))
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'QuerySet' object has no attribute 'liked_users'
+>>> Book.objects.get(id=3).liked_users.add(User.objects.get(id=2))
+>>> Book.objects.raw("INSERT INTO likes_books_app_book_liked_users (book_id, user_id) values (select book_id from likes_books_app_book, 3)")
+<RawQuerySet: INSERT INTO likes_books_app_book_liked_users (book_id, user_id) values (select book_id from likes_books_app_book, 3)>
+INSERT INTO likes_books_app_book_liked_users (book_id, user_id) 
+select id, 3 from likes_books_app_book
+>>> Book.objects.first().liked_users.all()
+<QuerySet [<User: User object>, <User: User object>]>
+>>> Book.objects.first().liked_users.all().values()
+<QuerySet [{'first_name': u'Kristin', 'last_name': u'', u'id': 1, 'email': u'kristin@kristin.net'}, {'first_name': u'Bob', 'last_name': u'', u'id': 2, 'email': u'Bob@bob.net'}]>
+>>> exit()
+(djangoEnv) Kristins-MacBook:likes_books kristinf$ python manage.py shell
+Python 2.7.14 (default, Jan  6 2018, 12:15:00) 
+[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.39.2)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.likes_books_app.models import User,Book
+>>> Book.objects.first().liked_users.all().values()
+<QuerySet [{'first_name': u'Kristin', 'last_name': u'', u'id': 1, 'email': u'kristin@kristin.net'}, {'first_name': u'Bob', 'last_name': u'', u'id': 2, 'email': u'Bob@bob.net'}]>
+>>> Book.objects.first().liked_users.all().values()
+<QuerySet [{'first_name': u'Kristin', 'last_name': u'', u'id': 1, 'email': u'kristin@kristin.net'}, {'first_name': u'Bob', 'last_name': u'', u'id': 2, 'email': u'Bob@bob.net'}, {'first_name': u'Susan', 'last_name': u'', u'id': 3, 'email': u'Susan@susan.net'}]>
+>>> Book.objects.first().uploader
+<User: User object>
+>>> Book.objects.first().uploader.values()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'User' object has no attribute 'values'
+>>> Book.objects.first().uploader.first_name
+u'Kristin'
+>>> Book.objects.get(id=2).uploader.values()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'User' object has no attribute 'values'
+>>> Book.objects.get(id=2).liked_users.values()
+<QuerySet [{'first_name': u'Susan', 'last_name': u'', u'id': 3, 'email': u'Susan@susan.net'}]>
+>>> Book.objects.get(id=2).uploader.first_name
+u'Kristin'
+
