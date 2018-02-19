@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^', include('apps.dojo_ninjas_app.urls')),
 	url(r'^dojo_ninjas_app', include('apps.dojo_ninjas_app.urls')),
+	url(r'^book_authors', include('apps.book_authors.urls')),
 ]
