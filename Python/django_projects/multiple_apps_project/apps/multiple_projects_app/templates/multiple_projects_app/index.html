@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'multiple_projects_app/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+    <body>
+      <div id="wrapper">
+        <div id="mainbox">
+          <form action="/process" action="post">
+            {% csrf_token %}
+          </form>
+          </div>
+      </div>
+    </body>
+</html>
