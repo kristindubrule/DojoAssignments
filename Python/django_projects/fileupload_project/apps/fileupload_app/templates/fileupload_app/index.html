@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'fileupload_app/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+    <body>
+      <div id="wrapper">
+        <div id="mainbox">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <h2>Upload a file</h2>
+                  <input type="file" name="file">
+                  <input type="text" name="title">
+                  <input type="submit" name="submit" value="Upload">
+            </form>
+          </div>
+      </div>
+    </body>
+</html>
