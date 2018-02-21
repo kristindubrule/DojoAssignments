@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.messages import constants as messages
 from django.contrib import messages
-from .models import Course
+from .models import Course, Description
 
 def index(request):
 	return render(request, "courses_app/index.html", {"courses":Course.objects.all()})
@@ -9,13 +9,15 @@ def index(request):
 def create(request):
 	if request.method == 'POST':
 		errors = Course.objects.basic_validator(request.POST)
+		errors.update(Description.objects.basic_validator(request.POST))
 		if len(errors):
 			for tag, error in errors.iteritems():
 				messages.error(request, error, extra_tags=tag)
 			request.session['name'] = request.POST['name']
 			request.session['desc'] = request.POST['desc']
 		else:
-			Course.objects.create(name=request.POST['name'],desc=request.POST['desc'])
+			desc = Description.objects.create(content=request.POST['desc'])
+			Course.objects.create(name=request.POST['name'],description=desc)
 			if 'name' in request.session:
 				del request.session['name']
 			if 'desc' in request.session:
@@ -28,6 +30,7 @@ def delete(request,course_id):
 def destroy(request,course_id):
 	if request.method == 'POST':
 		if request.POST['confirm'] == 'yes':
-			print "Destroy", request.POST
-			Course.objects.get(id=course_id).delete()
+			desc = Course.objects.get(id=course_id).description
+			desc.delete()
+			# Course.objects.get(id=course_id).delete()
 	return redirect('/')
