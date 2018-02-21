@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Edit User</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'semiresult_users_apps/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<div id="messages">
+		{% if messages %}
+			<ul class="messages">
+			{% for message in messages %}
+					<li{% if message.tags == 'error' %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+	<div id="mainbox">
+		<h2>Edit User {{ user.id }}</h2>
+		<form action="/{{ user.id }}/update" method="post">
+			{% csrf_token %}
+			<p>First name:</p>
+			<input type="text" name="first_name" value="{{ user.first_name }}">
+
+			<p>Last name:</p>
+			<input type="text" name="last_name" value="{{ user.last_name }}">
+
+			<p>Email:</p>
+			<input type="email" name="email" value="{{ user.email }}">
+			<p>Password:</p>
+			<input type="text" name="password">
+			<br/><br/>
+			<input type="submit" name="update" value="Update">
+		</form>
+         <a href="/">User List</a>
+            <a href="{{ user.id }}">Go Back</a>
+            <a href="{{ user.id }}/destroy">Destroy</a>
+	</div>
+</body>
+</html>

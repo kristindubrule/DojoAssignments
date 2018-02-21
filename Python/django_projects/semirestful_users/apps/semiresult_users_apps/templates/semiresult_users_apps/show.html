@@ -1,0 +1,20 @@
+<html>
+<head>
+  <title>Show User</title>
+	{% load static %}
+  <link rel="stylesheet" href="{% static 'semiresult_users_apps/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+</script>
+</head>
+<body>
+	<div id="mainbox">
+		<h2>User {{ user.id }}</h2>
+		<p>Full Name: {{user.first_name}} {{user.last_name}}</p>
+		<p>Email: {{ user.email }}</p>
+		<p>Created at: {{ user.created_at }}</p>
+		<p>Updated at: {{ user.updated_at }}</p>
+        <a href="/">User List</a>
+        <a href="{{ user.id }}/edit">Edit</a>
+        <a href="{{user.id}}/destroy">Destroy</a>
+	</div>
+</body>
+</html>

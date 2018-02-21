@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User List</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'semiresult_users_apps/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+  <div id="messages">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags == 'error' %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div id="mainbox">
+    <h2>Users</h2>
+    {% if users %}
+      <table>
+      <tr><td>ID</td><td>Full Name</td><td>Birthdate</td><td>Created At</td><td>Actions</td></tr>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td><a href="/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
+          <td>{{ user.email }}
+          <td>{{ user.created_at }}</td>
+          <td>
+            <a href="/{{ user.id }}">Show</a>
+            <a href="/{{ user.id }}/edit">Edit</a>
+            <a href="{{ user.id }}/destroy">Destroy</a>
+          </td>                     
+        </tr>
+      {% endfor %}
+      </table>
+    {% endif %}
+    <a href="/new">Add a new user</a>
+  </div>
+</body>
+</html>
