@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'courses_app/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+    <body>
+      <div id="wrapper">
+        <div id="mainbox">
+            {% if messages %}
+              <ul class="messages">
+              {% for message in messages %}
+                <li{% if message.tags == 'error' %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+            <form action="/create" method="post">
+              {% csrf_token %}
+              <h2>Add a new course</h2>
+              <table>
+                <tr>
+                  <td>Name:</td>
+                  <td><input type="text" name="name" value="{{request.session.name}}"></td>
+                </tr>
+                <tr>
+                  <td>Description:</td>
+                  <td><textarea cols=50 rows=5 name="desc" value="{{request.session.desc}}"></textarea></td>
+                </tr>
+              </table>
+              <input type="submit" name="submit">
+            </form>
+        </div>
+        <div id="courses">
+          <h2>Courses</h2>
+          {% if courses %}
+            <table>
+              <tr><td>Course Name</td><td>Description</td><td>Date Added</td><td>Date Updated</td><td>Actions</td></tr>
+            {% for course in courses %}
+              <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.desc}}</td>
+                <td>{{course.created_at}}</td>
+                <td>{{course.updated_at}}</td>
+                <td><a href='/delete/{{course.id}}' method='post'>remove</a></td>
+              </tr>
+            {% endfor %}
+            </table>
+          {% endif %}
+        </div>
+      </div>
+    </body>
+</html>
