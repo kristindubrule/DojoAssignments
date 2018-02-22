@@ -1,0 +1,22 @@
+* {
+	margin:0;
+	padding:0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+#mainbox {
+	height: 700px;
+	width: 800px;
+	border: 1px solid black;
+	margin: 20px;
+}
+h1, h2 {
+	text-align: left;
+	padding: 10px;
+	margin-top: 20px;
+}
+p {
+	color: red;
+}
+input[type=submit] {
+	margin: 20px;
+}
