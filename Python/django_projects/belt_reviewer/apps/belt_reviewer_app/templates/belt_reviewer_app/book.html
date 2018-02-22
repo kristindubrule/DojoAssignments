@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Book Detail</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'belt_reviewer_app/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+    <body>
+      <div id="wrapper">
+        <div id="header">
+          <span id="greeting">Welcome, {{user.first_name}}!</span>
+          <p><a href="addbook">Add Book and Review</a></p>
+          <p><a href="/books">Home</a></p>
+          <p><a href="/logout">Logout</a></p>
+        </div>
+        <div id="review_box">
+          <h2>{{book.title}}</h2>
+          <p>{{book.author.first_name}} {{book.author.last_name}}</p>
+          <h3>Reviews</h3>
+          {% if reviews %}
+            {% for review in reviews %}
+              <div class="review">
+                {% with ''|center:review.rating as range %}
+                {% for _ in range %}
+                  *
+                {% endfor %}
+                {% endwith %}
+                {% if review.user.id == user.id %}
+                  <a href="destroy/{{review.id}}">Delete</a>
+                {% endif %}
+                <p>{{review.user.first_name}} says: {{review.content}}</p>
+                <p class="posted">Posted on {{review.created_at}}</p>
+              </div>
+            {% endfor %}
+          {% else %}
+            <p>No reviews.</p>
+          {% endif %}
+        </div>
+        <div id="add_review">
+          <form action="processreview" method="post">
+            {% csrf_token %}
+            <p>Add a review</p>
+            <textarea cols=40 rows=5 name="review"></textarea>
+            <input type="number" name="rating" min="1" max="5">
+            <input type="submit" name="submit" value="Submit Review">
+            <input type="hidden" name="book_id" value="{{book.id}}">
+          </form>
+        </div>
+      </div>
+    </body>
+</html>

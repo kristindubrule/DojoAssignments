@@ -1,0 +1,48 @@
+* {
+	margin:0;
+	padding:0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+#wrapper {
+	margin: 10px;
+	width: 100%;
+}
+#mainbox {
+	height: 700px;
+	width: 800px;
+	border: 1px solid black;
+	margin: 20px;
+}
+h1 {
+	padding: 10px;
+	margin-top: 20px;
+}
+#header p {
+	margin: 0px 9%;
+	display: inline;
+}
+.book p {
+	margin-left: 20px;
+}
+#review_box, #add_review, #recent_list, #booklist_box, #recent_reviews {
+	display: inline-block;
+	padding: 10px;
+	vertical-align: top;
+}
+.review {
+	border-bottom: 1px solid black;
+}
+textarea {
+	display: block;
+}
+#add_review input {
+	display: block;
+	margin: 5px;
+}
+#userbox p {
+	display: block;
+	margin-left: 20px;
+}
+.indent {
+	margin-left: 20px;
+}
