@@ -1,0 +1,58 @@
+* {
+	margin:0;
+	padding:0;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+#mainbox {
+	height: 700px;
+	width: 800px;
+	margin: 20px;
+
+}
+h1, h2, h3 {
+	margin: 20px;
+}
+table.trip_list {
+	border-collapse: collapse;
+	border: 1px solid black;
+	margin-left: 20px;
+	width: 80%;
+}
+.trip_list td {
+	border: 1px solid black;
+	padding: 5px;
+}
+#messages {
+	color: red;
+	margin-left: 20px;
+	font-size: 12px;
+}
+#header {
+	text-align: right;
+}
+#header p {
+	display: inline;
+	padding: 20px;
+}
+#mainbox p {
+	margin-left: 20px;
+}
+#other_trips {
+	margin-bottom: 20px;
+}
+.action a {
+	margin-left: 580px;
+}
+table.entry_form, table.trip_detail {
+	margin-left: 30px;
+}
+input[type=submit] {
+	margin-left: 300px;
+	margin-top: 30px;
+}
+input[type=text], input[type=date] {
+	margin: 5px;
+}
+input[type=text] {
+	width: 200px;
+}
