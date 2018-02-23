@@ -3,25 +3,34 @@ from django.db import models
 from ..login_reg_app.models import User
 
 class AuthorManager(models.Manager):
-	def validate_newauthor(self,postData):
+	def validate_author(self,postData):
 		errors = {}
 		author_id = None
-		if len(postData['author_first']) or len(postData['author_last']):
-			if len(postData['author_first']) < 2:
-				errors["author_first"] = "Please enter a first name longer than 1 character"
-			if len(postData['author_last']) < 2:
-				errors["author_last"] = "Please enter a last name longer than 1 character"
-			if len(Author.objects.filter(first_name=postData['author_first'],last_name=postData['author_last'])) > 0:
-				errors["author_exists"] = "This author already exists"
-			if not errors:
-				author_id = Author.objects.create(first_name=postData['author_first'],last_name=postData['author_last']).id
-		else:
+
+		if int(postData['author']) > 0:
 			authormatches = Author.objects.filter(id=postData['author'])
 			if len(authormatches) == 1:
 				author_id = authormatches[0].id
 			else:
 				errors["incorrect_authors"] = "No authors or too many authors found"
-		print "Author ", errors
+		else:
+			newauthor_validate = Author.objects.validate_newauthor(postData)
+			author_id = newauthor_validate['author_id']
+			errors = newauthor_validate['errors']
+		return {"errors": errors, "author_id": author_id}
+
+	def validate_newauthor(self,postData):
+		errors = {}
+		author_id = None
+
+		if len(postData['author_first']) < 2:
+			errors["author_first"] = "Please enter a first name longer than 1 character"
+		if len(postData['author_last']) < 2:
+			errors["author_last"] = "Please enter a last name longer than 1 character"
+		if Author.objects.filter(first_name=postData['author_first'],last_name=postData['author_last']).count > 0:
+			errors["author_exists"] = "This author already exists"
+		if not errors:
+			author_id = Author.objects.create(first_name=postData['author_first'],last_name=postData['author_last']).id
 		return {"errors": errors, "author_id": author_id}
 
 class Author(models.Model):
@@ -38,14 +47,15 @@ class BookManager(models.Manager):
 		book_id = None
 		if len(postData['book_title']) < 2:
 			errors["book_title"] = "Please enter a book title longer than 1 character"
-		if len(Book.objects.filter(title=postData['book_title'],author=Author.objects.get(id=author_id))) > 0:
-			errors["author_exists"] = "This book already exists"
-		print "Book ", errors
-		if not errors:
-			book = Book.objects.create(title=postData['book_title'],author=Author.objects.get(id=author_id))
-			if book:
-				book_id = book.id
-			print book
+		if Book.objects.filter(title=postData['book_title'],author=Author.objects.get(id=author_id)).count > 0:
+			book = Book.objects.filter(title=postData['book_title'],author=Author.objects.get(id=author_id))
+			if book.count == 1:
+				book_id = book[0].id
+			else:
+				if not errors:
+					book = Book.objects.create(title=postData['book_title'],author=Author.objects.get(id=author_id))
+				if book:
+					book_id = book.id
 		return {"errors": errors, "book_id": book_id}
 	
 	def recent(self):

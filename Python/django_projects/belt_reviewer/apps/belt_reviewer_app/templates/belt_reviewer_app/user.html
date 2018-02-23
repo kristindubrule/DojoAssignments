@@ -14,9 +14,9 @@
           <p><a href="/logout">Logout</a></p>
         </div>
         <div id="userbox">
-          <h2>User Alias: {{user.first_name}}</h2>
-          <p>Name: {{user.first_name}} {{user.last_name}}</p>
-          <p>Email: {{user.email}}</p>
+          <h2>User Alias: {{showuser.first_name}}</h2>
+          <p>Name: {{showuser.first_name}} {{showuser.last_name}}</p>
+          <p>Email: {{showuser.email}}</p>
           <p>Total Reviews: {{reviews.count}}
           {% if books %}
           <h3>Posted Reviews on the following books:</h3>
