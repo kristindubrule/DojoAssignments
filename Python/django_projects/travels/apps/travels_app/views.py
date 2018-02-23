@@ -37,18 +37,26 @@ def addtrip(request):
 
 def create(request):
 	if 'user_id' in request.session:
+		GOTO = '/'
 		if request.method == 'POST':
-			print "Posted!"
+			# Validate trip info; create trip if successful
 			errors = Trip.objects.validate_newtrip(request.POST,request.session['user_id'])
+
+			# Process errors, if any
 			if len(errors):
 				for tag, error in errors.iteritems():
 					messages.error(request, error, extra_tags=tag)
-				print "Errors!"
+
+				# Save user entered values, if there were errors
 				set_session_keys(request.session,request.POST)
-				return redirect('/travels_app/addtrip')
+
+				# Return to the add trip page to show errors
+				GOTO = '/travels_app/addtrip'
 			else:
+				# if we were successful, clear any saved values and return to the trip list page
 				clear_session_keys(request.session)
-		return redirect('/travels_app')
+				GOTO = '/travels_app'
+		return redirect(GOTO)
 	else:
 		return redirect('/')
 
@@ -64,10 +72,15 @@ def join(request,trip_id):
 
 def show(request,trip_id):
 	if 'user_id' in request.session:
+		trips = Trip.objects.filter(id=trip_id)
+		if trips.count() == 1:
+			trip = trips[0]
+		else:
+			trip = None
 		context = {"user": User.objects.filter(id=request.session['user_id'])[0],
-					"trip": Trip.objects.filter(id=trip_id)[0],
+					"trip": trip,
 					"other_users": UserTrip.objects.filter(trip_id=trip_id).exclude(user__in=Trip.objects.values('owner_id').filter(id=trip_id))
-				}
+		}
 		return render(request, "travels_app/showtrip.html", context)
 	else:
 		return redirect('/')

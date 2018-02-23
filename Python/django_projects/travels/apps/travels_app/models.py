@@ -5,15 +5,20 @@ from ..login_reg_app.models import User
 
 # Create your models here.
 class TripManager(models.Manager):
-	required_fields = {'destination': 'destination',
-						'plan': 'description',
-						'startdate': 'trip start date',
-						'enddate': 'trip end date',
-						'plan': 'plan'
-						}
-	trip_dates = ['startdate','enddate']
+
+	def clean_date(self,date_str):
+		if len(date_str):
+			return datetime.strptime(date_str,'%Y-%m-%d').date()
+		else:
+			return None
 
 	def validate_newtrip(self,postData,user_id):
+		required_fields = {'destination': 'destination',
+							'plan': 'description',
+							'startdate': 'trip start date',
+							'enddate': 'trip end date',
+							'plan': 'plan'
+							}
 		errors = {}
 		users = User.objects.filter(id=user_id)
 		if users.count() != 1:
@@ -21,16 +26,30 @@ class TripManager(models.Manager):
 		else:
 			user = users[0]
 
-		for field in TripManager.required_fields.keys():
+		# Check to make sure all required fields are filled in
+		for field in required_fields.keys():
 			if not len(postData[field]):
 				errors[field] = "Please enter a {}.".format(field)
 
-		for trip_date in TripManager.trip_dates:
-			if len(postData[trip_date]) and datetime.strptime(postData[trip_date],'%Y-%m-%d').date() < date.today():
-				errors[trip_date+"_future"] = "Your {} should be later than today.".format(TripManager.required_fields[trip_date])
-		if len(postData['startdate']) and len(postData['enddate']) and datetime.strptime(postData['startdate'],'%Y-%m-%d').date() > datetime.strptime(postData['enddate'],'%Y-%m-%d').date():
-			errors['date_backwards'] = "Your start date must not be after your end date."
+		# Max length of destination and plan is 255, so check the lengths
+		if len(postData['destination']) > 255:
+			errors['destination_length'] = "The maximum length for destination is 255."
+		if len(postData['plan']) > 255:
+			errors['description_length'] = "The maximum length for description is 255."
 
+		# Check that dates are in the future
+		startdate = self.clean_date(postData['startdate'])
+		if startdate and startdate <= date.today():
+			errors['startdate_future'] = "Your start date should be later than today."
+		enddate = self.clean_date(postData['enddate'])
+		if enddate and enddate <= date.today():
+			errors['enddate_future'] = "Your end date should be later than today."
+
+		# Check that start date is less than or equal to end date
+		if startdate and enddate and startdate > enddate: 
+			errors['date_backwards'] = "Your end date must be after your start date."
+
+		# If there are no errors, create the trip, and enter a record for this user-trip pair
 		if not errors:
 			trip = Trip.objects.create(
 				destination=postData['destination'],
@@ -64,6 +83,7 @@ class UserTripManager(models.Manager):
 		if Trip.objects.filter(id=trip_id).count() != 1:
 			errors["trip"] = "No trip or too many trips found."
 		if not len(errors):
+			# Get is safe here, because we check for existence above.
 			UserTrip.objects.create(trip=Trip.objects.get(id=trip_id),user=User.objects.get(id=user_id))
 		return errors
 

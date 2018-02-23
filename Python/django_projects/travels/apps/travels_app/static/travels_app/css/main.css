@@ -16,7 +16,7 @@ table.trip_list {
 	border-collapse: collapse;
 	border: 1px solid black;
 	margin-left: 20px;
-	width: 80%;
+	width: 100%;
 }
 .trip_list td {
 	border: 1px solid black;

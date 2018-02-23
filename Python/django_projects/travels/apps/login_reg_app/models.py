@@ -4,7 +4,7 @@ import re
 import bcrypt
 
 PASSWORD_REGEX = re.compile(r'^\S{8,}$')
-NAME_REGEX = re.compile(r'^\S{3,}$')
+NAME_REGEX = re.compile(r'^[a-zA-Z0-9\s\S]{3,}$')
 
 class UserManager(models.Manager):
 	def validate_newuser(self,postData):
@@ -20,7 +20,7 @@ class UserManager(models.Manager):
 
 		username_check = User.objects.filter(email=postData['username'])
 		if username_check.count() > 0:
-			errors["username"] = "Email address is already in use"
+			errors["username"] = "Username is already in use"
 
 		return errors
 

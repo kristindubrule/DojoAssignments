@@ -45,7 +45,7 @@
                   <td>Do you want to join?</td></tr>
                 {% for trip in other_trips %}
                   <tr>
-                    <td>{{trip.owner.email}}</td>
+                    <td>{{trip.owner.first_name}}</td>
                     <td><a href="{{trip.id}}">{{trip.destination}}</a></td>
                     <td>{{trip.startdate}}</td>
                     <td>{{trip.enddate}}</td>

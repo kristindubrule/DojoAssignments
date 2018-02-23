@@ -25,7 +25,7 @@
           <table class="trip_detail">
             <tr>
               <td>Planned By:</td>
-              <td>{{trip.owner.email}}</td>
+              <td>{{trip.owner.first_name}}</td>
             </tr>
             <tr>
               <td>Description:</td>
@@ -45,7 +45,7 @@
             <table class="trip_detail">
             {% for other_user in other_users %}
               <tr>
-                <td>{{other_user.user.email}}</td>
+                <td>{{other_user.user.first_name}}</td>
               </tr>
             {% endfor %}
             </table>
