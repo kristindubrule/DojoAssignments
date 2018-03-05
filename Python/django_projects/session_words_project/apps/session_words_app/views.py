@@ -21,9 +21,9 @@ def new_word(request):
 				request.session["words"] = []
 			request.session["words"].append(word_object)
 			request.session.modified = True
-			print "Request ", request.session["words"]
-	return redirect('/session_words_app')
+	return redirect('/')
 
 def reset(request):
-	del request.session['words']
-	return redirect('/session_words_app')
+	if 'words' in request.session:
+		del request.session['words']
+	return redirect('/')

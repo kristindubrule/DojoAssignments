@@ -1,0 +1,62 @@
+Django project creation steps
+
+1.	source djangoEnv/bin/activate
+
+2.	django-admin startproject main
+
+3.	cd main
+
+4.	mkdir apps
+
+5.	cd apps
+
+6.	touch __init__.py
+
+7.	python ../manage.py startapp first_app
+
+8.	Add app to settings.py file in parent directory
+
+9.  Add app to the urls.py file in the project directory
+	from django.conf.urls import url, include
+	from django.contrib import admin
+
+	urlpatterns = [
+    	url(r'^', include('apps.session_words_app.urls')),
+	]
+
+10.	cd first_app
+
+11.	touch urls.py
+
+12.	in urls.py:
+	  from django.conf.urls import url
+	  from . import views 
+	  urlpatterns = [
+	    url(r'^$', views.index),
+	    url(r'^articles/(?P\d+)$', views.show)
+	  ]
+
+13.	in views.py (example):
+	  from django.shortcuts import render, HttpResponse, redirect
+	  # the index function is called when root is visited
+	  def index(request):
+	    response = "Hello, I am your first request!"
+	    return HttpResponse(response)
+
+14. Create templates folder (and subfolder)
+
+15. Create static folder (and subfolders)
+
+16. Add static reference to html files ({% load static %})
+
+17. For forms, add csrf token to form: {% csrf_token %}
+
+18. Fix up references to js & css files copied from flask projects ({% static '<new_app>/js/<file_name>.js' %})
+
+19.	cd ..
+
+20.	python manage.py runserver
+
+21.	To use session:
+	  python manage.py makemigrations
+	  python manage.py migrate

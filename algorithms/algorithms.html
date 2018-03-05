@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+	<script>
+	function DoubleUpPointers (arr) {
+		var origArrayPosition = arr.length-1;
+		arr.length = arr.length*2;
+
+		for (var i = arr.length-1; i >= 0; i-=2) {
+			console.log(i);
+			arr[i] = arr[origArrayPosition];
+			arr[i-1] = arr[origArrayPosition];
+			origArrayPosition--;
+		}
+		return arr;
+	}
+	console.log(DoubleUpPointers([7,4,10]));
+
+	function DoubleUpMath (arr) {
+		for (var i = arr.length-1; i >=0; i--) {
+			arr[i*2] = arr[i];
+			arr[i*2+1] = arr[i];
+		}
+		return arr;
+	}
+
+	console.log(DoubleUpMath([7,4,10]));
+
+	function ReverseArray (arr) {
+		for (var i = 0; i < arr.length/2; i++) {
+			var temp = arr[i];
+			arr[i] = arr[arr.length-i-1];
+			arr[arr.length-i-1] = temp;
+		}
+		return arr;
+	}
+	console.log(ReverseArray([7,4,56,0,10]));
+
+	function isSupervocalic(str) {
+		var vowCounts = {
+			a: 0,
+			e: 0,
+			i: 0,
+			o: 0,
+			u: 0
+		};
+		for (var i = 0; i < str.length; i++) {
+			if (vowCounts[str[i]] != undefined) {
+				vowCounts[str[i]]++;
+			}
+		}
+		for (x in vowCounts) {
+			if (vowCounts[x] != 1) {
+				return false;
+			}
+		}
+		return true;
+	}
+	console.log(isSupervocalic("pandemonium"));
+	console.log(isSupervocalic("My name is Kristin"));
+
+	function removeSpaces(str) {
+		var newStr = "";
+		for (var i = 0; i < str.length; i++) {
+			if (str[i] != " ") {
+				newStr += str[i];
+			}
+		}
+		return newStr;
+	}
+
+	console.log(removeSpaces(""));
+	console.log(removeSpaces("I"));
+	console.log(removeSpaces("My name is Kristin"));
+	console.log(removeSpaces("My    name is Kristin"));
+
+	function acronymn(str) {
+		var acronymnStr = "";
+		if (str[0] != " ") {
+			acronymnStr = str[0];
+		}
+		for (var i = 0; i < str.length; i++) {
+			if (str[i-1] == " " && str[i] != " ") {
+				acronymnStr += str[i].toUpperCase();
+			}
+		}
+		return acronymnStr;
+	}
+	console.log(acronymn("My name is Kristin"));
+	console.log(acronymn("  My name is Kristin"));
+	console.log(acronymn("My name    is Kristin"));
+
+	function sumToOne (num) {
+		var sum = 0;
+
+		while (Math.abs(num) >= 1) {
+			sum += num%10;
+			num /= 10;
+			num = Math.trunc(num);
+		}
+
+		if (Math.abs(sum) < 10) {
+			return sum;
+		}
+		return (sumToOne(sum));
+	}
+
+	console.log(sumToOne(928));
+	console.log(sumToOne(10));
+	console.log(sumToOne(5));
+	console.log(sumToOne(-928));
+
+	function countLetters (str) {
+		var counts = {};
+
+		for (var i in str) {
+			var letter = str[i].toLowerCase();
+			if (!counts[letter]) {
+				counts[letter] = 1;
+				console.log("False-y");
+			} else {
+				counts[letter] += 1;
+			}
+		}
+		return counts;
+	}
+
+	console.log(countLetters("Hello"));
+
+	function removeDupesUnsorted (arr) {
+		var dupes = {};
+		var dupe_indices = [];
+		for (var i = 0; i < arr.length; i++) {
+			if (dupes[arr[i]]) {
+				dupes[arr[i]] = 1;
+			}
+			else {
+				for (var j = i; j < arr.length; j++) {
+					arr[j] = arr[j+1];
+				}
+				arr.pop();
+			}
+		}
+	}
+
+	function coinChange(legend, amount) {
+		var change = {};
+		var val_array = [];
+
+		for (k in legend) {
+			val_array.push(legend[k]);
+		}
+		val_array.sort();
+
+		for (var i = (val_array.length)-1; i >= 0; i--) {
+			var counter = 0;
+			while (amount >= val_array[i]) {
+				amount -= val_array[i];
+				counter++;
+			}
+			for (k in legend) {
+				if (legend[k] == val_array[i]) {
+					change[k] = counter;
+				}
+			}
+		}
+		return change;
+	}
+
+	console.log("Return ",coinChange({"square": 3, "triangle": 1, "circle": 5},20));
+	console.log("Return ",coinChange({"square": 3, "triangle": 1, "circle": 5},4));
+	console.log("Return ",coinChange({"square": 3, "triangle": 1, "circle": 5},14));
+
+	function validParens(str) {
+		var counter = 0;
+		for (var i = 0; i < str.length; i++) {
+			if (str[i] == '(') {
+				counter++;
+			} else {
+				counter--;
+			}
+			if (counter < 0) {
+				break;
+			}
+		}
+		return counter == 0;
+	}
+
+	console.log(validParens("(()())"));
+	console.log(validParens("(()()"));
+	console.log(validParens("(()())("));
+
+	function validBraces(str) {
+		var bracelog = [];
+		var braceMatcher = { '{': '}', '(':')', '[':']'}
+		for (var i = 0; i < str.length; i++) {
+			if (str[i] == '{' || str[i] == '[' || str[i] == '(') {
+				bracelog.push(str[i]);				
+			}
+			// Otherwise, it's a close brace; see if it's the matching close brace for the previous
+			// open brace
+			else if (str[i] == braceMatcher[bracelog[bracelog.length-1]] && bracelog.length > 0) {
+				bracelog.pop();
+			}
+			else {
+				return false;
+			}
+		}
+		return bracelog.length == 0;
+	}
+
+	console.log("ValidBraces ", validBraces("(()())"));
+	console.log("ValidBraces ", validBraces("(()()"));
+	console.log("ValidBraces ", validBraces("{}()[]"));
+	console.log("ValidBraces ", validBraces("{)}()[]"));
+
+	function isPalindrome(str) {
+		var isPal = true;
+		var lowerstr = str.toLowerCase();
+		var end = str.length-1;
+		for (var begin = 0; begin < str.length; begin++) {
+			while (lowerstr[begin] == ' ') {
+				begin++;
+			}
+			while (lowerstr[end] == ' ') {
+				end--;
+			}
+			console.log(begin, lowerstr[begin], lowerstr[end]);
+			if (lowerstr[begin] != lowerstr[end]) {
+				isPal = false;
+				break;
+			}
+			if (begin >= end) {
+				break;
+			}
+			end--;
+		}
+		return isPal
+	}
+
+	console.log(isPalindrome("A man a plan a canal Panama"))
+	console.log(isPalindrome("The quick brown fox jumped over the lazy dog"))
+	console.log(isPalindrome("1001"))
+	console.log(isPalindrome("10001"))
+	console.log(isPalindrome("1001"))
+	console.log(isPalindrome("10001"))
+
+	function isPrime(num) {
+		for (var i = 2; i < num; i++) {
+			if (num%i == 0) {
+				return false;
+			}
+		}
+
+	}
+
+	/*
+		All possible substrings
+		Hello world
+
+		h
+		he
+		hel
+		hell
+		hello
+		e
+		el
+		ell
+	*/
+	function longestPalindrome(str) {
+		var words = [];
+		var longest = str[0];
+		// For each character in the string
+		for (var i = 0; i < str.length; i++) {
+			var buildString = str[i];
+			// Build each of the possible substrings starting with that character
+			if (buildString.length+1 > longest.length 
+				&& buildString.length+str.length-i > longest.length) {
+				for (var j = i+1; j < str.length; j++) {
+					buildString += str[j];
+					if (buildString.length > longest.length) {
+						var palindrome = true;
+						for (var k = 0; k < buildString.length/2; k++) {
+							if (buildString[k] != buildString[buildString.length-k-1]) {
+								var palindrome = false;
+								break;
+							}
+						}
+						if (palindrome == true) {
+							longest = buildString;
+						}
+					}
+				}
+			}
+		}
+		return longest;
+	}
+
+	console.log(longestPalindrome("hello world"));
+	console.log(longestPalindrome("Yikes! my favorite racecar erupted!"));
+	console.log(longestPalindrome("what up, daddy-o?"));
+
+	function SLL() {
+		this.head = null;
+	}
+	function Node(val) {
+		this.val = val;
+		this.next = null;
+	}
+
+	SLL.prototype.addToFront = function(val) {
+		var node1 = new Node(val);
+		node1.next = this.head;
+		this.head = node1;
+	}
+
+	SLL.prototype.zip = function(list2) {
+		var run1 = this.head;
+
+		if (run1 == null) {
+			return list2;
+		}
+		if (run2 == null) {
+			return this;
+		}
+
+		while (run1 != null) {
+			// If run2 is empty, we're done, and can return
+			// the list so far
+			if (run2 == null) {
+				break;
+			}
+
+			// Insert node from run2
+			var temp1 = run1.next;
+			var temp2 = list2.head;
+
+
+			list2.head = run1.next.next;
+		}
+		if (run2 != null) {
+			run1.next = run2;
+		}
+	}
+
+	SLL.prototype.zipGraham = function(list2) {
+		var r1 = this.head;
+		var r2 = list2.head;
+		if (!r1) {
+			this.head = r2;
+		}
+		while (r1 && list2.head) {
+			var temp = r1.next;
+			r1.next = r2;
+			r1 = temp;
+			temp = r2.next
+			if (r1) {
+				r2.next = r1;
+			}
+			list2.head = r2.next;
+			r2 = temp;
+		}
+	}
+
+	SLL.prototype.print = function() {
+		var temp = this.head;
+		while (temp != null) {
+			console.log(temp.val);
+			temp = temp.next;
+		}
+	}
+
+	var list1 = new SLL();
+	list1.addToFront(3);
+	list1.addToFront(2);
+	list1.addToFront(1);
+
+	var list2 = new SLL();
+	list2.addToFront('c');
+	list2.addToFront('b');
+	list2.addToFront('a');
+
+	list1.zipGraham(list2);
+
+	console.log("List 1");
+	list1.print();
+	console.log("List 2");
+	list2.print();
+	</script>
+</html>

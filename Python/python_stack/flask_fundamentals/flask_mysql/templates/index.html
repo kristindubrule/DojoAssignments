@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Registration Form</title>
+ 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static',filename='js/lib/jquery-3.3.1.min.js')}}"></script>
+    <!-- <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script> -->
+    <script type="text/javascript" src="{{ url_for('static',filename='js/registration_form.js')}}"></script>
+   </head>
+<body>
+  <form action='/process' method='POST'>
+    <div id="mainbox">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="error">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <table>
+        <tr>
+          <td>
+            <label for="name">First Name</label>
+          </td>
+          <td>
+            <input type="text" name="first_name">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="name">Last Name</label>
+          </td>
+          <td>
+            <input type="text" name="last_name">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="name">Email</label>
+          </td>
+          <td>
+            <input type="text" name="email">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="name">Password</label>
+          </td>
+          <td>
+            <input type="text" name="password">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="name">Birthdate</label>
+          </td>
+          <td>
+            <input type="date" name="birthdate">
+          </td>
+        </tr>
+
+      </table>
+      <input type="submit" name="submit" value="Submit">
+    </div> 
+  </form>
+</body>
+</html>

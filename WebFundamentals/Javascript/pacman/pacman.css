@@ -1,0 +1,30 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	background-color: #0000e6;
+}
+#main_screen {	
+	padding: 10px;
+	border: 5px solid black;
+}
+#main_screen td {
+	height: 50px;
+	width: 50px;
+}
+.wall {
+	background-color: #0000e6;
+}
+.coin {
+}
+.empty {
+	background-color: black;
+}
+.pacman {
+	background-color: black;
+}
+img {
+	height: 100%;
+	width: 100%;
+}

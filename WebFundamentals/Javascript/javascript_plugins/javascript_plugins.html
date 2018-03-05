@@ -1,0 +1,56 @@
+<html>
+<head>
+	<title>jQuery</title>
+	<link rel="stylesheet" type="text/css" href="javascript_plugins.css">
+	<script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	<script type="text/javascript" src="/Users/kristinf/Desktop/DojoAssignments/Libraries/__jquery.tablesorter/jquery.tablesorter.min.js"></script>
+	<script type="text/javascript" src="/Users/kristinf/Desktop/DojoAssignments/Libraries/tipped-3.2.0.1-demo/js/tipped/tipped.js"></script>
+	<script type="text/javascript" src="/Users/kristinf/Desktop/DojoAssignments/Libraries/tipsy-master/src/javascripts/jquery.tipsy.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/Users/kristinf/Desktop/DojoAssignments/Libraries/tipped-3.2.0.1-demo/css/tipped/tipped.css"/>
+	<link rel="stylesheet" type="text/css" href="/Users/kristinf/Desktop/DojoAssignments/Libraries/tipsy-master/src/stylesheets/tipsy.css"/>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('a[rel=tipsy]').tipsy({fade: true, gravity: 'n'});
+
+			var words = [
+				'rock',
+				'paper',
+				'scissors',
+				'blue',
+				'green',
+				'purple',
+				'dog',
+				'cat',
+				'bird',
+				'radio'
+			];
+			var numbers = [];
+			for (var i = 0; i < 10; i++) {
+				numbers[i] = Math.random()*100;
+			}
+
+			$('#wrapper table').append("<thead><tr><th>Words</th><th>Numbers</th></tr></thead><tbody>");
+			for (var i = 0; i < words.length; i++) {
+				$('#wrapper table').append("<tr><td>"+words[i]+"</td><td>"+numbers[i]+"</td></tr>");
+			}
+			$('#wrapper table').append("</tbody>");
+	        $("#wrapper table").tablesorter(); 
+
+	        Tipped.create('#demo_tooltip', 'some tooltip text');
+
+	        $('#tipsy_tooltip').tipsy();
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<table></table>
+
+		<p id="demo_tooltip">I have a tooltip!</p>
+
+		<p id="tipsy_tooltip" original-title="Hello World">I have a tipsy tooltip!</p>
+	</div>
+</body>
+</html>

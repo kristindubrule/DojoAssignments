@@ -13,7 +13,7 @@ print y[0], y[-1]
 newy = [y[0], y[-1]]
 
 z = [19,2,54,-2,7,12,98,32,10,-3,6,11]
-z = sorted(z)
+z.sort()
 print z
 
 weirdz = [z[0:len(z)/2]]

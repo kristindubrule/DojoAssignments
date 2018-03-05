@@ -20,7 +20,7 @@
 }
 #nav_links {
 	display: inline-block;
-	margin-left: 90px;
+	margin-left: 70px;
 }
 #header_box a {
 	color: #e8f5f5;
@@ -29,11 +29,11 @@
 }
 #header_box img {
 	width: 50px;
-	display: inline-block;
 	background-color: #38b0ad;
+	vertical-align: middle;
+	padding: 10px;
 }
 #header_box h2 {
-	line-height: 70px;
 	display: inline-block;
 }
 #main_box {
@@ -80,7 +80,7 @@
 }
 .triple h2, .double h2, .single h2 {
 	font-size: 15px;
-	padding: 10px 5px 0px 5px;	
+	padding: 10px 5px 0px 10px;	
 }
 .double {
 	width: 268px;

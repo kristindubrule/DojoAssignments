@@ -6,7 +6,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 NAME_REGEX = re.compile(r'^[a-zA-Z0-9]{2,}$')
 PASSWORD_REGEX = re.compile(r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d\S]{8,}$')
 
-class BlogManager(models.Manager):
+class UserManager(models.Manager):
 	def insert_validator(self,postData):
 		errors = {}
 		if postData['password'] != postData['password_confirm']:
@@ -47,5 +47,5 @@ class User(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
-	objects = BlogManager()
+	objects = UserManager()
 

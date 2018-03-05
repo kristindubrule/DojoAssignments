@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>New User</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+    <body>
+      <div id="wrapper">
+      <div id="header">
+          <p><a href="/logout">Logout</a></p>
+          <p><a href="wall">Wall</a></p>
+          <p><a href="profile">Profile</a></p>
+          <p><a href="/dashboard">Dashboard</a></p>          
+        </div>
+       <div id="messages">
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+              <li {% if message.tags == 'error' %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        <div id="mainbox">
+            <form action="/process" method="post">
+                  {% csrf_token %}
+                  <p>Hello world!</p>
+            </form>
+          </div>
+      </div>
+    </body>
+</html>

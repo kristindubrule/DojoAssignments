@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jQuery Functions</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('h4').click(function() {
+				alert('hello');
+			})
+
+			$('#hide').click(function() {
+				$('p').hide();
+			});
+
+			$('#show').click(function() {
+				$('p').show();
+			});
+
+			$('h3').hover(function() {
+				$('h2').text('Go see the Space Needle!');
+			}, function() { alert('now invoking the second function')
+				});
+
+
+
+		});
+	</script>
+</head>
+<body>
+	<h4>Click me!</h4>
+	<h4>Click me too!</h4>
+
+	<p>A paragraph!</p>
+	<p>Another paragraph!</p>
+
+	<button id='hide'>This will hide all the paragraphs</button>
+	<button id='show'>This will show all the paragraphs</button>
+
+	<h3>Mountain View, CA</h3>
+	<h2>Seattle, WA</h2>
+</body>
+</html>

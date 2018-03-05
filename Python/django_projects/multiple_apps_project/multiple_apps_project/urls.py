@@ -17,8 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^$', include('blogs.urls')),
 	url(r'^multiple_projects_app', include('apps.multiple_projects_app.urls')),
 	url(r'^blogs/', include('blogs.urls')),
 	url(r'^surveys/', include('apps.surveys.urls')),
-	url(r'^users/', include('apps.users.urls'))
+	url(r'^users/', include('apps.users.urls')),
+    url(r'^', include('apps.users.urls')),    
 ]

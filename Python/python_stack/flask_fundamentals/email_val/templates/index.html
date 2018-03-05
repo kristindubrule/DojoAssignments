@@ -17,14 +17,16 @@
       <input type="submit" value="Submit">
     </form>
     {% if customers %}
-      <h4>Email Addresses Entered</h4>
-      <table>
-      {% for customer in customers %}
-        <tr><td>{{ customer['email'] }}</td><td>{{ customer['last_update'] }}</td></tr>
-      {% endfor %}
-      </table>
       <form action="/delete" method="POST">
-        <input type="submit" value="Delete These Customers">
+        <h4>Email Addresses Entered</h4>
+        <table>
+        {% for customer in customers %}
+          <tr>
+            <td><input type="checkbox" name="{{ customer['customer_id'] }}"></td>
+            <td>{{ customer['email'] }}</td><td>{{ customer['last_update'] }}</td></tr>
+        {% endfor %}
+        </table>
+          <input type="submit" value="Delete These Customers">
       </form>
     {% endif %}
   </div>

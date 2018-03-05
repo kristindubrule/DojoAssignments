@@ -1,0 +1,6 @@
+
+
+1. git pull (to get latest from repository)
+2. python manage.py check
+3. python manage.py migrate
+4. sudo service nginx restart

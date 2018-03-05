@@ -19,8 +19,9 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-	url(r'^$', views.index),
+	url(r'^$', include('apps.time_display.urls')),
     url(r'^first_app/', include('apps.first_app.urls')),
-    url(r'^blogs/', include('apps.blogs.urls'))
- #   url(r'^', include('apps.first_app.urls'))
+    url(r'^blogs/', include('apps.blogs.urls')),
+    url(r'^time_display', include('apps.time_display.urls')),
+    url(r'^random_word', include('apps.random_word.urls'))
 ]

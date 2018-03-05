@@ -1,0 +1,10 @@
+tables: 
+users
+messages
+comments
+
+routes:
+- login
+- logoff
+- logged in (wall)
+

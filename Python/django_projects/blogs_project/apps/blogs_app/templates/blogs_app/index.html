@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'blogs_app/css/main.css' %}" media="screen" title="no title"  charset="utf-8">
+   </head>
+    <body>
+      <div id="wrapper">
+        <div id="mainbox">
+            <form action="/process" method="post">
+                  {% csrf_token %}
+                  <p>Hello world!</p>
+            </form>
+          </div>
+      </div>
+    </body>
+</html>

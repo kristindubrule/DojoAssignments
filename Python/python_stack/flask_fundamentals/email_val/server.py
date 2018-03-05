@@ -18,9 +18,10 @@ def validate():
 
 @app.route('/delete', methods=['POST'])
 def delete():
-    #query = "DELETE FROM customer WHERE id IN (:ids)"
-    #data = {'ids': ",".join(request.form['remove_id']}
-    #mysql.query_db(query, data)
-    return redirect('/')
+	for field in request.form:
+		query = "DELETE FROM customer WHERE customer_id =:id"
+		data = {'id': field }
+		mysql.query_db(query, data)
+	return redirect('/')
 
 app.run(debug=True)

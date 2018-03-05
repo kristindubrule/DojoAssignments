@@ -1,4 +1,5 @@
 import itertools
+import datetime
 
 class Call(object):
 	def __init__(self,uid,name,phone,time,reason):
@@ -48,15 +49,15 @@ class CallCenter(object):
 				self.calls[j+1] = c
 		return self
 
-call1 = Call(1,"Wallingford fire","310-999-9999",300,"fire in house")
+call1 = Call(1,"Wallingford fire","310-999-9999",datetime.datetime(2018,2,6,10,00),"fire in house")
 call1.displayInfo()
 print "\n"
 
-call3 = Call(3,"Noise CH","718-999-9999",2300,"loud party")
+call3 = Call(3,"Noise CH","718-999-9999",datetime.datetime(2018,2,6,23,00),"loud party")
 call3.displayInfo()
 print "\n"
 
-call2 = Call(2,"Belltown cat","206-999-9999",1600,"cat in tree")
+call2 = Call(2,"Belltown cat","206-999-9999",datetime.datetime(2017,2,6,23,30),"cat in tree")
 call2.displayInfo()
 print "\n"
 

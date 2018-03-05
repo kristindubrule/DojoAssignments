@@ -10,7 +10,7 @@ def index(request, random_word=""):
 		request.session['attempt_count'] += 1
 	else:
 		request.session['attempt_count'] = 1
-	return render(request, "random_word/index.html", context)
+	return render(request, "index.html", context)
 
 def generate(request):
 	return redirect('/random_word')

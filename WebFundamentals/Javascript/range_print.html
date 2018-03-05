@@ -8,12 +8,10 @@
 </body>
 <script type="text/javascript">
 
-function printRange(start, end, skip)
+function printRange(start, end, skip = 1)
 {
 	if (arguments.length < 2) {
 		printRange(0,start,1);
-	} else if (arguments.length < 3) {
-		printRange(start, end, 1);
 	} else {
 		for (var i = start; i < end; i+=skip) {
 			console.log(i);
