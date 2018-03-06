@@ -391,5 +391,45 @@
 	list1.print();
 	console.log("List 2");
 	list2.print();
+
+
+	function rainTerrace(A) {
+		var leftmost = []
+		var rightmost = []
+
+    	var leftMaxSoFar = 0;
+	    for (var i = 0; i < A.length; i++) {
+        	leftmost[i] = leftMaxSoFar;
+        	if (A[i] > leftMaxSoFar) {
+        		leftMaxSoFar = A[i];
+        	}
+    	}
+
+	    //right exclusive scan, O(n), the highest bar to the right each point
+	    var rightMaxSoFar = 0;
+	    for (var i = A.length - 1; i >= 0; i--){
+	        rightmost[i] = rightMaxSoFar;
+	        if (A[i] > rightMaxSoFar) {
+	        	rightMaxSoFar = A[i];
+	        }
+	    }
+
+	    // Summation, O(n)
+	    var vol = 0;
+	    for (var i = 0; i < A.length-1; i++){
+	        vol += Math.max(0, Math.min(leftmost[i], rightmost[i]) - A[i]);
+	    }
+	    return vol;
+	}
+
+	console.log(rainTerrace([3,1,2,4,1]))
+
+	function reverseSLL() {
+
+	}
+
+	function returnKthSLL() {
+
+	}
 	</script>
 </html>
