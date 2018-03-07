@@ -17,10 +17,8 @@
 
     <% for(int i = 0; i < height; i++) { %>
         <% for(int j = 0; j < width; j++) { %>
-            <% if ((i+j)%2 == 0) { %>
-                <div class="red square"></div>
-            <% } else { %>
-                <div class="black square"></div>
+            <% if ((i+j)%2 == 0) { %> <div class="red square"></div>
+            <% } else { %> <div class="black square"></div>
             <% } %>
         <% } %>
         <br/>
