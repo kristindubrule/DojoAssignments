@@ -1,0 +1,18 @@
+* {
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+}
+.petbox {
+    display: inline-block;
+    border: 1px solid black;
+    margin: 20px;
+    padding: 10px;
+}
+input[type=submit] {
+    margin: 10px;
+}
+form {
+    display: inline-block;
+}
+.displaypet {
+    margin: 20px;
+}
