@@ -1,0 +1,17 @@
+
+
+Servlet
+
+	HttpSession session = request.getSession();
+	 
+	request.setAttribute("counter",counter);
+
+	RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/ShowCounter.jsp");
+	view.forward(request, response);
+
+JSP
+
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<link rel="stylesheet" href="static/css/styles.css" media="screen" title="no title"  charset="utf-8">
+
+	<c:out value="${counter}"/>
