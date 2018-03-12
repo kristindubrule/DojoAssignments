@@ -1,4 +1,44 @@
 
+Spring boot:
+
+Name Field: <yourprojectname>. This will be your project name all lowercased.
+
+Group Field: com.<company>.<yourprojectname>. This will be a combination of your company and your project. For now, you can put your name in its place.
+
+Artifact Field: <yourprojectname>
+
+Description Field: Short description about your project
+
+Package Field: Same as the group field.
+
+create main-->webapp-->WEB-INF (jsps go here)
+
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper-el</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		jstl:jstl:1.2
+
+
+Java/Web:
 
 Servlet
 
@@ -15,3 +55,17 @@ JSP
 	<link rel="stylesheet" href="static/css/styles.css" media="screen" title="no title"  charset="utf-8">
 
 	<c:out value="${counter}"/>
+
+	    <welcome-file-list>
+        <welcome-file>numberGame.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>Guess</servlet-name>
+        <servlet-class>com.codingdojo.greatnumbergame.controllers.Guess</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Guess</servlet-name>
+        <url-pattern></url-pattern> <!-- Yes, empty string! -->
+    </servlet-mapping>
+
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
