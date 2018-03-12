@@ -1,0 +1,15 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+.summary {
+    border: 1px solid black;
+    width: 150px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 10px 10px 10px;
+}
+a {
+    margin: 0px 50px 10px 50px;
+}
