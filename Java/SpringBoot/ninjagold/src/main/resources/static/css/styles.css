@@ -1,0 +1,72 @@
+* {
+    margin:0;
+    padding:0;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+}
+#mainbox {
+    height: 700px;
+    width: 800px;
+    border: 1px solid black;
+    text-align: center;
+    margin: 20px;
+}
+#goldcount {
+    text-align: left;
+    margin: 10px;
+    border: 1px solid black;
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+#buildings {
+    margin-top: 20px;
+}
+.building {
+    border: 1px solid black;
+    display: inline-block;
+    width: 150px;
+    height: 120px;
+    vertical-align: top;
+}
+.building p {
+    font-size: 10px;
+    margin-top: 10px;
+}
+.building input[type=submit] {
+    margin-top: 20px;
+}
+#activities {
+    height: 300px;
+    width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#activity_box p {
+    font-size: 12px;
+    text-align: left;
+    margin-left: 90px;
+    margin-top: 30px;
+    height: 100%;
+}
+#activities p {
+    margin: 5px;
+    overflow: scroll;
+    border: 1px solid black;
+    padding: 10px;
+}
+.earn {
+    color: green;
+    display: block;
+}
+.lose {
+    color: red;
+    display: block;
+}
+#reset {
+    margin-top: 40px;
+}
