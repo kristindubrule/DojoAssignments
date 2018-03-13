@@ -25,16 +25,16 @@ public class PlatformController {
         return "index";
     }
 
-    @RequestMapping("/m/{chapter}/{type}/{number}")
-    public String content(@PathVariable String type, @PathVariable String number, Model model) {
-        String path;
-        if (type.equalsIgnoreCase("0483")) {
-            path = "assignment";
-        } else {
-            path = "lesson";
-        }
+    @RequestMapping(value="/m/{chapter}/0553/{number}")
+    public String lesson(@PathVariable String number, Model model) {
         model.addAttribute("content",content.get(number));
-        return path;
+        return "lesson";
+    }
+
+    @RequestMapping(value="/m/{chapter}/0483/{number}")
+    public String assignment(@PathVariable String number, Model model) {
+        model.addAttribute("content",content.get(number));
+        return "assignment";
     }
 
 }
