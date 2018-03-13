@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.content {
+    border: 1px solid royalblue;
+    width: 700px;
+    height: 300px;
+    margin-top: 20px;
+}
+h2 {
+    display: inline-block;
+}
+.nav {
+    margin-left: 50px;
+    display: inline-block;
+}
+.wrapper {
+    margin-left: 20px;
+}
+.header {
+    margin-bottom: 20px;
+}

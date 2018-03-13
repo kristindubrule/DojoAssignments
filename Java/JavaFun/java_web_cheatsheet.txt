@@ -12,7 +12,19 @@ Description Field: Short description about your project
 Package Field: Same as the group field.
 
 create main-->webapp-->WEB-INF (jsps go here)
+css & js go in folders in static
+html goes in static directly
 
+@Controller
+public class HomeController {
+        @RequestMapping("/")
+        public String home() {
+                return "Hello World!";
+        }
+}
+
+spring.mvc.view.prefix= /WEB-INF/
+spring.mvc.view.suffix= .jsp
 
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -34,9 +46,15 @@ create main-->webapp-->WEB-INF (jsps go here)
 			<artifactId>tomcat-jasper-el</artifactId>
 			<version>${tomcat.version}</version>
 		</dependency>
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
 		jstl:jstl:1.2
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <link rel="stylesheet" href="css/styles.css" media="screen" title="no title"  charset="utf-8">
 
 Java/Web:
 
