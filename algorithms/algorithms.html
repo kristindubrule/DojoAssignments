@@ -431,5 +431,40 @@
 	function returnKthSLL() {
 
 	}
+
+	function zibonacci(number) {
+		if (number <= 1) {
+			return 1;
+		} else if (number == 2) {
+			return 2;
+		} else {
+			halfnum = number/2;
+			if (number%2 == 0) {
+				return zibonacci(halfnum) + zibonacci(halfnum - 1) + 1;
+			} else {
+				return zibonacci(halfnum) + zibonacci(halfnum + 1) + 1;
+			}
+		}
+	}
+
+	console.log("Zibonacci 1 " + zibonacci(1));
+	console.log("Zibonacci 2 " + zibonacci(2));
+	console.log("Zibonacci 3 " + zibonacci(3));
+	console.log("Zibonacci 4 " + zibonacci(4));
+	console.log("Zibonacci 5 " + zibonacci(5));
+
+	function rGCF(n1, n2) {
+		if (n1 == n2) {
+			return n1;
+		} else if (n1 > n2) {
+			return (n1 - n2*(Math.floor(n1/n2)-1),n2);
+		} else {
+			return (n1,n2 - n1*(Math.floor(n2/n1)-1));
+		}
+	}
+
+	console.log("GCF 10,2 " + rGCF(10,2));
+	console.log("GCF 10,2 " + rGCF(123456,987654));
+	
 	</script>
 </html>
