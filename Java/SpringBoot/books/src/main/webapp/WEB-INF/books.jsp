@@ -8,7 +8,8 @@
         <td>${book.description}</td>
         <td>${book.language}</td>
         <td>${book.numberOfPages}</td>
-        <td><a href="/books/delete/${loop.index}">Delete</a></td>
+        <td><a href="/books/delete/${book.id}">Delete</a></td>
+        <td><a href="/books/edit/${book.id}">Edit</a></td>
     </tr>
 </c:forEach>
 </table>

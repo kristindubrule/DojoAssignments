@@ -1,44 +1,44 @@
 package com.codingdojo.books.services;
 
 import com.codingdojo.books.models.Book;
+import com.codingdojo.books.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
+    private BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
     private List<Book> books = new ArrayList<Book>(Arrays.asList(
             new Book("The Illiad","About a war","Greek",302),
             new Book("The Republic","About a city","Greek",202),
             new Book("how to Read a Book","About reading books","English",200)));
 
     public List<Book> allBooks() {
-        return books;
+        return bookRepository.findAll();
     }
 
-    public Book findBookByIndex(int index) {
-        if (index < books.size()) {
-            return books.get(index);
-        } else {
-            return null;
-        }
+    public Book findBookById(Long id) {
+        return bookRepository.findById(id).get();
     }
 
     public void addBook(Book book) {
-        books.add(book);
+        bookRepository.save(book);
     }
 
-    public void updateBook(int id, Book book) {
-        if (id < books.size()) {
-            books.set(id, book);
-        }
+    public void updateBook(Book book) {
+        bookRepository.save(book);
     }
 
-    public void destroyBook(int id) {
-        if (id < books.size()) {
-            books.remove(id);
-        }
+    public void destroyBook(Long id) {
+        bookRepository.deleteById(id);
     }
 }
