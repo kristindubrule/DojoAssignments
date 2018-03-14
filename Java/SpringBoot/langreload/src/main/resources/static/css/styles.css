@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.error {
+    color: crimson;
+}
+td {
+    margin: 5px;
+}
+table {
+    margin-bottom: 10px;
+}
+#wrapper {
+    margin: 10px;
+}
+.element {
+    padding: 5px;
+}
