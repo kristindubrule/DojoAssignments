@@ -464,7 +464,30 @@
 	}
 
 	console.log("GCF 10,2 " + rGCF(10,2));
-	console.log("GCF 10,2 " + rGCF(123456,987654));
+	console.log("GCF 123456,987654 " + rGCF(123456,987654));
+
+	function allSubsets(str, substr=undefined, arr=undefined) {
+		if (arr == undefined) {
+			arr = [];
+		}
+		if (substr == undefined) {
+			substr = "";
+		}
+		if (str == "") {
+			arr.push(substr);
+			console.log("Push substr " + substr);
+			return arr;
+		}
+		var first = str[0];
+		str = str.slice(1);
+		console.log("Calling with str: " + str + " substring: " + substr + " arr: " + arr);
+		allSubsets(str,substr,arr);
+		console.log("Calling with str: " + str + " substring: " + substr+first + " arr: " + arr);
+		allSubsets(str,substr+first,arr);
+		return arr;
+	}
+
+	console.log("All subsets abc '" + allSubsets("abc").join("','") + "'");
 	
 	</script>
 </html>
