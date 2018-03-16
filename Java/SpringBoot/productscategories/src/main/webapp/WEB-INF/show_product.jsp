@@ -16,7 +16,7 @@
 <form method="POST" action="/product/${product.id}/category">
         <select name="categoryId">
             <c:forEach items="${categories}" var="category">
-                <option value="${category.id}">${category.name}</option>
+                <option value="${category.key}">${category.value}</option>
             </c:forEach>
         </select>
     <input type="submit" name="submit" value="Add"/>

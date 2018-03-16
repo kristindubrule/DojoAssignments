@@ -5,7 +5,10 @@ import com.codingdojo.productscategories.models.Product;
 import com.codingdojo.productscategories.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -27,8 +30,9 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    public ArrayList<Category> unusedCategories(Product product) {
-        return categoryRepository.findByProductsNotContains(product);
+    public HashMap<Long,String> unusedCategories(Product product) {
+        ArrayList<Category> categories = categoryRepository.findByProductsNotContains(product);
+        return (HashMap<Long,String>)(categories.stream().collect(Collectors.toMap(Category::getId, Category::getName)));
     }
 
     public void addProduct(Category category, Product product) {
