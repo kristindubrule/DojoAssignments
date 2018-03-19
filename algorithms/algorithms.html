@@ -488,6 +488,45 @@
 	}
 
 	console.log("All subsets abc '" + allSubsets("abc").join("','") + "'");
-	
+
+	function binaryStringExpansion(str) {
+		var retArray = [""];
+		for (var i = 0; i < str.length; i++) {
+			console.log("for loop");
+			if (str[i] == "?") {
+				var initialLength = retArray.length;
+				for (var j = 0; j < initialLength; j++) {
+					retArray.push(retArray[j] + "0");
+					retArray[j] += "1";
+				}
+			} else {
+				for (var j = 0; j < retArray.length; j++) {
+					retArray[j] += str[i];
+				}
+			}
+		}
+		return retArray;
+	}
+
+	console.log("1?0? " + binaryStringExpansion("1?0?"));
+
+		function binaryStringExpansion2(str) {
+		var retArray = [""];
+		for (var i = 0; i < str.length; i++) {
+			var initialLength = retArray.length;
+			for (var j = 0; j < initialLength; j++) {
+				if (str[i] == "?") {
+					retArray.push(retArray[j] + "0");
+					retArray[j] += "1";
+				} else {
+					retArray[j] += str[i];
+				}
+			}
+		}
+		return retArray;
+	}
+
+	console.log("1?0? " + binaryStringExpansion2("1?0?"));
+
 	</script>
 </html>
