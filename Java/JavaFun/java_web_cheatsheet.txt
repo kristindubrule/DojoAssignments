@@ -113,12 +113,19 @@ in model:
         this.updatedAt = new Date();
     }
 
+repository
+
+
 Form: 
 <form:form method="POST" action="/languages/new" modelAttribute="language">
     <form:label path="language">Language
         <form:errors path="language"/>
         <form:input path="language"/></form:label>
 </form:form>
+
+    <select th:field="*{category}" class="form-control">
+       <option th:each="category: ${productCategories}" th:value="${category.id}" th:text="${category.name}"></option>
+    </select>
 
 Java/Web:
 
