@@ -528,5 +528,64 @@
 
 	console.log("1?0? " + binaryStringExpansion2("1?0?"));
 
+	function calculateSquare(n, start=undefined)
+    {
+    	if (start == undefined) {
+    		start = n;
+    	}
+		// odds ascending and evens descending
+        if(n <= 0) {
+        	return;
+        }
+        if (start == n) {
+        	if (n%2 == 0) {
+	        	calculateSquare(n-1,start);
+	        	console.log(n*n)
+        		calculateSquare(n-2,start);
+        	} else {
+	        	calculateSquare(n-2,start);
+	        	console.log(n*n)
+        		calculateSquare(n-1,start);        		
+        	}
+        } else {
+        	if (n%2 == 0) {
+        		console.log(n*n);
+        		calculateSquare(n-2,start);
+        	} else {
+        		calculateSquare(n-2,start);        		
+        		console.log(n*n);
+        	}
+        }
+    }
+
+    console.log("5 rising squares:")
+    calculateSquare(5);
+
+    function calculateSquareWrap(n) {
+    	calculateSquareDown((n%2 == 0) ? n-1 : n);
+		calculateSquareUp((n%2 == 0) ? n : n-1);
+    }
+    function calculateSquareUp(n) {
+    	if (n <= 0) {
+    		return;
+    	} else {
+    		console.log(n*n);
+    		calculateSquareUp(n-2);
+    	}
+    }
+    function calculateSquareDown(n) {
+    	if (n <= 0) {
+    		return;
+    	} else {
+    		calculateSquareDown(n-2);
+    		console.log(n*n);
+    	}
+    }
+    console.log("5 rising squares w/ wrapper:")
+    calculateSquareWrap(5);
+
+    console.log("6 rising squares w/ wrapper:")
+    calculateSquareWrap(6);
+
 	</script>
 </html>
