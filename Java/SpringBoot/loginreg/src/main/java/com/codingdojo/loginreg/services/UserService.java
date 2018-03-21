@@ -6,6 +6,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.codingdojo.loginreg.models.*;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -20,7 +22,7 @@ public class UserService {
     }
 
     // 1
-    public void saveWithUserRole(User user) {
+    public void saveUserWithUserRole(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(roleRepository.findByName("ROLE_USER"));
         userRepository.save(user);
@@ -41,6 +43,41 @@ public class UserService {
     public void updateLastLoginDateForUserByName(String username) {
         User user = userRepository.findByUsername(username);
         user.setLastSignin(new Date());
+        userRepository.save(user);
+    }
+
+    public Boolean noAdmins() {
+        return !userRepository.existsByRolesContains(roleRepository.findFirstByName("ROLE_ADMIN"));
+    }
+
+    public Boolean isAdmin(User user) {
+        return userRepository.existsUserByIdEqualsAndRolesContains(user.getId(), roleRepository.findFirstByName("ROLE_ADMIN"));
+    }
+
+    public List<User> allUsers() {
+        return userRepository.findAll();
+    }
+
+    public HashMap<Long,Boolean> admins() {
+        List<Object[]> adminsObj = userRepository.admins();
+        HashMap<Long,Boolean> adminsMap = new HashMap<>();
+        for (Object[] obj : adminsObj) {
+            adminsMap.put((Long)obj[0],true);
+        }
+        return adminsMap;
+    }
+
+    public User findById(Long userId) {
+        return userRepository.findById(userId).orElse(null);
+    }
+
+    public void deleteById(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    public void makeUserAdmin(Long userId) {
+        User user = findById(userId);
+        user.setRoles(roleRepository.findByName("ROLE_ADMIN"));
         userRepository.save(user);
     }
 }

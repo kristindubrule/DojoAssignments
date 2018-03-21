@@ -4,12 +4,10 @@ import com.codingdojo.loginreg.services.UserService;
 import com.codingdojo.loginreg.validator.UserValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import com.codingdojo.loginreg.models.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,7 +29,11 @@ public class Users {
         if (result.hasErrors()) {
             return "loginPage";
         }
-        userService.saveWithUserRole(user);
+        if (userService.noAdmins()) {
+            userService.saveUserWithAdminRole(user);
+        } else {
+            userService.saveUserWithUserRole(user);
+        }
         return "redirect:/login";
     }
 
@@ -52,5 +54,36 @@ public class Users {
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
         return "homePage";
+    }
+
+    @RequestMapping("/dashboard")
+    public String dashboard(Principal principal, Model model) {
+        User user = userService.findByUsername(principal.getName());
+        model.addAttribute("currentUser", user);
+        if (userService.isAdmin(user)) {
+            model.addAttribute("users", userService.allUsers());
+            model.addAttribute("admins", userService.admins());
+            return "dashboard";
+        } else {
+            return "homePage";
+        }
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(Principal principal, @PathVariable("id") Long userId, RedirectAttributes redirectAttributes) {
+        User user = userService.findByUsername(principal.getName());
+        if (userService.isAdmin(user)) {
+            userService.deleteById(userId);
+        }
+        return "redirect:/dashboard";
+    }
+
+    @RequestMapping("/make-admin/{id}")
+    public String makeAdmin(Principal principal, @PathVariable("id") Long userId, RedirectAttributes redirectAttributes) {
+        User user = userService.findByUsername(principal.getName());
+        if (userService.isAdmin(user)) {
+            userService.makeUserAdmin(userId);
+        }
+        return "redirect:/dashboard";
     }
 }

@@ -43,13 +43,16 @@ public final class CustomAuthenticationSuccessHandler implements AuthenticationS
 
         //since we have created our custom success handler, its up to us to where
         //we will redirect the user after successfully login
-        handle(httpServletRequest, httpServletResponse, authentication);
+        if (userService.isAdmin(authUser)) {
+            handle(httpServletRequest, httpServletResponse, authentication, "/dashboard");
+        } else {
+            handle(httpServletRequest, httpServletResponse, authentication, "/home");
+        }
     }
 
 
     protected void handle(HttpServletRequest request,
-                          HttpServletResponse response, Authentication authentication) throws IOException {
-        String targetUrl = "/home";
+                          HttpServletResponse response, Authentication authentication, String targetUrl) throws IOException {
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 }

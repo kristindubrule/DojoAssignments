@@ -9,4 +9,5 @@ import java.util.List;
 public interface RoleRepository extends CrudRepository<Role,Long> {
     List<Role> findAll();
     List<Role> findByName(String name);
+    Role findFirstByName(String name);
 }
