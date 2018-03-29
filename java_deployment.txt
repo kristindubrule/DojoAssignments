@@ -1,0 +1,212 @@
+Server: 18.218.134.17
+MySQL db password: root
+java -classpath "lib/*:classes/." com.codingdojo.events.EventsApplication
+
+New projects:
+1. Export MySQL database from MySQL workbench.
+   Check Include Create Schema
+2. Login to AWS server (ssh -i ~/Documents/codingdojo.pem ubuntu@18.218.134.17)
+3. Start mysql
+4. Paste contents of dump file into MySQL terminal window on AWS server.
+5. Upload war file to AWS (~ directory: scp -i ~/Documents/codingdojo.pem <source> ubuntu@18.218.134.17:~/)
+6. Create exploded war dir in /var/springApp
+7. mv war file to /var/springApp
+8. Explode war file into exploded dir.
+9. cd into exploded dir/WEB-INF and try starting app from command line (java -classpath "lib/*:classes/." com.codingdojo.events.EventsApplication)
+10. Update /etc/systemd/system/<app>.service if necessary (create for new projects)
+11. sudo /etc/init.d/apache2 restart
+12. sudo systemctl daemon-reload
+13. (new project) sudo systemctl enable <app>.service
+14. sudo systemctl start <app>
+15. systemctl status <app>
+
+--------------------------------
+
+package com.codingdojo.loginreg;
+
+import org.apache.catalina.connector.Connector;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactory;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+//@SpringBootApplication
+//public class LoginregApplication {
+//	public static void main(String[] args) {
+//		SpringApplication.run(LoginregApplication.class, args);
+//	}
+//
+//	@Bean
+//    // EmbeddedServletContainerFactory
+//	public ConfigurableServletWebServerFactory servletContainer() {
+//        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+//		Connector ajpConnector = new Connector("AJP/1.3");
+//		ajpConnector.setPort(9090);
+//		ajpConnector.setSecure(false);
+//		ajpConnector.setAllowTrace(false);
+//		ajpConnector.setScheme("http");
+//		tomcat.addAdditionalTomcatConnectors(ajpConnector);
+//		return tomcat;
+//	}
+//}
+
+//@SpringBootApplication
+//public class LoginregApplication {
+//	public static void main(String[] args) {
+//		SpringApplication.run(LoginregApplication.class, args);
+//	}
+//
+//	@Bean
+//    // EmbeddedServletContainerFactory
+//	public TomcatServletWebServerFactory servletContainer() {
+//        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory();
+//		Connector ajpConnector = new Connector("AJP/1.3");
+//		ajpConnector.setPort(9090);
+//		ajpConnector.setSecure(false);
+//		ajpConnector.setAllowTrace(false);
+//		ajpConnector.setScheme("http");
+//		tomcat.addAdditionalTomcatConnectors(ajpConnector);
+//		return tomcat;
+//	}
+//}
+
+@SpringBootApplication
+public class LoginregApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(LoginregApplication.class);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(LoginregApplication.class, args);
+    }
+}
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.codingdojo.loginreg</groupId>
+	<artifactId>loginreg</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+	<name>loginreg</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+        <!--<start-class>com.codingdojo.loginreg.LoginregApplication</start-class>-->
+        <!--<spring-boot-classes>WEB-INF/classes/</spring-boot-classes>-->
+        <!--<spring-boot-lib>WEB-INF/lib/</spring-boot-lib>-->
+	</properties>
+	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.0.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+ 			</plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-war-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifestEntries>-->
+                            <!--&lt;!&ndash;<Main-Class>org.springframework.boot.loader.WarLauncher</Main-Class>&ndash;&gt;-->
+                            <!--<Spring-Boot-Classes>/Users/kristinf/Desktop/DojoAssignments/Java/SpringBoot/WEB-INF/lib/*:WEB-INF/classes/.</Spring-Boot-Classes>-->
+                            <!--<Spring-Boot-Lib>WEB-INF/lib/</Spring-Boot-Lib>-->
+                            <!--<Start-Class>WEB-INF/classes/com.codingdojo.loginreg.LoginregApplication</Start-Class>-->
+                            <!--<Main-Class>WEB-INF/classes/com.codingdojo.loginreg.LoginregApplication</Main-Class>-->
+                        <!--</manifestEntries>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+		</plugins>
+	</build>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>https://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
