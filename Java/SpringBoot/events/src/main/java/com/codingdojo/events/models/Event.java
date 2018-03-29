@@ -19,6 +19,7 @@ public class Event {
     @NotNull
     private String name;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date eventDate;
 

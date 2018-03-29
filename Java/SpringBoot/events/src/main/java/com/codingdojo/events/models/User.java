@@ -28,10 +28,10 @@ public class User {
     @NotNull
     private String lastName;
 
-    @Size(min=1,max=50)
+//    @Size(min=1,max=50)
     private String location;
 
-    @Size(min=2,max=2)
+//    @Size(min=2,max=2)
     private String state;
 
     @Size(min=10)
@@ -40,14 +40,12 @@ public class User {
     @Transient
     private String passwordConfirmation;
 
-    private Date lastSignin;
-
     @Column(updatable=false)
     private Date createdAt;
 
     private Date updatedAt;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -137,14 +135,6 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    public Date getLastSignin() {
-        return lastSignin;
-    }
-
-    public void setLastSignin(Date lastSignin) {
-        this.lastSignin = lastSignin;
     }
 
     public String getLocation() {
