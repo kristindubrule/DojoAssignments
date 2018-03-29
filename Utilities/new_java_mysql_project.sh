@@ -24,3 +24,6 @@ cp -r $TEMPLATE_PATH/src/main/java/com/codingdojo/project/controllers .
 cp -r $TEMPLATE_PATH/src/main/java/com/codingdojo/project/models .
 cp -r $TEMPLATE_PATH/src/main/java/com/codingdojo/project/repositories .
 cp -r $TEMPLATE_PATH/src/main/java/com/codingdojo/project/services .
+cp -r $TEMPLATE_PATH/src/main/java/com/codingdojo/project/validator .
+cp -r $TEMPLATE_PATH/src/main/java/com/codingdojo/project/config .
+
