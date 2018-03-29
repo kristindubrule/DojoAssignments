@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.error {
+    color: crimson;
+}
+td {
+    margin: 10px;
+    padding: 10px;
+}
+table {
+    margin-bottom: 10px;
+}
+#wrapper {
+    margin: 10px;
+}
+.element {
+    padding: 5px;
+}
+a {
+    margin: 10px;
+}
+html,
+body,
+#map,
+.map-container {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px
+}
+#map * {
+    overflow:visible;
+}
