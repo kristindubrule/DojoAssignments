@@ -587,5 +587,159 @@
     console.log("6 rising squares w/ wrapper:")
     calculateSquareWrap(6);
 
+    function circQueue(capacity) {
+    	this.capacity = capacity;
+    	this.tail = null;
+    	this.size = 0;
+    }
+
+    function circQueueNode(val) {
+    	this.next = null;
+    	this.val = val;
+    }
+
+    circQueue.prototype.enQueue = function(val) {
+    	if (this.capacity == this.size) {
+    		return false;
+    	}
+    	var node = new circQueueNode(val);
+    	this.size += 1;
+    	if (this.tail == null) {
+    		this.tail = node;
+    		node.next = node;
+    	} else {
+    		node.next = this.tail.next;
+    		this.tail.next = node;
+    		this.tail = node;
+    	}
+    	return true;
+    }
+
+    circQueue.prototype.print = function() {
+    	var runner = this.tail.next;
+    	while (runner != this.tail) {
+    		console.log(runner.val);
+    		runner = runner.next;
+    	}
+    	console.log(runner.val);
+    }
+
+    circQueue.prototype.deQueue = function(val) {
+    	if (this.size == 0) {
+    		return null;
+    	}
+    	var temp = this.tail.next.val;
+    	this.tail.next = this.tail.next.next;
+    	return temp;
+    }
+
+    var circQueue = new circQueue();
+    console.log(circQueue.deQueue());
+    circQueue.enQueue(1);
+    circQueue.enQueue(2);
+    circQueue.enQueue(3);
+    circQueue.enQueue(4);
+    console.log("Queue");
+    circQueue.print();
+    circQueue.deQueue();
+    console.log("Queue after deQueue");
+    circQueue.print();
+    circQueue.enQueue(5);
+    console.log("Queue after enQueue");
+    circQueue.print();
+
+    function circQueueArr(capacity) {
+    	this.capacity = capacity;
+    	this.head = -1;
+    	this.tail = -1;
+    	this.arr = [];
+    }
+
+	circQueueArr.prototype.enQueueArr = function(val) {
+		// If the tail is in the last slot & the head is in the first slot
+		// or the tail is one slot before the head, we're full
+		if ((this.tail == this.capacity-1 && this.head == 0) || (this.tail == this.head-1)) {
+			return false;
+		} else if (this.head == -1) { // Inserting the first element
+			this.head = 0;
+			this.tail = 0;
+			this.arr[this.tail] = val;
+		} else if (this.tail == this.capacity-1 && this.head != 0) { // If the tail is in the last slot but the head is not in the first, wrap
+			this.tail = 0;
+			this.arr[this.tail] = val;
+		} else { // Otherwise, we're just adding a value to the end of the array
+			this.tail += 1;
+			this.arr[this.tail] = val;
+		}
+
+		return true;
+	}
+
+	circQueueArr.prototype.deQueueArr = function(val) {
+		if (this.head == -1) {
+			return null;
+		}
+
+		var temp = this.arr[this.head];
+		this.arr[this.head] = null;
+
+		// If that was the only element, reset the head & tail
+		if (this.head == this.tail) {
+			this.head = -1;
+			this.tail = -1;
+		}
+		// If head was on the last slot, put it to the first slot
+		else if (this.head == this.capacity-1) {
+			this.head = 0;
+		}
+
+		// Otherwise, just move the head forward
+		else {
+			this.head += 1;
+		}
+		return temp;
+	}
+
+	circQueueArr.prototype.printArr = function() {
+		var runner = this.head;
+		while (runner != this.tail) {
+			console.log(this.arr[runner]);
+			if (runner == this.capacity-1) {
+				runner = 0;
+			} else {
+				runner += 1;
+			}
+		}
+		console.log(this.arr[runner]);
+	}
+
+    var circQueueArr = new circQueueArr(4);
+    console.log(circQueueArr.deQueueArr());
+    circQueueArr.enQueueArr(1);
+    console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
+    circQueueArr.enQueueArr(2);
+    circQueueArr.enQueueArr(3);
+    circQueueArr.enQueueArr(4);
+    console.log("Queue");
+    circQueueArr.printArr();
+    circQueueArr.deQueueArr();
+    console.log("Queue after deQueue");
+    circQueueArr.printArr();
+    console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
+    circQueueArr.enQueueArr(5);
+    console.log("Queue after enQueue");
+    circQueueArr.printArr();
+    console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
+    circQueueArr.enQueueArr(10);
+    console.log("Queue after enQueue (full)");
+    circQueueArr.printArr();
+    console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
+    circQueueArr.deQueueArr();
+    circQueueArr.enQueueArr(10);
+    console.log("Queue after deQueue & enQueue");
+    circQueueArr.printArr();
+
+    console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
+
 	</script>
 </html>
