@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, sans-serif;
+}
+.error {
+    color: crimson;
+}
+td {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid darkgray;
+}
+table {
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+#wrapper {
+    margin: 10px;
+}
+.element {
+    padding: 5px;
+}
+a {
+    margin: 10px;
+}
+h2 {
+    margin: 20px 10px 10px 10px;
+}
+form {
+    display: inline;
+}
+#navbar {
+    margin-left: 300px;
+}
+#sort {
+    margin-left: 300px;
+}
+#students, #courses {
+    width: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#details {
+    border: none;
+}
