@@ -14,38 +14,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.apache.http.HttpResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/")
 public class Maps {
-    @RequestMapping(value= {"", "home"})
+    @RequestMapping(value= {"/", "/home"})
     public String home(Model model) throws ApiException, InterruptedException, IOException {
         String apiKey = System.getenv("GOOGLE_API_KEY");
-//        HttpClient httpClient = HttpClientBuilder.create().build();
-//
-//        HttpPost request = new HttpPost("https://www.googleapis.com/geolocation/v1/geolocate?key="+apiKey);
-//
-//        HttpResponse response = null;
-//        try {
-//            response = httpClient.execute(request);
-//        } catch (IOException e) {
-//            System.out.println(e);
-//        }
-//        System.out.println(response.getStatusLine().getStatusCode());
-
-        GeoApiContext context = new GeoApiContext.Builder()
-        .apiKey(apiKey)
-        .build();
-
-        GeolocationPayload payload = new GeolocationPayload();
-
-        //GeolocationResult[] results = GeolocationApi.geolocate(context, );
-
         model.addAttribute("apiKey",apiKey);
         return "index";
     }
@@ -69,11 +50,7 @@ public class Maps {
         return "index";
     }
 
-    @RequestMapping(value = "/maps/test", method=RequestMethod.GET,
-            produces="application/json")
-    @ResponseBody
-    public HashMap<String,Object> testGet(Model model) {
-
+    public LatLng getCurrentLocation() {
         // Get current location
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey(System.getenv("GOOGLE_API_KEY"))
@@ -88,19 +65,108 @@ public class Maps {
             System.out.println(e);
         }
 
+        return curLocation.location;
+    }
+
+    @RequestMapping(value = "/maps/test", method=RequestMethod.GET,
+            produces="application/json")
+    @ResponseBody
+    public HashMap<String,Object> testGet(Model model) {
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(System.getenv("GOOGLE_API_KEY"))
+                .build();
+        GeolocationPayload payload = new GeolocationPayload();
+
+        LatLng curLocation = getCurrentLocation();
+
+//        // Get restaurants nearby
+//        PlacesSearchResponse searchResp = null;
+//        NearbySearchRequest search = new NearbySearchRequest(context).type(PlaceType.RESTAURANT)
+//                .radius(8000).location(curLocation);
+//        try {
+//            searchResp = search.await();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+
+//        String pageToken = searchResp.nextPageToken;
+//        while (pageToken != null) {
+//            for (PlacesSearchResult psr : searchResp.results) {
+//                System.out.println(psr.name);
+//            }
+//            try {
+//                Thread.sleep(1000);
+//                NearbySearchRequest nextSearch = new NearbySearchRequest(context).pageToken(pageToken);
+//                searchResp = nextSearch.pageToken(pageToken).await();
+//            } catch (Exception e) {
+//                System.out.println(e);
+//            }
+//            pageToken = searchResp.nextPageToken;
+//        }
+
+//        // Find directions between first restaurant & current location
+//        DirectionsApiRequest directionsApiRequest = new DirectionsApiRequest(context).mode(TravelMode.TRANSIT).origin(curLocation)
+//                .destination(searchResp.results[0].geometry.location);
+//        DirectionsResult dirResult = null;
+//        try {
+//            dirResult = directionsApiRequest.await();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("lat",curLocation.lat);
+        map.put("lon",curLocation.lng);
+        return map;
+    }
+
+    @RequestMapping(value="/maps/search", method=RequestMethod.GET,
+            produces="application/json")
+    @ResponseBody
+    public HashMap<String,Object> search(@RequestParam("search") String searchParam) {
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(System.getenv("GOOGLE_API_KEY"))
+                .build();
+        GeolocationPayload payload = new GeolocationPayload();
+
+        LatLng curLocation = getCurrentLocation();
+
         // Get restaurants nearby
         PlacesSearchResponse searchResp = null;
         NearbySearchRequest search = new NearbySearchRequest(context).type(PlaceType.RESTAURANT)
-                .radius(1100).location(curLocation.location);
+                .radius(8000).location(curLocation).keyword(searchParam);
         try {
             searchResp = search.await();
         } catch (Exception e) {
             System.out.println(e);
         }
+
         HashMap<String, Object> map = new HashMap<>();
-        map.put("lat",curLocation.location.lat);
-        map.put("lon",curLocation.location.lng);
         map.put("restaurants",searchResp.results);
         return map;
+    }
+
+    public ArrayList<PlacesSearchResult> filterLocations (PlacesSearchResult[] results, LatLng curLocation) {
+        ArrayList<PlacesSearchResult> filteredResults = new ArrayList<>();
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(System.getenv("GOOGLE_API_KEY"))
+                .build();
+        int counter = 0;
+        for (PlacesSearchResult result : results) {
+            if (counter < 4) {
+                // Find directions between first restaurant & current location
+                DirectionsApiRequest directionsApiRequest = new DirectionsApiRequest(context).mode(TravelMode.TRANSIT).origin(curLocation)
+                        .destination(result.geometry.location);
+                DirectionsResult dirResult = null;
+                try {
+                    dirResult = directionsApiRequest.await();
+
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+                counter++;
+            }
+        }
+        return filteredResults;
     }
 }

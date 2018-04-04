@@ -21,15 +21,23 @@ table {
 a {
     margin: 10px;
 }
-html,
-body,
-#map,
 .map-container {
+    width: 70%;
     height: 100%;
-    width: 100%;
     margin: 0px;
-    padding: 0px
+    padding: 0px;
+    display: inline-block;
 }
-#map * {
+#map {
     overflow:visible;
+    display: inline-block;
+    min-width: 200px;
+    width: 100%;
+    min-height: 200px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.restaurant-container {
+    display: inline-block;
 }
