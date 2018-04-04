@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Survey Form</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>Welcome to the Great Number Game!</h1>
+
+			<h3>I am thinking of a number between 1 and 100</h2>
+			<h3>Take a guess!</h2>
+
+			<% if (!!locals.message) { %>
+				<div class="<%=result%> result">
+					<p><%= message %></p>
+					<% if (result == "correct") { %>
+						<form action="/reset" method="get">
+							<input type="submit" name="submit" value="Play Again">
+						</form>
+					<% } %>
+				</div>
+			<% } %>
+
+			<form action="/guess" method="post">
+				<p><input type="text" name="guess" value="<%= (!!locals.guess)?guess:'' %>"></p>
+				<input type="submit" name="submit" value="Submit"/>
+			</form>
+		</div>
+	</body>
+</html>
