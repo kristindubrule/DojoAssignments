@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Survey Form</title>
+	</head>
+	<body>
+		<h1>Survey Form</h1>
+		<form action="/result" method="post">
+			<table>
+				<tr>
+					<td>Your Name:</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>Dojo Location:</td>
+					<td>
+						<select name="location">
+							<option value="mv">Mountain View</option>
+							<option value="seattle">Seattle</option>
+							<option value="chicago">Chicago</option>
+							<option value="sd">San Diego</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Favorite Language</td>
+					<td>
+						<select name="language">
+							<option value="java">Java</option>
+							<option value="js">Javascript</option>
+							<option value="c#">C#</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td colspan=2>
+						<p>Comment(optional):</p>
+						<textarea rows=5 cols=60 name="comments"></textarea>
+					</td>
+				</tr>
+			</table>
+			<input type="submit" name="submit" value="Submit"/>
+		</form>
+	</body>
+</html>
