@@ -121,6 +121,7 @@ Form:
     <form:label path="language">Language
         <form:errors path="language"/>
         <form:input path="language"/></form:label>
+        <input type="submit" name="submit" value="Add a course"/>
 </form:form>
 
     <select th:field="*{category}" class="form-control">
