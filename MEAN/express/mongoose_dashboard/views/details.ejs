@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Otter <%= otter["name"] %></title>
+</head>
+<body>
+	<% if(typeof(errors) != 'undefined' ) { %>
+		<% for (var x in errors) { %>
+		<h3><%= errors[x].message %></h3>
+		<% } %>
+	<% } else { %>
+		<p>Name: <%= otter["name"]%></p>
+		<p>Color: <%= otter["color"]%></p>
+		<p>Age: <%= otter["age"]%></p>
+		<p>Foods: <%= otter["foods"]%></p>
+	<% } %>
+</body>
+
+<a href="/mongooses/edit/<%=otter["_id"]%>">Edit</a>
+ <a href="/mongooses/destroy/<%=otter["_id"]%>">Delete</a>
+</html>

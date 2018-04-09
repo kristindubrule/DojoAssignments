@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Otters</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+	<div id="wrapper">
+		<table>
+			<tr><td>Name</td><td>Color</td><td>Foods</td><td>Age</td><td colspan=2>Actions</td></tr>
+			<% for (otter of otters) { %>
+				<tr>
+					<td><a href="/mongooses/<%=otter["_id"]%>"><%= otter["name"] %></a></td>
+					<td><%= otter["color"] %></td>
+					<td><%= otter["foods"] %></td>
+					<td><%= otter["age"] %></td>
+					<td><a href="/mongooses/edit/<%=otter["_id"]%>">Edit</a>
+						 <a href="/mongooses/destroy/<%=otter["_id"]%>">Delete</a>
+					</td>
+				</tr>
+			<% } %>
+		</table>
+		<a href="/mongooses/new">Add Otter</a>
+	</div>
+</body>
+</html>

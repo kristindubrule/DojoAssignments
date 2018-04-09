@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit <%=otter["name"]%></title>
+</head>
+<body>
+	<% if(typeof(errors) != 'undefined' ) { %>
+		<% for (var x in errors) { %>
+		<h3><%= errors[x].message %></h3>
+		<% } %>
+	<% } %>
+	<form action="/mongooses/<%=otter["_id"]%>" method="post">
+		<p>Name: <input type="text" name="name" value="<%=otter["name"]%>"></p>
+		<p>Age: <input type="number" name="age" value="<%=otter["age"]%>"></p>
+		<p>Color: <input type="text" name="color" value="<%=otter["color"]%>"></p>
+		<p>Foods: <input type="text" name="foods" value="<%=otter["foods"]%>"></p>
+	
+		<input type="submit" name="submit" value="Update"/>
+	</form>
+</body>
+</html>
