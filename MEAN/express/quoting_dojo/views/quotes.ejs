@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QuotingDojo</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+	<h2>Here are the awesome quotes!</h2>
+	<br/>
+	 <% if(typeof(errors) != 'undefined' ) { %>
+	     <% for (var x in errors) { %>
+	      <h3><%= errors[x].message %></h3>
+	     <% } %>
+	 <% } else { %>
+
+		<% for (let i = 0; i < quotes.length; i++) { %>
+			"<%= quotes[i]["text"] %>"
+			<p><%= quotes[i]["name"] %> at <%= moment(quotes[i]["createdAt"]).format("h:mma MMMM Do YYYY") %> </p>
+			<% if (i != quotes.length-1) { %>
+				<hr>
+			<% } %>
+		<% } %>
+	<% } %>
+</body>
+</html>
