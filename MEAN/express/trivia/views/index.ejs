@@ -1,0 +1,79 @@
+<html>
+<head>
+<title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        
+
+        function jsonObject(arr) {
+            let jsonobj = {};
+            for (let element of arr) {
+                jsonobj[element["name"]] = element["value"];
+            }
+            return jsonobj;
+        } 
+
+        $(document).ready(function (){
+            // this triggers the connection event in our server!
+            var socket  = io.connect();
+            // we'll write all the socket stuff after the above line!
+            var name;
+            var id;
+
+            $('input[name=register]').click(function () {
+                name = $('input[name=name]').value;
+                socket.emit("give_id", { data: name });
+            })
+
+            $('form').submit(function(evt){
+                evt.preventDefault();// to stop form submitting
+            });
+
+            $( 'input[name=submit]').click(function (){
+                let formjson = jsonObject($('form').serializeArray());
+                console.log("answer " + formjson.answer);
+                socket.emit( "try_answer", { data: formjson });
+            });
+
+            socket.on ('your_id', function (data) {
+                $('#initial').hide();
+                $('#game').show();
+                $('#name').innerHTML = name;
+                id = data.id;
+                console.log(id);
+            })
+            
+            socket.on( 'ask_question', function (data){
+                document.getElementById("question").innerHTML = data.question;
+            });
+
+            socket.on ('answer_correct', function (data) {
+                console.log('answer is correct!');
+            });
+
+            socket.on ('answer_incorrect', function (data) {
+                console.log('your answer is incorrect!');
+            });
+        })
+    </script>
+</head>
+<body>
+    <div id="initial">
+        <form action="/register">
+            <input type="text" name="name">
+            <input type="submit" name="register" value="Start">
+        </form>
+    </div>
+
+    <div id="game" style="display:none">
+        <div id="question"></div>
+        <form action="/answer" method="post">
+            <input type="text" name="answer" value="<%= (!!locals.useranswer)?useranswer:'' %>">
+            <input type="submit" name="submit" value="Answer"/>
+        </form>
+        <div id="name"></div>
+    </div>
+</body>
+</html>
