@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>New Post</title>
+</head>
+<body>
+	<% if(typeof(errors) != 'undefined' ) { %>
+		<% for (var x in errors) { %>
+		<h3><%= errors[x].message %></h3>
+		<% } %>
+	<% } %>
+	<form action="/posts" method="post">
+		<textarea name="text" cols=80 rows=10></textarea>
+		<input type="submit" name="submit" value="Post">
+	</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Posts</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+</head>
+<body>
+
+	<form action="/posts" method="post">
+		<p><input type="text" name="name" /></p>
+		<textarea name="text" cols=80 rows=10></textarea>
+		<input type="submit" name="submit" value="Post Message">
+	</form>
+
+	<% for (post of posts) { %>
+		<span class="post"><%= post.text %></span>
+		<% for (comment of post.comments) { %>
+			<span class="comment"><%=comment.text%> at <%= moment(comment.createdAt).format("h:mma") %></span>
+		<% } %>
+
+		<form action="/posts/<%=post.id%>/comment" method="post">
+			<span class="comment"><textarea name="text" cols=80 rows=5></textarea></span>
+			<span class="comment"><input type="submit" name="submit" value="Post Comment"></span>
+		</form>
+	<% } %>
+</body>
+</html>
