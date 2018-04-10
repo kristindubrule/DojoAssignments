@@ -25,6 +25,7 @@ var validate = require('mongoose-validator')
 const bodyParser = require('body-parser');
 // Integrate body-parser with our App
 app.use(bodyParser.json());
+app.use(express.static( __dirname + '/helloangular/dist' ));
 
 // Require path
 const path = require('path');
