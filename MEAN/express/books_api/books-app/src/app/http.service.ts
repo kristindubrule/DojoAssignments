@@ -5,20 +5,13 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
 
   constructor(private _http: HttpClient) {
-    this.getAuthors();
-
-    this.getAuthor('5ace766f3a2712112225c7d4');
   }
 
   getAuthors() {
-    const tempObservable = this._http.get('/authors');
-
-    tempObservable.subscribe(data => console.log('Got authors!', data));
+    return this._http.get('/authors');
   }
 
   getAuthor(authorId: String) {
-    const tempObservable = this._http.get('/authors/' + authorId);
-
-    tempObservable.subscribe(data => console.log('Got author!', data));
+    return this._http.get('/authors/' + authorId);
   }
 }

@@ -53,7 +53,7 @@ app.get('/authors', function(req, res) {
         if (err) {
             res.json({message: "Error", error: err});
         } else {
-            res.json({message: "Success", data: authors});
+            res.json({message: "Success", authors: authors});
         }
     });
 });
@@ -93,7 +93,7 @@ app.get('/authors/:id', function(req,res) {
         if (err) {
             res.json({message: "Error", error: err});
         } else {
-            res.json({message: "Success", data: author});
+            res.json({message: "Success", author: author});
         }
     })
 })
