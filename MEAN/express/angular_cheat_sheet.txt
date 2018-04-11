@@ -1,0 +1,24 @@
+1. npm init --y
+
+2. cp package.json
+
+3. npm install --save
+
+4. ng new <angular-app>
+
+5. cd <angular-app>
+
+6. ng build (to get dist folder)
+
+7. ng g s http (to get service)
+
+8. Register service (import HttpService & add to providers, in app.module.ts)
+
+9. Import HttpClientModule (import HttpClientModule, add to imports, in app.module.ts)
+
+10. Dependency injection (import HttpClient, add as constructor parameter, in http.service.ts)
+
+11. Dependency injection (import HttpService, add as constructor parameter, in app.component.ts)
+
+
+ng build --watch
