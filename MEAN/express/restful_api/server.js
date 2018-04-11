@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, './static')));
 
 // Routes
 // Root Request
-app.get('/', function(req, res) {
+app.get('/tasks', function(req, res) {
     Task.find({},function(err, tasks) {
         if (err) {
             res.json({message: "Error", error: err});
