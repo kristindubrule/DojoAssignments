@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   loadGame(event) {
     console.log(event);
   }
-  
+
   saveName() {
     const observable = this._httpService.createGame(this.name);
     observable.subscribe(data => {
