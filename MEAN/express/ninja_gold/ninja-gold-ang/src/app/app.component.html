@@ -1,0 +1,58 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Ninja Gold</title>
+   </head>
+    <body>
+      <div id="wrapper">
+        <span *ngFor="let game of games">
+            <span id="{{game.id}}">
+                <p (mouseenter)="loadGame($event)">{{game.name}} {{game.score}}</p><br/>
+            </span>
+        </span>
+        <input type="text" (keyup)="setName($event)" name="name" *ngIf="!gameid"/>
+        <button (click)="saveName()" *ngIf="!gameid">Set Name</button>
+        <div id="mainbox" *ngIf="gameid">
+            <p *ngIf="gameid">Playing: {{name}}</p>
+            <h1>Earn Gold!</h1>
+            <p id="goldcount">Your Gold: {{ score }}</p>
+            <div id="buildings">
+              <div class="building">
+                <h3>Farm</h3>
+                <p>Earns 10-20 golds</p>
+                <input type="submit" value="Find Gold!" (click)="earnGold('farm')"/>
+              </div>
+              <div class="building">
+                <h3>Cave</h3>
+                <p>Earns 5-10 golds</p>
+                <input type="submit" value="Find Gold!" (click)="earnGold('cave')"/>
+              </div>
+              <div class="building">
+                <h3>House</h3>
+                <p>Earns 2-5 golds</p>
+                <input type="submit" value="Find Gold!" (click)="earnGold('house')"/>
+              </div>
+              <div class="building">
+                <h3>Casino</h3>
+                <p>Earns/takes 0-50 golds</p>
+                <input type="submit" value="Find Gold!" (click)="earnGold('casino')"/>
+              </div>
+            </div>
+            <div id="activity_box">
+              <p>Activities</p>
+              <div id="activities">
+                <p>
+                  <span *ngFor="let message of messages">
+                    <span class="{{message.class}}">{{message.text}}</span><br/>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <form action = "/reset" method="post">
+              <input type="submit" value="Reset" id="reset">
+            </form>
+          </div>
+      </div>
+    </body>
+</html>
