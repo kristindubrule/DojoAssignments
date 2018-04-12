@@ -18,4 +18,16 @@ export class HttpService {
   getBook(authorId: String) {
     return this._http.get('/authors/' + authorId);
   }
+
+  createAuthor(author) {
+    return this._http.post('/authors/', author);
+  }
+
+  updateAuthor(id: string, author) {
+    return this._http.put('/authors/' + id, author);
+  }
+
+  deleteAuthor(id: string) {
+    return this._http.delete('/authors/' + id);
+  }
 }

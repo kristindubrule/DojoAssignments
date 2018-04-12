@@ -107,6 +107,7 @@ app.put('/authors/:id', function(req,res) {
             author.last_name = req.body.last_name;
             author.country = req.body.country;
             author.birth_date = req.body.birth_date;
+            console.log(author);
             author.save(function(err) {
                 if (err) {
                     res.json({message: "Error", error: err});

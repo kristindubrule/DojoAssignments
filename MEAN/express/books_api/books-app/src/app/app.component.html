@@ -1,25 +1,41 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<button (click)="getAuthors()">Get authors</button>
-<p *ngIf="authors.length > 0">You have authors!</p>
+<div id="leftpane">
+<form id="newauthor" (submit)="createAuthor()">
+  <h2>New Author</h2>
+  {{newAuthor | json}}
+  <p>First Name <input [(ngModel)]="newAuthor.first_name" name="first_name"/></p>
+  <p>Last Name: <input [(ngModel)]="newAuthor.last_name" name="last_name"/></p>
+  <p>Birthdate: <input type="date" [(ngModel)]="newAuthor.birth_date" name="birth_date"/></p>
+  <p>Country: <input [(ngModel)]="newAuthor.country" name="country"/></p>
+  <input type="submit" name="submit" value="Add Author"/>
+</form>
 
-<ul>
-  <li *ngFor="let author of authors">{{author.first_name}} {{author.last_name}} {{author.birth_date}} {{author.country}}
+<table id="authorlist">
+  <tr *ngFor="let author of authors">
+    <td>{{author.first_name}} {{author.last_name}} {{author.birth_date}} {{author.country}}
     <ul *ngFor="let book of author.books">
       <li>{{book.title}} {{book.pub_year}}</li>
     </ul>
-  </li>
-</ul>
+    <input type="submit" (click)="editAuthorForm($event)" name="{{author._id}}" value="Edit"/>
+    <input type="submit" (click)="deleteAuthor($event)" name="{{author._id}}" value="Delete"/>
+  </td>
+  </tr>
+</table>
+</div>
+<div id="rightpane">
+<form *ngIf="editAuthorId" id="editauthor" (submit)="updateAuthor()">
+    <h2>Edit Author</h2>
+    {{newAuthor | json}}
+    <p>First Name <input [(ngModel)]="editAuthor.first_name" name="editAuthor.first_name"/></p>
+    <p>Last Name: <input [(ngModel)]="editAuthor.last_name" name="editAuthor.last_name"/></p>
+    <p>Birthdate: <input type="date" [(ngModel)]="editAuthor.birth_date" name="editAuthor.birth_date"/></p>
+    <p>Country: <input [(ngModel)]="editAuthor.country" name="editAuthor.country"/></p>
+    <input type="submit" name="submit" value="Update Author"/>
+  </form>
+</div>
 
-<input type="text" (keyup)="setAuthorId($event)" name="authorId"/>
-<button (click)="getOneAuthor($event)">Get one author</button>
-<p>{{book.title}} {{book.pub_year}}</p>
-<p>{{author.first_name}} {{author.last_name}} {{author.birth_date}} {{author.country}}</p>
-<ul *ngFor="let book of author.books">
-  <li>{{book.title}} {{book.pub_year}}</li>
-</ul>
-
-<h3>Value of num is: {{num}}</h3>
+<!-- <h3>Value of num is: {{num}}</h3>
 <h3>Value of randNum is: {{randNum}}</h3>
 <h3>{{str}}</h3>
 <input type="text" [value]="first_name" />
@@ -28,4 +44,14 @@
 <p *ngIf="snacks.length < 5">You need more snacks.</p>
 
 <button (click)="do($event)">Get book</button>
-<p>{{book.title}} {{book.pub_year}}</p>
+<p>{{book.title}} {{book.pub_year}}</p> -->
+
+<!-- <input type="text" (keyup)="setAuthorId($event)" name="authorId"/>
+<button (click)="getOneAuthor($event)">Get one author</button>
+<span *ngIf="book">
+  <p>{{book.title}} {{book.pub_year}}</p>
+  <p>{{author.first_name}} {{author.last_name}} {{author.birth_date}} {{author.country}}</p>
+  <ul *ngFor="let book of author.books">
+    <li>{{book.title}} {{book.pub_year}}</li>
+  </ul>
+</span> -->

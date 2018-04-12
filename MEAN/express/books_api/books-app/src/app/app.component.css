@@ -1,0 +1,9 @@
+td {
+    border: 1px solid black;
+}
+#authorlist {
+    margin-top: 20px;
+}
+#leftpane, #rightpane {
+    display: inline-block;
+}

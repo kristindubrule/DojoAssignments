@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './http.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { HttpService } from './http.service';
 export class AppComponent implements OnInit {
   title = 'app';
   authors = [];
-  author = {};
+  editAuthorId: string;
   num: number;
   randNum: number;
   str: string;
@@ -18,22 +19,21 @@ export class AppComponent implements OnInit {
   loggedIn: boolean;
   book = {};
   searchId = '';
+  author = { first_name: '', last_name: '', birth_date: '', country: ''};
+  newAuthor = { first_name: '', last_name: '', birth_date: '', country: ''};
+  editAuthor = { first_name: '', last_name: '', birth_date: '', country: ''};
 
   constructor (private _httpService: HttpService) {}
   ngOnInit() {
-    this.num = 7;
-    this.randNum = Math.floor( (Math.random()  * 2 ) + 1);
-    this.str = 'Hello Angular Developer!';
-    this.first_name = 'Alpha';
-    this.snacks = ['vanilla latte with skim milk', 'brushed suede', 'cookie'];
-    this.loggedIn = true;
+    this.getAuthorsFromService();
   }
   getAuthorsFromService() {
     const observable = this._httpService.getAuthors();
     observable.subscribe(data => {
-      console.log(data);
       this.authors = data['authors'];
-      console.log(this.authors);
+      for (let tempauthor of this.authors) {
+        this.formatDate(tempauthor);
+      }
     });
   }
 
@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
     observable.subscribe(data => {
       console.log(data);
       this.author = data['author'];
-      console.log(this.author);
     });
   }
 
@@ -65,6 +64,60 @@ export class AppComponent implements OnInit {
   getAuthors() {
     this.getAuthorsFromService();
   }
+
+  formatDate(tempauthor) {
+    tempauthor.birth_date = moment(new Date(tempauthor.birth_date)).format('YYYY-MM-DD').toString();
+  }
+
+  createAuthor() {
+    const observable = this._httpService.createAuthor(this.newAuthor);
+    observable.subscribe(data => {
+      console.log(data);
+      if (data['errors']) {
+        console.log(data['errors']);
+      } else {
+        this.newAuthor = { first_name: '', last_name: '', birth_date: '', country: ''};
+        this.getAuthorsFromService();
+      }
+    });
+  }
+
+  editAuthorForm(event) {
+    this.editAuthorId = event.target.name;
+    const observable = this._httpService.getAuthor(this.editAuthorId);
+    observable.subscribe(data => {
+      this.editAuthor = data['author'];
+      this.formatDate(this.editAuthor);
+    });
+  }
+
+  updateAuthor() {
+    console.log('update');
+    const observable = this._httpService.updateAuthor(this.editAuthorId, this.editAuthor);
+    observable.subscribe(data => {
+      console.log(data);
+      if (data['errors']) {
+        console.log(data['errors']);
+      } else {
+        this.editAuthor = { first_name: '', last_name: '', birth_date: '', country: ''};
+        this.editAuthorId = undefined;
+        this.getAuthorsFromService();
+      }
+    });
+  }
+
+  deleteAuthor(event) {
+    const deleteAuthorId = event.target.name;
+    const observable = this._httpService.deleteAuthor(deleteAuthorId);
+    observable.subscribe(data => {
+      if (data['errors']) {
+        console.log(data['errors']);
+      } else {
+        this.getAuthorsFromService();
+      }
+    });
+  }
+
   do(event) {
     console.log(event);
     this.getBookFromService('5ace6ab2cfb19fab9c1e70fb');
