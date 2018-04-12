@@ -1,5 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
+<button (click)="getAuthors()">Get authors</button>
 <p *ngIf="authors.length > 0">You have authors!</p>
 
 <ul>
@@ -10,6 +11,9 @@
   </li>
 </ul>
 
+<input type="text" (keyup)="setAuthorId($event)" name="authorId"/>
+<button (click)="getOneAuthor($event)">Get one author</button>
+<p>{{book.title}} {{book.pub_year}}</p>
 <p>{{author.first_name}} {{author.last_name}} {{author.birth_date}} {{author.country}}</p>
 <ul *ngFor="let book of author.books">
   <li>{{book.title}} {{book.pub_year}}</li>
@@ -23,3 +27,5 @@
 <p *ngFor="let snack of snacks">{{snack}}</p>
 <p *ngIf="snacks.length < 5">You need more snacks.</p>
 
+<button (click)="do($event)">Get book</button>
+<p>{{book.title}} {{book.pub_year}}</p>

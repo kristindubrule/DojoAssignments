@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
   first_name: string;
   snacks: string[];
   loggedIn: boolean;
+  book = {};
+  searchId = '';
 
   constructor (private _httpService: HttpService) {}
   ngOnInit() {
-    this.getAuthorsFromService();
-    this.getAuthorFromService('5ace766f3a2712112225c7d4');
     this.num = 7;
     this.randNum = Math.floor( (Math.random()  * 2 ) + 1);
     this.str = 'Hello Angular Developer!';
@@ -37,6 +37,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  getOneAuthor() {
+    this.getAuthorFromService(this.searchId);
+  }
+
   getAuthorFromService(authorId: String) {
     const observable = this._httpService.getAuthor(authorId);
     observable.subscribe(data => {
@@ -44,5 +48,25 @@ export class AppComponent implements OnInit {
       this.author = data['author'];
       console.log(this.author);
     });
+  }
+
+  getBookFromService(authorId: String) {
+    const observable = this._httpService.getAuthor(authorId);
+    observable.subscribe(data => {
+      this.book = data['author'].books[0];
+    });
+  }
+
+  setAuthorId(event) {
+    console.log(event.target.value);
+    this.searchId = event.target.value;
+  }
+
+  getAuthors() {
+    this.getAuthorsFromService();
+  }
+  do(event) {
+    console.log(event);
+    this.getBookFromService('5ace6ab2cfb19fab9c1e70fb');
   }
 }

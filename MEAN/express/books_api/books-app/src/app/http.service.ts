@@ -14,4 +14,8 @@ export class HttpService {
   getAuthor(authorId: String) {
     return this._http.get('/authors/' + authorId);
   }
+
+  getBook(authorId: String) {
+    return this._http.get('/authors/' + authorId);
+  }
 }
