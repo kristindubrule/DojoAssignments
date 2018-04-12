@@ -12,13 +12,16 @@
 
 7. ng g s http (to get service)
 
-8. Register service (import HttpService & add to providers, in app.module.ts)
+8. Register service (import HttpService & add to providers, 
+   in app.module.ts)
 
-9. Import HttpClientModule (import HttpClientModule, add to imports, in app.module.ts)
+9. Import HttpClientModule (import HttpClientModule, add to 
+   imports, in app.module.ts)
 
-10. Dependency injection (import HttpClient, add as constructor parameter, in http.service.ts)
+10. Dependency injection (import HttpClient, add as constructor parameter, 
+    in http.service.ts)
 
-11. Dependency injection (import HttpService, add as constructor parameter, in app.component.ts)
+11. Dependency injection (import HttpService, add as constructor parameter, 
+    in app.component.ts)
 
-
-ng build --watch
+12. ng build --watch
