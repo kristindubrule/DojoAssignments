@@ -4,7 +4,7 @@
 
 3. npm install --save
 
-4. ng new <angular-app>
+4. ng new <angular-app> (ng new sample-app --routing for routing)
 
 5. cd <angular-app>
 
@@ -15,8 +15,8 @@
 8. Register service (import HttpService & add to providers, 
    in app.module.ts)
 
-9. Import HttpClientModule (import HttpClientModule, add to 
-   imports, in app.module.ts); FormsModule if needed
+9. Import HttpClientModule (import HttpClientModule from '@angular/common/http', add to 
+   imports, in app.module.ts); FormsModule from '@angular/forms' if needed
 
 10. Dependency injection (import HttpClient, add as constructor parameter, 
     in http.service.ts)
@@ -24,4 +24,13 @@
 11. Dependency injection (import HttpService, add as constructor parameter, 
     in app.component.ts)
 
-12. ng build --watch
+12. Create components if needed
+
+13. ng build --watch
+
+ng g module app-routing --flat --module=app
+
+ActivatedRoute - observable
+	- look at ParamsMap
+	- injected into component
+
