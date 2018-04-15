@@ -1,0 +1,7 @@
+
+<input (keyup)="setAPIKey()" type="text" [(ngModel)]="apikey" size="100"/>
+<br/>
+<button [routerLink]="['weather/chicago']">Chicago</button>
+<button [routerLink]="['weather/san\ jose']">San Jose</button>
+<button [routerLink]="['weather/burbank']">Burbank</button>
+<router-outlet></router-outlet>

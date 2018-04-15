@@ -1,0 +1,13 @@
+<h2>{{city}}</h2>
+
+<div *ngIf="weather">
+  <p>Humidity: {{weather.humidity}}</p>
+  <p>Temperature (Average): {{weather.temp_avg}}</p>
+  <p>Temperature (High): {{weather.temp_max}}</p>
+  <p>Temperature (Low): {{weather.temp_min}}</p>
+  <p>Status: {{weather.status}}</p>
+</div>
+
+<div *ngIf="weather">
+  <img src="../assets/{{city}}.jpeg" alt="{{city}}"/>
+</div>
