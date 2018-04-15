@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <td colspan=4>
+        ShintoCoin Ledger
+    </td>
+    <tr *ngFor="let t of transactions">
+      <td>{{t.type}}</td>
+      <td>{{t.amount}}</td>
+      <td>{{t.value}}</td>
+      <td><button [routerLink]="['/details', t.id]">Details</button></td>
+    </tr>
+</table>
