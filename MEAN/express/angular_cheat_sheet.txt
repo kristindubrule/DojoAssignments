@@ -16,7 +16,7 @@
    in app.module.ts)
 
 9. Import HttpClientModule (import HttpClientModule, add to 
-   imports, in app.module.ts)
+   imports, in app.module.ts); FormsModule if needed
 
 10. Dependency injection (import HttpClient, add as constructor parameter, 
     in http.service.ts)
