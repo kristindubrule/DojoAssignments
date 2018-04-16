@@ -741,5 +741,109 @@
 
     console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
 
+    function MinHeap() {
+    	this.arr = [null];
+    }
+
+    MinHeap.prototype.parentVal = function(childIndex) {
+    	return this.arr[Math.floor(childIndex/2)];
+    }
+
+    MinHeap.prototype.parentIndex = function(childIndex) { 
+    	return Math.floor(childIndex/2);
+    }
+
+    MinHeap.prototype.swap = function(index1,index2) {
+    	let temp = this.arr[index1];
+    	this.arr[index1] = this.arr[index2];
+    	this.arr[index2] = temp;
+    }
+
+    MinHeap.prototype.add = function(val) {
+    	this.arr.push(val);
+
+    	// val will be in this.arr.length-1
+    	// val's parent will be Math.floor(this.arr[arr.length-1]/2)
+    	let childIndex = this.arr.length-1;
+    	while (this.parentVal(childIndex) && this.arr[childIndex] < this.parentVal(childIndex)) {
+    		this.swap(childIndex,this.parentIndex(childIndex));
+    	}
+    }
+
+    //          3
+    //       5         9
+    //    10   12   20  17
+    // Heap has 7 nodes
+    // Height is 3
+    MinHeap.prototype.print = function() {
+    	let n = 1;
+    	console.log("*********");
+    	while (this.arr[n]) {
+    		console.log(this.arr[n]);
+    		n += 1;
+    	}
+    }
+
+    MinHeap.prototype.remove = function() {
+    	this.arr[1] = this.arr[this.arr.length-1];
+    	this.arr.pop();
+    	this.repairDown(1);
+    }
+
+    MinHeap.prototype.repairDown = function(index) {
+    	if (!this.arr[2*index] && !this.arr[2*index+1]) {
+    		return;
+    	} else if (!this.arr[2*index] && this.arr[index] > this.arr[2*index+1]) {
+    		this.swap(2*index+1,index);
+    		this.repairDown(2*index+1);
+    	} else if (this.arr[index] > this.arr[2*index]) {
+    		this.swap(2*index,index);
+    		this.repairDown(2*index);
+    	} else {
+    		return;
+    	}
+    }
+
+    function repairUp(arr, index) {
+    	if (index > 0 || arr[index] <= arr[Math.floor(index/2)]) {
+    		return;	
+    	}    	
+    	console.log("swapping " + )
+    	let temp = arr[index];
+    	arr[index] = arr[Math.floor(index/2)];
+    	arr[Math.floor(index/2)] = temp;
+		repairUp(arr, Math.floor(index/2));
+    }
+
+    function heapify(arr) {
+    	arr.push(null);
+    	arr[arr.length-1] = arr[0];
+    	arr[0] = 'x';
+    	let index = arr.length-1;
+    	while (index > 0) {
+    		repairUp(arr, index);
+    		index -= 1;
+    	}
+    }
+
+    let h = new MinHeap();
+    h.add(3);
+    h.print();
+
+    h.add(4);
+    h.print();
+
+    h.add(2);
+    h.add(10);
+    h.add(8);
+    h.print();
+
+    h.remove();
+    h.print();
+
+    let arrtoheap = [5,8,9,2,5];
+    heapify(arrtoheap);
+    console.log(arrtoheap);
+
 	</script>
 </html>
