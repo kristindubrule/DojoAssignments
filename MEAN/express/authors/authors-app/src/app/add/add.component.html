@@ -6,6 +6,6 @@
 
 <form id="add" (submit)="updateAuthor()">
     <input [(ngModel)]="author.name" name="author.name"/>
-    <button [routerLink]="['/home']">Cancel</button>
-    <button>Submit</button>
+    <button class="btn btn-info" [routerLink]="['/home']">Cancel</button>
+    <button class="btn btn-info" >Submit</button>
 </form>

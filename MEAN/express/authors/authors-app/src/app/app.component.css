@@ -1,3 +1,30 @@
 #wrapper {
     margin: 10px;
 }
+:host ::ng-deep .instruct {
+    color: purple;
+}
+:host ::ng-deep .button-delete {
+    background: linear-gradient(#f7e0c8, #455b68);
+}
+:host ::ng-deep .button-edit {
+    background: linear-gradient(#d4e2f6, #435b6b);
+}
+:host ::ng-deep .button-view {
+    background: linear-gradient(#b0c4b9, #49606c);
+}
+:host ::ng-deep button {
+    color: white;
+    border: 0;
+}
+:host ::ng-deep .ng-invalid .ng-touched { 
+    color: crimson;
+}
+:host ::ng-deep .ng-valid {
+}
+:host ::ng-deep .ng-untouched {
+}
+:host ::ng-deep .ng-touched { 
+}
+:host ::ng-deep .ng-dirty { }
+:host ::ng-deep .ng-pristine { }

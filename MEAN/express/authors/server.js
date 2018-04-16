@@ -9,7 +9,8 @@ var extend = require('mongoose-validator').extend
 const ObjectId = require('mongodb').ObjectID;
 
 const AuthorSchema = new mongoose.Schema({
-    name: { type: String, required:true, minlength:3 }
+    name: { type: String, required:true, minlength:3 },
+    quotes: [ { text: {type: String, minlength: 3 }, votes: {type: Number, min: 1} } ]
 }, {timestamps: true});
 
 const Author = mongoose.model('Author', AuthorSchema);
@@ -83,6 +84,37 @@ app.put('/authors/:id', function(req,res) {
     })
 })
 
+app.post('/authors/:id/quote', function(req,res) {
+    Author.findOne({_id: req.params.id}, function(err, author) {
+        if (err) {
+            res.json({message: "Error", error: err});
+        } else {
+            author.quotes.push({ text: req.body.text, votes: 1 });
+            author.save(function(err) {
+                if (err) {
+                    res.json({message: "Error", error: err});
+                } else {
+                    res.json({message: "Success"});
+                }
+            });
+        }
+    });
+});
+
+app.delete('/authors/:id/quote/:qid', function(req,res) {
+    Author.findOneAndUpdate(
+        { "_id": req.params.id },
+        { "$pull": { "quotes": { "_id": req.params.qid } } },
+        function(err, numAffected) {
+            if (err) {
+                res.json({message: "Error", error: err});
+            } else {
+                res.json({message: "Success"});
+            }
+        }
+    )
+});
+
 app.delete('/authors/:id', function(req,res) {
     Author.findByIdAndRemove({_id: ObjectId(req.params.id)}, function(err,author) {
         if (err) {
@@ -92,6 +124,20 @@ app.delete('/authors/:id', function(req,res) {
         }
     });
 })
+
+app.post('/authors/:id/vote/:qid', function(req,res) {
+    Author.findOneAndUpdate(
+        {_id: req.params.id, 'quotes._id': req.params.qid},
+        { $inc: { 'quotes.$.votes' : req.body.change } },
+        function(err, numAffected) {
+            if (err) {
+                res.json({message: "Error", error: err});
+            } else {
+                res.json({message: "Success"});
+            }
+        }
+    )
+});
 
 app.all("*", (req,res,next) => {
     res.sendFile(path.resolve("./authors-app/dist/index.html"))

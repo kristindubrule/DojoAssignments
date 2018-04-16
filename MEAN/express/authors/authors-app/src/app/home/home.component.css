@@ -1,0 +1,7 @@
+
+:host ::ng-deep .alternate1 {
+    background-color: lightblue;
+}
+:host ::ng-deep table {
+    width: 50%;
+}

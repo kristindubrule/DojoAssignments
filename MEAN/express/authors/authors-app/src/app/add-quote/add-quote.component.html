@@ -1,0 +1,28 @@
+<a [routerLink]="['/home']">Home</a>
+
+<p>{{instructions}}</p>
+
+<p *ngFor = "let error of message">{{error}}</p>
+
+<!-- {{ text.valid | json }} -->
+      <!-- [(ngModel)]="quote.text" -->
+      <!-- #text="ngModel" -->
+
+<form id="add" (ngSubmit)="addQuote()" #quoteForm="ngForm">
+    Quote:<br/>
+    <textarea class="form-control" id="text" rows=5 cols=40
+      required
+      minlength="3"
+      [(ngModel)]="quote.text" name="text"
+      #spy
+      #text="ngModel"
+    >
+    </textarea>
+    {{ spy.className }}
+    <div [hidden]="text.valid || text.pristine" class="alert alert-danger">
+        A quote must be at least 3 characters
+    </div>
+    <br/>
+    <button class="btn btn-info" [routerLink]="['/home']">Cancel</button>
+    <button type="submit" class="btn btn-info" [disabled]="!quoteForm.form.valid">Submit</button>
+</form>

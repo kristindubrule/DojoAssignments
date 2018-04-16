@@ -1,0 +1,20 @@
+<a [routerLink]="['/home']">Home</a>
+<a *ngIf="author" [routerLink]="['/add-quote', author._id]">Add a quote</a>
+
+<p class="instruct">We have quotes by:</p>
+
+<table *ngIf="author" class="table table-bordered table-condensed table-responsive">
+  <thead>
+    <tr><th>Quote</th><th>Votes</th><th>Actions available</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let quote of author.quotes; let index = index" class="alternate{{index%2}}">
+      <td class="quote">{{quote.text}}</td>
+      <td>{{quote.votes}}</td>
+      <td>
+        <button class="btn button-view" (click)="vote(quote._id,1)">Vote Up</button>
+        <button class="btn button-edit" (click)="vote(quote._id,-1)">Vote Down</button>
+        <button class="btn button-delete" (click)="deleteQuote(quote._id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
