@@ -1,6 +1,6 @@
 <a [routerLink]="['/home']">Home</a>
 
-<p>{{instructions}}</p>
+<span [ngClass]="{ 'instruct': editFlag }"><p>{{instructions}}</p></span>
 
 <p *ngFor = "let error of message">{{error}}</p>
 
