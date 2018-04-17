@@ -6,31 +6,117 @@
 
 4. ng new <angular-app> (ng new sample-app --routing for routing)
 
-5. cd <angular-app>
+5. move angular app to express folder
 
-6. ng build (to get dist folder)
+6. cd <angular-app>
 
-7. ng g s http (to get service)
+8. ng build (to get dist folder)
 
-8. Register service (import HttpService & add to providers, 
-   in app.module.ts)
+8. ng g s http (to get service)
 
-9. Import HttpClientModule (import HttpClientModule from '@angular/common/http', add to 
-   imports, in app.module.ts); FormsModule from '@angular/forms' if needed
+9. Create components if needed (ng g c component_name)
 
-10. Dependency injection (import HttpClient, add as constructor parameter, 
-    in http.service.ts)
+10. app.module.ts:
+	import { HttpClientModule } from '@angular/common/http';
+	import { FormsModule } from '@angular/forms';
+	import { HttpService } from './http.service';
 
-11. Dependency injection (import HttpService, add as constructor parameter, 
-    in app.component.ts)
+	imports: [
+	    BrowserModule,
+	    AppRoutingModule,
+	    FormsModule,
+	    HttpClientModule
+	]
+	
+	providers: [
+    	HttpService
+  	]
 
-12. Create components if needed
+11. http.service.ts:
+	import { HttpClient } from '@angular/common/http';
 
-13. ng build --watch
+	constructor(private _http: HttpClient) { }
 
-ng g module app-routing --flat --module=app
 
-ActivatedRoute - observable
-	- look at ParamsMap
-	- injected into component
+12. app.component.ts
+	import { Component, OnInit } from '@angular/core';
+	import { HttpService } from './http.service';
+	import { ActivatedRoute, Params, Router } from '@angular/router';
+
+	export class AppComponent implements OnInit {
+	  title = 'app';
+	  constructor(private _httpService: HttpService,
+	    private _route: ActivatedRoute,
+	    private _router: Router) {}
+
+	  ngOnInit() {
+	  }
+
+	  goHome() {
+	    this._router.navigate(['/home']);
+	  }
+	}
+
+10. (if needed) Add components to app-routing.module.ts:
+	import { HomeComponent } from './home/home.component';
+
+	const routes: Routes = [
+	  { path: 'home', component: HomeComponent },
+	];
+
+13. for url parameters: this._route.params.subscribe((params: Params) => {});
+
+14.	server.js:
+
+
+	// Require the Express Module
+	const express = require('express');
+	const app = express();
+
+	// Require body-parser (to receive post data from clients)
+	const bodyParser = require('body-parser');
+	app.use(bodyParser.json());
+	app.use(express.static( __dirname + '/<ang-app>/dist' ));
+
+	// Require path
+	const path = require('path');
+	app.use(express.static(path.join(__dirname, './static')));
+
+	app.all("*", (req,res,next) => {
+	    res.sendFile(path.resolve("./<ang-app>/dist/index.html"))
+	  });
+
+	// Setting our Server to Listen on Port: 8000
+	app.listen(8000, function() {
+	    console.log("listening on port 8000");
+	})
+
+15.	mongoose in server.js
+
+	const mongoose = require('mongoose');
+	mongoose.connect('mongodb://localhost/<schema-plural>');
+	var validate = require('mongoose-validator')
+	var extend = require('mongoose-validator').extend
+	const ObjectId = require('mongodb').ObjectID;
+
+	const <schema-singular>Schema = new mongoose.Schema({
+	    name: { type: String, required:true, minlength:3 }
+	}, {timestamps: true});
+
+	const <schema-singular> = mongoose.model('<schema-singular>', <schema-singular>Schema);
+
+	// Use native promises
+	mongoose.Promise = global.Promise;
+
+16. Set up service (get all, get one, delete, edit)
+
+17. bootstrap css file:
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+18. ng build --watch
+
+19. nodemon server.js
+
+
+
 
