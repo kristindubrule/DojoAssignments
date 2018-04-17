@@ -1,0 +1,16 @@
+table {
+    width: 80%;
+}
+.note {
+    vertical-align: middle;
+    text-align: left;
+    width: 80%;
+}
+.date {
+    vertical-align: top;
+    text-align: right;
+}
+#notelist {
+    height: 500px;
+    overflow: scroll;
+}

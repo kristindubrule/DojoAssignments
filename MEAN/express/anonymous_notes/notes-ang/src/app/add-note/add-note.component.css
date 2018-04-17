@@ -1,0 +1,9 @@
+#noteForm {
+    border: 1px solid black;
+    width: 80%;
+    padding: 10px;
+}
+textarea {
+    width: 60%;
+    margin: 5px;
+}

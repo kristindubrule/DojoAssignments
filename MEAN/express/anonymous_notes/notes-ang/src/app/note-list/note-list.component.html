@@ -1,0 +1,9 @@
+<h2>Notes</h2>
+<div id="notelist">
+<table class="table table-bordered" id="notelist" *ngIf="notes">
+  <tr *ngFor="let note of notes">
+    <td class="note">{{note.text}}</td>
+    <td class="date">{{note.createdAt | date: 'MMM d, y, h:mm:ss a'}}</td>
+  </tr>
+</table>
+</div>

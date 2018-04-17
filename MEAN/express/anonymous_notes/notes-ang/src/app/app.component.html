@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div id="wrapper">
+  <h2>Anonymous Notes</h2>
+  <app-add-note (updateNotes)="getNotes()"></app-add-note>
+
+  <app-note-list [notes]='notes'></app-note-list>
+</div>
