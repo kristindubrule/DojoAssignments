@@ -1,0 +1,43 @@
+.button-edit {
+    background: linear-gradient(#f7e0c8, #455b68);
+}
+.button-view {
+    background: linear-gradient(#d4e2f6, #435b6b);
+}
+.button-delete {
+    background: linear-gradient(#b0c4b9, #49606c);
+}
+button {
+    color: white;
+    border: 0;
+    margin: 10px;
+    height: 50%;
+    font-size: 12px;
+}
+.alternate1 {
+    background-color: lightgray
+}
+.header {
+    background-color: lightgray;
+    color: white;
+}
+table {
+    border: 1px solid black;
+    width: 60%;
+}
+table.table-bordered > thead > tr > th{
+    border:1px solid black;
+}
+table.table-bordered > tbody > tr > td{
+    border:1px solid black;
+}
+td {
+    vertical-align: middle;
+}
+h2, h3 {
+    font-weight: bold;
+}
+a {
+    margin: 5px;
+    text-decoration: underline;
+}

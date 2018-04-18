@@ -1,0 +1,28 @@
+.block {
+    display: block;
+    box-shadow: none;
+}
+#skills {
+    margin-left: 20px;
+}
+button {
+    margin: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+#addform {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+}
+.formtext {
+    color: lightslategray;
+}
+.skill {
+    margin: 3px;
+    box-shadow: none;
+}
+input {
+    border-radius: 8px;
+}

@@ -1,0 +1,12 @@
+:host ::ng-deep #wrapper {
+    margin: 10px;
+}
+:host ::ng-deep .messages {
+    margin: 10px;
+}
+:host ::ng-deep .error {
+    color: purple;
+}
+h2 {
+    display: inline-block;
+}
