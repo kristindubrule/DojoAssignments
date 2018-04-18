@@ -10,3 +10,6 @@
 h2 {
     display: inline-block;
 }
+:host ::ng-deep a {
+    text-decoration: underline;
+}

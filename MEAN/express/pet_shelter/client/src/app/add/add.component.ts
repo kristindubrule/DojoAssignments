@@ -43,7 +43,6 @@ export class AddComponent implements OnInit {
             } else {
               this.pet = data['pet'];
               this.editFlag = true;
-              console.log('Editing ' + this.pet);
             }
             if (this.pet == null) {
               this.message = ['No pet found. Would you like to add it?'];
@@ -81,12 +80,11 @@ export class AddComponent implements OnInit {
         for (let message_text in data['errors']) {
           this.message.push(data['errors'][message_text].message);
         }
-        console.log(this.message);
       } else {
+        let redirectRoute = ((this.editFlag) ? '/details/' + this.pet._id : '/');
         this.resetPet();
         this.message = [];
-        this.editFlag = false;
-        this._router.navigate(['/']);
+        this._router.navigate([redirectRoute]);
       }
     });
   }

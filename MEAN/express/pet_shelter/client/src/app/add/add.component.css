@@ -25,4 +25,13 @@ button {
 }
 input {
     border-radius: 8px;
+    width: 250px;
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+}
+h4 {
+    font-weight: bold;
 }

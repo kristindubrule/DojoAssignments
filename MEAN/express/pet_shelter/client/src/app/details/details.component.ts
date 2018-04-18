@@ -10,6 +10,7 @@ import { HttpService } from '../http.service';
 export class DetailsComponent implements OnInit {
   message = [];
   pet: any;
+  liked: boolean;
 
   constructor(
     private _httpService: HttpService,
@@ -23,6 +24,7 @@ export class DetailsComponent implements OnInit {
         this.getPet(params['id']);
       }
     });
+    this.liked = false;
   }
 
   getPet(petId: string): void {
@@ -43,7 +45,7 @@ export class DetailsComponent implements OnInit {
           });
   }
 
-  likePet() {
+  likePet(): void {
     console.log('like pet');
     this.pet.likes += 1;
     const obs = this._httpService.updatePet(this.pet);
@@ -56,18 +58,19 @@ export class DetailsComponent implements OnInit {
           this.message.push(data['error'][message_text].message);
         }
       } else {
+        this.liked = true;
       }
     });
   }
 
-  adoptPet() {
+  adoptPet(): void {
       console.log('Deleting ' + this.pet._id);
       const obs = this._httpService.deletePet(this.pet._id);
       obs.subscribe(data => {
         if (data['error']) {
           this.message = [data['error']];
         } else {
-          this._router.navigate(['/list']);
+          this._router.navigate(['/']);
         }
       });
   }

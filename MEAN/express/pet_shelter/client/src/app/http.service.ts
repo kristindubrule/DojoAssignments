@@ -7,7 +7,7 @@ export class HttpService {
   constructor(private _http: HttpClient) { }
 
   getPets() {
-    return this._http.get('/pets');
+    return this._http.get('/pets/sort/type');
   }
 
   getPet(petId: string) {
@@ -19,8 +19,6 @@ export class HttpService {
   }
 
   updatePet(pet) {
-    console.log('Updating');
-    console.log(pet);
     return this._http.put('/pets/' + pet._id, pet);
   }
 

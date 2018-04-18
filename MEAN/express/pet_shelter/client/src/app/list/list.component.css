@@ -23,7 +23,7 @@ button {
 }
 table {
     border: 1px solid black;
-    width: 60%;
+    width: 40%;
 }
 table.table-bordered > thead > tr > th{
     border:1px solid black;
@@ -34,10 +34,13 @@ table.table-bordered > tbody > tr > td{
 td {
     vertical-align: middle;
 }
-h2, h3 {
+h2, h3, h4 {
     font-weight: bold;
 }
 a {
     margin: 5px;
     text-decoration: underline;
+}
+.detail {
+    vertical-align: middle;
 }

@@ -1,4 +1,4 @@
-<h3>{{instructions}}</h3>
+<h4>{{instructions}}</h4>
 
 <div class='messages'>
     <p *ngFor = "let error of message" class='error'>{{error}}</p>
@@ -19,6 +19,7 @@
             Skill 3: <input class="skill" [(ngModel)]="pet.skills[2].text" name="pet.skills[2].text"/>
         </div>
         <button class="btn btn-info">{{buttonText}}</button>
-        <button class="btn btn-info" [routerLink]="['/']">Cancel</button>
+        <button *ngIf="!editFlag" class="btn btn-info" [routerLink]="['/']">Cancel</button>
+        <button *ngIf="editFlag" class="btn btn-info" [routerLink]="['/details', pet._id]">Cancel</button>
     </form>
 </div>

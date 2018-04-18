@@ -2,29 +2,37 @@
     <a [routerLink]="['/']">Home</a>
   </div>
 <div id="wrapper">
-<h4 *ngIf="pet">Details about {{pet.name}}</h4>
-<table *ngIf="pet" class="table table-condensed table-responsive">
-   <tbody>
-    <tr>
-      <td class="header">Pet type:</td>
-      <td>{{pet.type}}</td>
-    </tr>
-    <tr>
-      <td class="header">Description:</td>
-      <td>{{pet.description}}</td>
-    </tr>
-    <tr>
-      <td class="header">Skills:</td>
-      <td>
-        <p *ngFor="let skill of pet.skills">{{skill.text}}</p>
-      </td>
-    </tr>
-    <tr>
-      <td class="header">Likes:</td>
-      <td>{{pet.likes}}</td>
-    </tr>
-  </tbody>
-</table>
-<button class="btn button-like" (click)="likePet()">Like this pet</button>
-<button class="btn button-adopt" (click)="adoptPet()">Adopt this pet</button>
+  <h4 *ngIf="pet">Details about {{pet.name}}</h4>
+  <div id="detailsTable">
+    <table *ngIf="pet" class="table table-condensed table-responsive">
+      <tbody>
+        <tr>
+          <td class="header">Pet type:</td>
+          <td class="detail">{{pet.type}}</td>
+        </tr>
+        <tr>
+          <td class="header">Description:</td>
+          <td class="detail">{{pet.description}}</td>
+        </tr>
+        <tr>
+          <td class="header">Skills:</td>
+          <td class="detail">
+            <p *ngFor="let skill of pet.skills">{{skill.text}}</p>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">Likes:</td>
+          <td class="detail">{{pet.likes}}</td>
+        </tr>
+        <tr>
+          <td class="header">
+            <button class="btn button-like" [disabled]="liked" (click)="likePet()">Like this pet</button>
+          </td>
+            <td class="detail">
+              <button class="btn button-adopt" (click)="adoptPet()">Adopt this pet</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
