@@ -7,8 +7,8 @@ import { HttpService } from './http.service';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { AddComponent } from './add/add.component';
 import { HomeComponent } from './home/home.component';
+import { AddComponent } from './add/add.component';
 import { ViewComponent } from './view/view.component';
 import { AddQuoteComponent } from './add-quote/add-quote.component';
 

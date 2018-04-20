@@ -51,6 +51,7 @@ export class AddQuoteComponent implements OnInit {
     const obs = this._httpService.addQuote(this.author._id, this.quote);
     obs.subscribe(data => {
       if (data['errors']) {
+        // tslint:disable-next-line:forin
         for (let message_text in data['errors']) {
           this.message.push(data['errors'][message_text].message);
         }
