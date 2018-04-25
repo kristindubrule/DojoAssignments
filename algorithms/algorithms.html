@@ -741,9 +741,122 @@
 
     console.log("Queue head " + circQueueArr.head + " tail " + circQueueArr.tail);
 
+    /* SORTS */
+
+    // Bubble sort
+    // repeatedly swapping the adjacent elements if they are in wrong order.
+    function bubbleSort (arr) {
+    	let swap = true;
+    	while (swap) {
+    		swap = false;
+    		for (let i = 0; i < arr.length-1; i++) {
+    			if (arr[i] > arr[i+1]) {
+    				let temp = arr[i];
+    				arr[i] = arr[i+1];
+    				arr[i+1] = temp;
+    				swap = true;
+    			}
+    		}
+    	}
+    }
+
+    let bsort1 = [2,3,7,1,10];
+    bubbleSort(bsort1);
+    console.log("Bsort [2,3,7,1,10]" + bsort1);
+
+    // Selection sort
+    // repeatedly find the minimum element and put it at the front by maintaining two subarrays
+    function selectionSort(arr) {
+    	let startidx = 0;
+
+    	while (startidx != arr.length-1) {
+    		let min = startidx;
+    		for (let i = startidx+1; i < arr.length-1; i++) {
+    			if (arr[min] > arr[i]) {
+    				min = i;
+    			}
+    		}
+    		let temp = arr[startidx];
+    		arr[startidx] = arr[min];
+    		arr[min] = temp;
+    		startidx++;
+    	}
+    }
+
+    let ssort1 = [2,3,7,1,10];
+    selectionSort(ssort1);
+    console.log("ssort [2,3,7,1,10]" + ssort1);
+
+    // Insertion sort
+    // iterate through the array put each element in the right place
+    function insertionSort(arr) {
+    	for (let i = 1; i < arr.length; i++) {
+    		let index = i;
+    		for (let j = index-1; j > 0; j--) {
+    			if (arr[j] > arr[index]) {
+    				let temp = arr[j];
+    				arr[j] = arr[index];
+    				arr[index] = temp;
+    				index = j;
+    			}
+    		}
+    	}
+    }
+
+    let isort1 = [2,3,7,1,10];
+    insertionSort(isort1);
+    console.log("isort [2,3,7,1,10]" + isort1);
+
+    // Merge sort
+    // Split array into two arrays; call merge sort on the two arrays
+    // Merge the resulting two arrays; recurse until there's just one element
+
+
+    // Quick sort
+    // Choose a partition; move the partition element to the right place
+    // Recurse on the two partitions
+
+
+    // Radix sort
+
+    /* SETS */
+
+    // Intersect sorted arrays => set
+
+    // Intersect sorted arrays => multiset
+
+    // Intersect unsorted arrays => set
+
+    // Intersect unsorted arrays => multiset
+
+    // Union sorted arrays => set
+
+    // Union sorted arrays => multiset
+
+    // Union unsorted arrays => set
+
+    // Union unsorted arrays => multiset
+
+    // isSubset sorted arrays (is second a subset of the first?)
+
+    // isSubset unsorted arrays
+
+    /* HEAPS */
     function MinHeap() {
     	this.arr = [null];
     }
+
+    // size 
+
+    // contains
+
+    // is empty
+
+    // top (return - don't remove)
+
+    // implement a priority queue with two stacks
+
+
 
     MinHeap.prototype.parentVal = function(childIndex) {
     	return this.arr[Math.floor(childIndex/2)];
