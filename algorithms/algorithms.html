@@ -884,5 +884,89 @@
     heapSort(arrtosort);
     console.log("Sorted " + arrtosort);
 
+    function Hash(capacity) {
+    	this.table = [];
+    	this.table.length = capacity;
+    	this.count = 0;
+    }
+
+    Hash.prototype.add = function(key, val) {
+    	let hidx = key._khash() % this.table.length;
+    	console.log("hidx for " + key + " is " + hidx);
+    	if (!this.table[hidx]) {
+    		this.table[hidx] = [[key,val]];
+    	} else {
+    		let pair_array = this.table[hidx];
+    		for (let i = 0; i < pair_array.length; i++) {
+    			if (pair_array[i][0] == key) {
+    				pair_array[i][1] = val;
+    				return;
+    			}
+    		}
+    		pair_array.push([key, val]);
+    	}
+    }
+
+    String.prototype._khash = function() {
+    	let index = 0;
+    	for (let i = 0; i < this.length; i++) {
+    		index += this.charCodeAt(i)*i;
+    	}
+    	return index;
+    }
+
+    Hash.prototype.print = function() {
+    	for (let i = 0; i < this.table.length; i++) {
+    		if (this.table[i]) {
+    			console.log(i);
+    			for (let j = 0; j < this.table[i].length; j++) {
+    				console.log("  " + this.table[i][j][0] + " " + this.table[i][j][1]);
+    			}
+    		}
+    	}
+    }
+
+    let s1 = "hello";
+    let s2 = "goodbye";
+
+    console.log(s1 + " " + s1._khash());
+    console.log(s2 + " " + s2._khash());
+
+    let ht1 = new Hash(10);
+    ht1.add("fruit", "apple");
+    ht1.add("person", "Kristin");
+    ht1.add("fruit", "pear");
+
+    ht1.add("rail safety", "good");
+    ht1.add("fairy tales", "books");
+
+    ht1.add("color", "blue");
+    ht1.add("city", "Seattle");
+    ht1.add("drink", "coffee");
+
+    ht1.print();
+
+    function grapes(array, start=undefined, end=undefined) {
+    	if (!start || !end) {
+    		start = 0;
+    		end = array.length-1;
+    	}
+    	if (start == end) {
+    		return array[start];
+    	} else {
+    		return Math.max(
+    				array[start] + ((start+2 > end) ? 0 : grapes(array, start+2, end)),
+    				grapes(array, start+1, end)
+    			);
+    	}
+    }
+
+    let grapeArray = [2,4,6,3];
+    console.log("Grape return: " + grapes(grapeArray));
+
+    grapeArray = [20,1,2,3,4,30];
+	console.log("Grape return: " + grapes(grapeArray));
+
+
 	</script>
 </html>
