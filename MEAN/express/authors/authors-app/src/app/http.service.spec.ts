@@ -4,6 +4,8 @@ import { HttpService } from './http.service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('HttpService', () => {
+  let service: HttpService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [HttpService,
@@ -12,9 +14,10 @@ describe('HttpService', () => {
         HttpClientModule
       ]
     });
+    service = TestBed.get(HttpService);
   });
 
-  it('should be created', inject([HttpService], (service: HttpService) => {
-    expect(service).toBeTruthy();
-  }));
+  test('should exist', () => {
+    expect(service).toBeDefined();
+  });
 });

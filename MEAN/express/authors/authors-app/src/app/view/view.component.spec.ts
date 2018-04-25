@@ -16,7 +16,7 @@ describe('ViewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([
-          {path: 'add-quote/:id', component: ViewComponent }
+          {path: 'view/:id', component: ViewComponent}
         ]),
         FormsModule,
         HttpClientModule
@@ -26,17 +26,12 @@ describe('ViewComponent', () => {
         HttpClient
       ],
       declarations: [ ViewComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
+    });
     fixture = TestBed.createComponent(ViewComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  test('should exist', () => {
+    expect(component).toBeDefined();
   });
 });

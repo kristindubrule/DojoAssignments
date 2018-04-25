@@ -10,8 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class ViewComponent implements OnInit {
   author: any;
   message: any;
-  quotes = [];
-
+  
   constructor(
     private _httpService: HttpService,
     private _route: ActivatedRoute,

@@ -8,13 +8,14 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  authors = [];
+  authors: any;
   message: string;
 
   constructor(private _httpService: HttpService, private _route: ActivatedRoute,
     private _router: Router) { }
 
   ngOnInit() {
+    this.authors = [];
     this.getAuthors();
   }
 
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  deleteAuthor(authorId) {
+  deleteAuthor(authorId: string) {
     console.log('Deleting ' + authorId);
     const obs = this._httpService.deleteAuthor(authorId);
     obs.subscribe(data => {

@@ -22,13 +22,14 @@ mongoose.Promise = global.Promise;
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static( __dirname + '/authors-app/dist' ));
-
+    
 // Require path
 const path = require('path');
 app.use(express.static(path.join(__dirname, './static')));
 
 app.get(['/authors', '/authors/sort/:sort'], function(req, res) {
     let sortVar;
+    console.log('Authors!');
     if (req.params.sort) {
         sortVar = req.params.sort;
     } else {
